@@ -6,6 +6,13 @@
       <p class="font-mono font-bold">Teachers</p>
     </div>
     <div class="flex ">
+      <select id="" class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="selectedValue"
+      (change)="updateFilteredData()">
+      <option value="Resend Added" selected>Resend Added</option>
+      <ng-container *ngFor="let value of subjectData">
+          <option [value]="value._id">{{ value.subjectName }}</option>
+      </ng-container>
+  </select>
       <input type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
         [(ngModel)]="searchTerm" (input)="updateFilteredData()">
       <button [routerLink]="['/admin/add-teacher']" type="button"
@@ -27,7 +34,7 @@
               <p class="mb-1 md:text-xl sm:text-sm font-bold uppercase tracking-tight text-gray-900">{{item.name}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Email: {{item.email}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Phone: {{item.phone}}</p>
-              <p class="mb-1 sm:text-sm font-medium text-gray-700">Subject: {{item.subject}}</p>
+              <p class="mb-1 sm:text-sm font-medium text-gray-700">Subject: {{item.subject.subjectName}}</p>
             </div>
             <button
               class="absolute top-2 text-xs rounded-md bg-red-500 right-2 font-semibold p-2 text-white hover:text-gray-100"

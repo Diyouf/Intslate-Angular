@@ -5,7 +5,7 @@ export interface teacherData {
     gender:string,
     email: string,
     phone:number,
-    subject:string, 
+    subject:any, 
     address:string,
     image:string
     is_classTeacher:boolean

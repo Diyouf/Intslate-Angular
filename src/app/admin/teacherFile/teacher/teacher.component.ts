@@ -8,6 +8,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable, map } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTeacherComponent } from '../delete-teacher/delete-teacher.component';
+import { SubjectService } from '../../subjectFile/service/subject.service';
 
 
 @Component({
@@ -22,15 +23,19 @@ export class TeacherComponent implements OnInit {
     private toaterService: AddteacherService,
     private toast: ToastrService,
     private dialog: MatDialog,
+    private subjectService:SubjectService
   ) { }
 
   fetchData$!: Observable<teacherData[]>
   currentPage: number = 1; 
   itemsPerPage: number = 6;
   searchTerm:string = ''
+  subjectData!:any[]
+  selectedValue: string = 'Resend Added';
 
   ngOnInit(): void {
     this.loadTeachers()
+    this.loadsubject()
     if (this.toaterService.toaster) {
       this.toast.success("Added successfull !", "Success")
       this.toaterService.toaster = false
@@ -42,6 +47,12 @@ export class TeacherComponent implements OnInit {
     this.store.dispatch((loadAllTeacher()))
     this.fetchData$ = this.store.pipe(select(selectAllteacherData))
 
+  }
+
+  loadsubject(){
+    this.subjectService.fetchSubject().subscribe((res)=>{
+      this.subjectData = res
+    })
   }
 
   deleteTeacher(id: any) {
@@ -64,12 +75,25 @@ export class TeacherComponent implements OnInit {
     this.fetchData$ = this.store.pipe(
       select(selectAllteacherData),
       map((teachers: teacherData[]) => {
-        return teachers.filter(teacher =>
-          teacher.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-          teacher.email.toLowerCase().includes(this.searchTerm.toLowerCase()) 
-        );
+        if (this.selectedValue === 'Resend Added') {
+          // Filter teachers when 'Resend Added' is selected
+          return teachers.filter(teacher =>
+            teacher.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+            teacher.email.toLowerCase().includes(this.searchTerm.toLowerCase()) 
+          );
+        } else {
+          // Filter teachers based on the selected subject (this.selectedValue) and the search term
+          return teachers.filter(teacher =>
+            teacher.subject._id === this.selectedValue &&
+            (teacher.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+              teacher.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+            )
+          );
+        }
       })
     );
   }
+  
+  
   
 }

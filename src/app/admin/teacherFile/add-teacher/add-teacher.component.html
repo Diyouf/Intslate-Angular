@@ -63,8 +63,14 @@
         </div>
         <div>
           <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-          <input id="subject" formControlName='subject' name="subject" type="text" placeholder="Subject..." required
-            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full">
+          <select  id="classNum" formControlName="subject"
+                            class="shadow-lg-sm border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 w-full p-2.5">
+                            <option selected hidden>Choose the subject..</option>
+                            <ng-container *ngFor="let value of subjectdata">
+                                <option [value]="value._id" >{{ value.subjectName }}</option>
+                            </ng-container>
+                            
+                        </select>
             <div *ngIf="data.controls['subject'].errors">
               <div class="text-sm text-red-700" *ngIf="submit&&data.controls.subject.hasError('required')">Subject is required..</div>
             </div>

@@ -17,6 +17,7 @@
     </div>
 
     <p class="text-sm mt-5" *ngIf="selectedValue=='Resend Added'">- {{selectedValue}}</p>
+    
     <div *ngIf="(fetchData$ | async) as student">
         <ng-container *ngIf="student.length > 0; else noDataMessage">
             <div class="grid lg:grid-cols-2 gap-3 mt-14">
