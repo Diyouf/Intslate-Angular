@@ -1,0 +1,96 @@
+<app-side-nav></app-side-nav>
+
+<div class="px-3 sm:ml-64">
+  <section class="bg-gray-50 p-8">
+
+    <nav class="w-full rounded-md">
+      <ol class="list-reset flex">
+        <li>
+          <a [routerLink]="['/admin/teacher']"
+            class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600">Teacher</a>
+        </li>
+        <li>
+          <span class="mx-2 text-neutral-500 dark:text-neutral-400">/</span>
+        </li>
+        <li class="text-neutral-500 dark:text-neutral-400">Add-Teacher</li>
+      </ol>
+    </nav>
+
+
+    <div class="text-center">
+      <h1 class="font-bold">Add teacher</h1>
+    </div>
+    <div class="max-w-4xl mx-auto bg-white p-6  rounded-md shadow-md">
+      <form class="space-y-6 " [formGroup]="data" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input id="name" formControlName='name' name="name" type="text" required
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full" placeholder="Name...">
+            <div *ngIf="data.controls['name'].errors">
+              <div class="text-sm text-red-700" *ngIf="submit&&data.controls.name.hasError('required')">Name is required..</div>
+            </div>
+        </div>
+        <div>
+          <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+          <select id="gender" formControlName='gender' name="gender"
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <div *ngIf="data.controls['gender'].errors">
+            <div class="text-sm text-red-700" *ngIf="submit&&data.controls.gender.hasError('required')">Choose Anyone..</div>
+          </div>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input id="email" formControlName='email' name="email" type="email" placeholder="Email..." required
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full">
+            <p class="text-sm text-red-700">{{EmailerrorMessg}}</p>
+          <div *ngIf="data.controls['email'].errors">
+            <div class="text-sm text-red-700" *ngIf="submit&&data.controls.email.hasError('required')">Email is required..</div>
+            <div class="text-sm text-red-700" *ngIf="data.controls.email.hasError('email')">Enter a Invalid email..</div>
+          </div>
+        </div>
+        <div>
+          <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+          <input id="phone" formControlName='phone' name="phone" type="tel" placeholder="Phone..." required
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full">
+            <p class="text-sm text-red-700">{{MobErrorMessg}}</p>
+            <div *ngIf="data.controls['phone'].errors">
+              <div class="text-sm text-red-700" *ngIf="submit&&data.controls.phone.hasError('required')">Phone is required..</div>
+              <div class="text-sm text-red-700" *ngIf="data.controls.phone.hasError('pattern')">Invalid phone number format..</div>
+            </div>
+        </div>
+        <div>
+          <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+          <input id="subject" formControlName='subject' name="subject" type="text" placeholder="Subject..." required
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full">
+            <div *ngIf="data.controls['subject'].errors">
+              <div class="text-sm text-red-700" *ngIf="submit&&data.controls.subject.hasError('required')">Subject is required..</div>
+            </div>
+        </div>
+        <div>
+          <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+          <textarea id="address" formControlName='address' name="address" rows="3" required
+            class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full"></textarea>
+            <div *ngIf="data.controls['address'].errors">
+              <div class="text-sm text-red-700" *ngIf="submit&&data.controls.address.hasError('required')">Address is required..</div>
+            </div>
+        </div>
+        <div>
+          <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Upload Image</label>
+          <input formControlName="image" (change)="onFileChange($event)" class="mt-1 px-4 py-2 border border-gray-300 rounded-md w-full cursor-pointer bg-gray-50" id="file_input"
+            type="file">
+            <div *ngIf="data.controls['image'].errors">
+              <div class="text-sm text-red-700" *ngIf="submit&&data.controls.image.hasError('required')">Image is required..</div>
+            </div>
+        </div>
+        <div>
+          <button type="submit"
+            class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Submit</button>
+        </div>
+      </form>
+    </div>
+
+  </section>
+</div>

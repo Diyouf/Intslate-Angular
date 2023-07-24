@@ -1,0 +1,109 @@
+<app-side-nav></app-side-nav>
+<div class="p-4 sm:ml-64">
+    <div class="flex justify-end ">
+        <input type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+            [(ngModel)]="searchTerm" (input)="updateFilteredData()">
+
+        <button type="button" (click)="addClass()"
+            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+
+            Add Class</button>
+    </div>
+    <ng-container *ngIf="classData.length > 0; else noDataMessage">
+        <div class="flex flex-col my-6 mx-4 rounded-2xl shadow-xl shadow-gray-200">
+            <div class="overflow-x-auto rounded-2xl">
+                <div class="inline-block min-w-full align-middle">
+
+                    <div class="overflow-hidden shadow-lg ">
+
+                        <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                            <thead class="bg-white">
+                                <tr>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Class
+                                    </th>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Division
+                                    </th>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Students
+                                    </th>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Max students
+                                    </th>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Class Teacher
+                                    </th>
+                                    <th scope="col"
+                                        class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-100" *ngFor="let item of classData | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                                    <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                        <p class=" text-base font-semibold text-gray-900 text-center">{{item.className}}
+                                        </p>
+                                    </td>
+                                    <td
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                        {{item.division}}
+                                    </td>
+                                    <td
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                        {{item.students}}
+                                    </td>
+                                    <td
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                        <div class="flex items-center justify-center text-center">
+                                            <span class="mr-4 text-base font-medium text-gray-900 whitespace-nowrap">
+                                                {{item.maxStudent}}
+                                            </span>
+
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                        {{item.classTeacher.name}}
+                                    </td>
+                                    <td class="p-4 space-x-2 whitespace-nowrap lg:p-5 text-center">
+
+                                        <button type="button" data-modal-toggle="user-modal"
+                                            (click)="editClass(item._id)"
+                                            class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 hover:text-gray-900 hover:scale-[1.02] transition-all">
+                                            <svg class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                                </path>
+                                                <path fill-rule="evenodd"
+                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                            Edit Class
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end mt-7">
+                            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>
+<ng-template #noDataMessage>
+
+    <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+
+</ng-template>

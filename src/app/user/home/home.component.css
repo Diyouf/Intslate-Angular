@@ -1,0 +1,51 @@
+#content {
+    position: relative;
+    animation-name: content;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes content {
+    0% {
+        left: -1000px;
+    }
+
+    100% {
+        left: 0px;
+    }
+}
+
+#ptag {
+    position: relative;
+    animation-name: content;
+    animation-duration: 2s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes ptag {
+    0% {
+        top: 1000px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+
+#btn {
+    position: relative;
+    animation-name: content;
+    animation-duration: 1s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes btn {
+    0% {
+        top: 1000px;
+    }
+
+    100% {
+        top: 0px;
+    }
+}
+

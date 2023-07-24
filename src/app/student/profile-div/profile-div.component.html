@@ -1,0 +1,17 @@
+<div class="w-11/12 mx-auto flex rounded-3xl bg-slate-300 h-auto mt-6 p-9">
+    <div class="text-white w-1/2">
+        <p class="font-bold text-2xl xs:text-xl mb-4"> #{{studentdata.studentId}} </p>
+        <p class="font-bold text-3xl xs:text-xl mb-2"> {{studentdata.name}} </p>
+        <p class="font-medium text-xl xs:text-sm mb-2">Class : {{studentdata.class.className}} - {{studentdata.class.division}}
+        </p>
+        <p class="font-medium text-xl xs:text-sm mb-2">Class Teacher : {{studentdata.class.classTeacher.name}}</p>
+        <p class="font-medium text-xl xs:text-sm mb-2">Guardian : {{studentdata.Guardname}}</p>
+        <p class="font-medium text-xl xs:text-sm mb-2">Email : {{studentdata.email}}</p>
+        <p class="font-medium text-xl xs:text-sm mb-2">Phone : {{studentdata.phone}}</p>
+    </div>
+    <div class="w-full flex justify-end">
+        <div class="w-1/4 h-auto " >
+            <img class="rounded-full" [src]="'http://localhost:3000/studentImage/' + studentdata.image" alt="">
+        </div>
+    </div>
+</div>

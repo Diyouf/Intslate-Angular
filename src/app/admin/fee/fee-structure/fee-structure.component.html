@@ -1,0 +1,134 @@
+<app-side-nav></app-side-nav>
+
+<div class="p-4 sm:ml-64  "*ngFor="let item of feeData ">
+    <div class="flex justify-end ">
+        <input type="text" placeholder="Search..." class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100">
+        <button *ngIf="feeData.length<=0" type="button" (click)="addfee()"
+            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+
+            Add Fees</button>
+            <button *ngIf="feeData.length>0" type="button" (click)="editfee(item._id)"
+            class="text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            Edit Fees</button>
+    </div>
+    <div class="flex flex-col my-6 mx-4 w-6/12  rounded-2xl shadow-xl shadow-gray-200">
+        <div class="overflow-x-auto rounded-2xl">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow-lg">
+                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                        <thead class="bg-white">
+                            <tr >
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Term
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Amount
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-100">
+                                <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                    <p class=" text-base font-semibold text-gray-900 text-center">I-Term</p>
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    ₹{{item.term1.amount}}
+                                </td>
+                               
+                            </tr>
+                            <tr class="hover:bg-gray-100" >
+                                <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                    <p class=" text-base font-semibold text-gray-900 text-center">II-Term</p>
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    ₹{{item.term2.amount}}
+                                </td>
+                               
+                            </tr>
+                            <tr class="hover:bg-gray-100">
+                                <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                    <p class=" text-base font-semibold text-gray-900 text-center">III-Term</p>
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    ₹{{item.term3.amount}}
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col my-6 mx-4 max-w-7xl mt-7 rounded-2xl shadow-xl shadow-gray-200">
+        <p class="text-center mb-5">Students</p>
+        <div class="overflow-x-auto rounded-2xl">
+            <div class="inline-block min-w-full align-middle">
+                <div class="overflow-hidden shadow-lg">
+                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                        <thead class="bg-white">
+                            <tr >
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Student Name
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    class
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Term 1
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Term 2
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Term 3
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-100" *ngFor="let value of studentData |   paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                                <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                    <p class=" text-base font-semibold text-gray-900 text-center">{{value.student.name}}</p>
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    {{value.student.class.className}} - {{value.student.class.division}}
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    {{value.term1.status}}
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    {{value.term2.status}}
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    {{value.term3.status}}
+                                </td>
+                               
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div class="flex justify-end mt-7">
+                        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

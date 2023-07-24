@@ -1,0 +1,54 @@
+<app-side-nav></app-side-nav>
+
+<div class="p-4 sm:ml-64">
+  <div class="flex justify-between">
+    <div class="flex">
+      <p class="font-mono font-bold">Teachers</p>
+    </div>
+    <div class="flex ">
+      <input type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+        [(ngModel)]="searchTerm" (input)="updateFilteredData()">
+      <button [routerLink]="['/admin/add-teacher']" type="button"
+        class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+
+        Add Teacher</button>
+    </div>
+  </div>
+
+  <div *ngIf="(fetchData$ | async) as teacher">
+    <ng-container *ngIf="teacher.length > 0; else noDataMessage">
+      <div class="grid lg:grid-cols-2  mx-2 p-8 gap-2 ">
+        <div *ngFor="let item of teacher | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <div
+            class="flex items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl sm:max-w-sm  text-black px-2 relative">
+            <img class="object-cover w-20 rounded-full h-20 md:h-28 md:w-28 md:rounded-full"
+              [src]="'http://localhost:3000/uploads/' + item.image" alt="">
+            <div class="flex flex-col justify-between p-4 sm:max-w-sm leading-normal">
+              <p class="top-0 left-4 sm:text-xm font-medium text-gray-700">#{{item.teacherId}}</p>
+              <p class="mb-1 md:text-xl sm:text-sm font-bold uppercase tracking-tight text-gray-900">{{item.name}}</p>
+              <p class="mb-1 sm:text-sm font-medium text-gray-700">Email: {{item.email}}</p>
+              <p class="mb-1 sm:text-sm font-medium text-gray-700">Phone: {{item.phone}}</p>
+              <p class="mb-1 sm:text-sm font-medium text-gray-700">Subject: {{item.subject}}</p>
+            </div>
+            <button
+              class="absolute top-2 text-xs rounded-md bg-red-500 right-2 font-semibold p-2 text-white hover:text-gray-100"
+              (click)="deleteTeacher(item._id)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+      </div>
+
+    </ng-container>
+  </div>
+
+
+
+</div>
+<ng-template #noDataMessage>
+
+  <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+
+</ng-template>

@@ -1,0 +1,60 @@
+<app-side-nav></app-side-nav>
+
+<div class="p-4 sm:ml-64">
+    <div class="flex justify-end ">
+        <select id="" class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="selectedValue"
+            (change)="updateFilteredData()">
+            <option value="Resend Added" selected>Resend Added</option>
+            <ng-container *ngFor="let value of classData">
+                <option [value]="value._id">{{ value.className }} - {{ value.division }}</option>
+            </ng-container>
+        </select>
+        <input type="text" placeholder="Search..." class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="searchTerm" (input)="updateFilteredData()">
+
+        <button type="button" [routerLink]="['/admin/admissionEnquiry']"
+            class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+
+            Add Addmission</button>
+    </div>
+
+    <p class="text-sm mt-5" *ngIf="selectedValue=='Resend Added'">- {{selectedValue}}</p>
+    <div *ngIf="(fetchData$ | async) as student">
+        <ng-container *ngIf="student.length > 0; else noDataMessage">
+            <div class="grid lg:grid-cols-2 gap-3 mt-14">
+
+                <div *ngFor="let item of student | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
+                    class="flex items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl sm:max-w-sm  text-black px-6  ">
+                    <div class="w-full md:w-1/4 bg-white grid place-items-center">
+                        <img [src]="'http://localhost:3000/studentImage/' + item.image" alt="tailwind logo"
+                            class="rounded-xl" />
+                    </div>
+                    <div class="w-full md:w-full bg-white flex flex-col  space-y-1 p-4">
+                        <div class="flex justify-between item-center">
+                            <p class="text-gray-500 font-medium hidden md:block">#{{item.studentId}}</p>
+                        </div>
+                        <p class="text-gray-800 font-medium md:text-xl text-xl">{{item.name}}</p>
+                        <p class="text-gray-800 md:text-sm text-sm">{{item.class.className}}-{{item.class.division}}</p>
+                        <p class="md:text-sm font-normal  text-gray-500 text-base">{{item.phone}}</p>
+                        <p class="md:text-sm font-normal  text-gray-500 text-base">{{item.email}}</p>
+                        <p class="flex justify-end text-xs text-blue-700 ">
+                            view more
+                            <span class="ml-2 text-xs text-blue-700">→</span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex justify-center mt-7">
+                <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+            </div>
+        </ng-container>
+    </div>
+
+
+
+
+</div>
+<ng-template #noDataMessage>
+
+    <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+
+</ng-template>

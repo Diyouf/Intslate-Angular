@@ -1,0 +1,112 @@
+<app-side-nav></app-side-nav>
+
+<div class="flex p-4 sm:ml-64 justify-end">
+    <input type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+        [(ngModel)]="searchTerm" (input)="updateFilteredData()">
+
+</div>
+
+<div class="p-4 sm:ml-64">
+    <div class="flex flex-col">
+        <div class="sm:mx-6 lg:mx-8">
+            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div class="overflow-hidden" *ngIf="(fetchData$ | async) as admissions">
+                    <ng-container *ngIf="admissions.length > 0; else noDataMessage">
+                        <table class="min-w-full text-center text-sm font-light">
+                            <thead class="border-b bg-gray-200 font-medium text-black ">
+                                <tr>
+                                    <th scope="col" class="py-4">Student</th>
+                                    <th scope="col" class="py-4">Guardian</th>
+                                    <th scope="col" class="py-4">Contact</th>
+                                    <th scope="col" class="py-4">Class</th>
+                                    <th scope="col" class="py-4">Admission Date</th>
+                                    <th scope="col" class="py-4">Action</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="pl-10">
+
+                                <tr class="border-bdark:border-neutral-500"
+                                    *ngFor="let item of admissions | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+                                    <td
+                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <div class="flex px-2 py-1">
+                                            <div class="sm:max-w-sm">
+                                                <img [src]="'http://localhost:3000/studentImage/' + item.image"
+                                                    class="object-cover w-15 rounded-full sm:h-7 sm:w-7 h-15 md:h-20 md:w-20 md:rounded-full"
+                                                    alt="user1" />
+                                            </div>
+                                            <div class="flex flex-col justify-center">
+                                                <h6 class="mb-0 text-sm font-semibold leading-normal text-left">
+                                                    {{item.name}}</h6>
+                                                <p
+                                                    class="mb-0 text-xs font-bold leading-tight text-slate-400 text-left">
+                                                    {{item.age}}</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <p class="mb-0 text-xs font-semibold leading-tight text-left">{{item.Guardname}}
+                                        </p>
+                                        <p class="text-xs font-bold leading-tight text-slate-400 text-left">
+                                            {{item.relation}}</p>
+                                    </td>
+
+                                    <td
+                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <div class="flex flex-col">
+                                            <p class="mb-0 text-xs font-semibold leading-tight text-left">{{item.phone}}
+                                            </p>
+                                            <p class=" text-xs font-semibold leading-tight text-left">{{item.email}}</p>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <span class="text-xs font-semibold leading-tight">{{item.seekingClass}}</span>
+                                    </td>
+                                    <td
+                                        class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                        <span class="text-xs font-semibold leading-tight">{{item.admissoinDate |
+                                            date}}</span>
+                                    </td>
+                                    <td *ngIf="!item.is_approved"
+                                        class="p-2  align-middle bg-transparent border-b whitespace-nowrap shadow-transparent ">
+                                        <button (click)="approve(item._id,item.seekingClass)"
+                                            class="text-center bg-green-600 text-white  px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap  align-baseline font-bold uppercase rounded w-auto h-6 leading-none ">Approve
+
+                                        </button>
+                                        <button (click)="reject(item._id)"
+                                            class="text-center ml-2 bg-red-600 text-white  px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap  align-baseline font-bold uppercase rounded w-auto h-6 leading-none">
+                                            reject
+
+                                        </button>
+
+                                    </td>
+                                    <td *ngIf="item.is_approved == 'Approved'">
+                                        <span
+                                            class="text-center pt-2 ml-2 bg-green-600 text-white  px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap  align-baseline font-bold uppercase rounded w-auto h-6 leading-none">Approved</span>
+                                    </td>
+                                    <td *ngIf="item.is_approved == 'Rejected'">
+                                        <span
+                                            class="text-center pt-2 ml-2 bg-red-600 text-white  px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap  align-baseline font-bold uppercase rounded w-auto h-6 leading-none">Rejected</span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <div class="flex justify-end mt-7">
+                            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+                        </div>
+                    </ng-container>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noDataMessage>
+
+    <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+
+</ng-template>
