@@ -6,17 +6,39 @@ import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard
 import { TeacherAuthGuard } from './guard/guard.guard';
 import { TeacherLoginGuard } from './guard/guard.login';
 import { ProfileComponent } from './profile/profile.component';
+import { StudentsComponent } from './students/students.component';
 
 const routes: Routes = [
-  {path:'',redirectTo:'/teacher/dashboard',pathMatch:'full'},
-  { path: 'login', component: TeacherLoginComponent ,canActivate:[TeacherLoginGuard]},
-  { path: 'register', component: TeacherRegisterComponent ,canActivate:[TeacherLoginGuard] },
-  { path: 'dashboard', component: TeacherDashboardComponent,canActivate:[TeacherAuthGuard] },
-  { path: 'profile', component: ProfileComponent,canActivate:[TeacherAuthGuard] },
+  { path: '', redirectTo: '/teacher/dashboard', pathMatch: 'full' },
+  {
+    path: 'login',
+    component: TeacherLoginComponent,
+    canActivate: [TeacherLoginGuard],
+  },
+  {
+    path: 'register',
+    component: TeacherRegisterComponent,
+    canActivate: [TeacherLoginGuard],
+  },
+  {
+    path: 'dashboard',
+    component: TeacherDashboardComponent,
+    canActivate: [TeacherAuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [TeacherAuthGuard],
+  },
+  {
+    path: 'students',
+    component: StudentsComponent,
+    canActivate: [TeacherAuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class TeacherRoutingModule { }
+export class TeacherRoutingModule {}

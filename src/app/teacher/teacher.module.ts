@@ -10,6 +10,8 @@ import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TeacherAuthInterceptor } from './TeacherInterceptor/teacher-http-interceptor';
 import { ProfileComponent } from './profile/profile.component';
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { StudentsComponent } from './students/students.component';
 
 
 
@@ -19,7 +21,9 @@ import { ProfileComponent } from './profile/profile.component';
     TeacherRegisterComponent,
     TeacherDashboardComponent,
     NavBarComponent,
-    ProfileComponent
+    ProfileComponent,
+    SideNavComponent,
+    StudentsComponent
   ],
   imports: [
     CommonModule,
