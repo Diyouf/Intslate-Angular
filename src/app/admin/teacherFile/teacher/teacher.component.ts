@@ -31,7 +31,7 @@ export class TeacherComponent implements OnInit {
   itemsPerPage: number = 6;
   searchTerm:string = ''
   subjectData!:any[]
-  selectedValue: string = 'Resend Added';
+  selectedValue: string = 'Recent Added ';
 
   ngOnInit(): void {
     this.loadTeachers()
@@ -75,8 +75,8 @@ export class TeacherComponent implements OnInit {
     this.fetchData$ = this.store.pipe(
       select(selectAllteacherData),
       map((teachers: teacherData[]) => {
-        if (this.selectedValue === 'Resend Added') {
-          // Filter teachers when 'Resend Added' is selected
+        if (this.selectedValue === 'Recent Added ') {
+          // Filter teachers when 'Recent Added ' is selected
           return teachers.filter(teacher =>
             teacher.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
             teacher.email.toLowerCase().includes(this.searchTerm.toLowerCase()) 

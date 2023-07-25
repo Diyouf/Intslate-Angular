@@ -8,7 +8,7 @@
     <div class="flex ">
       <select id="" class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="selectedValue"
       (change)="updateFilteredData()">
-      <option value="Resend Added" selected>Resend Added</option>
+      <option value="Recent Added " selected>Recent Added </option>
       <ng-container *ngFor="let value of subjectData">
           <option [value]="value._id">{{ value.subjectName }}</option>
       </ng-container>
@@ -32,6 +32,7 @@
             <div class="flex flex-col justify-between p-4 sm:max-w-sm leading-normal">
               <p class="top-0 left-4 sm:text-xm font-medium text-gray-700">#{{item.teacherId}}</p>
               <p class="mb-1 md:text-xl sm:text-sm font-bold uppercase tracking-tight text-gray-900">{{item.name}}</p>
+              <p class="mb-1 sm:text-sm font-medium text-gray-700">Class Teacher: {{item.class.className}} - {{item.class.division}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Email: {{item.email}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Phone: {{item.phone}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Subject: {{item.subject.subjectName}}</p>

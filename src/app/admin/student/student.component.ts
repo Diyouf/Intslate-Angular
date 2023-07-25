@@ -40,14 +40,14 @@ export class StudentComponent {
       })
   }
 
-  selectedValue: string = 'Resend Added';
+  selectedValue: string = 'Recent Added ';
   searchTerm:string = ''
 
   updateFilteredData() {
     this.fetchData$ = this.store.pipe(
       select(selectAllStudentData),
       map((students: studentData[]) => {
-        if (this.selectedValue === 'Resend Added') {
+        if (this.selectedValue === 'Recent Added ') {
           return students.filter(student =>
             student.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
             student.email.toLowerCase().includes(this.searchTerm.toLowerCase())

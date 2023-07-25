@@ -4,7 +4,7 @@
     <div class="flex justify-end ">
         <select id="" class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="selectedValue"
             (change)="updateFilteredData()">
-            <option value="Resend Added" selected>Resend Added</option>
+            <option value="Recent Added " selected>Recent Added </option>
             <ng-container *ngFor="let value of classData">
                 <option [value]="value._id">{{ value.className }} - {{ value.division }}</option>
             </ng-container>
@@ -16,7 +16,7 @@
             Add Addmission</button>
     </div>
 
-    <p class="text-sm mt-5" *ngIf="selectedValue=='Resend Added'">- {{selectedValue}}</p>
+    <p class="text-sm mt-5" *ngIf="selectedValue=='Recent Added '">- {{selectedValue}}</p>
     
     <div *ngIf="(fetchData$ | async) as student">
         <ng-container *ngIf="student.length > 0; else noDataMessage">

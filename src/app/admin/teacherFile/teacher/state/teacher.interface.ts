@@ -9,5 +9,6 @@ export interface teacherData {
     address:string,
     image:string
     is_classTeacher:boolean
+    class:any
 
 }

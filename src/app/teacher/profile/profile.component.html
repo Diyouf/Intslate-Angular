@@ -20,7 +20,7 @@ href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawe
 </section>
 <section class="relative py-16 bg-blueGray-200">
     <div class="container mx-auto px-4">
-        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-10/12 mx-auto mb-6 shadow-xl rounded-lg -mt-64">
             <div class="px-6">
                 <div class="flex flex-wrap justify-center">
                     <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
@@ -55,12 +55,16 @@ href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawe
                         
                         {{teacherData.email}}
                     </div>
-                    <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                    <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold ">
                         
                         {{teacherData.phone}}
                     </div>
+                    <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold ">
+                        
+                      Class Teacher :  {{teacherData.class.className}} -  {{teacherData.class.division}}
+                    </div>
                     <div class="mb-2 text-blueGray-600 mt-10">
-                        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Subject - {{teacherData.subject}}
+                        <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Subject - {{teacherData.subject.subjectName}}
                       
                     </div>
                     <div class="mb-2 text-blueGray-600">
