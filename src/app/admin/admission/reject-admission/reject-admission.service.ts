@@ -9,7 +9,7 @@ export class RejectAdmissionService {
 
     constructor(private http: HttpClient) { }
 
-    rejectAdmission(id: any): Observable<any> {
+    rejectAdmission(id:string ): Observable<any> {
         
         return this.http.get<any>(`${this.apiUrl}/admin/rejectAdmission?id=${id}`)
     }

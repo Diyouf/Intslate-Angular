@@ -10,66 +10,101 @@
       class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
     />
   </div>
-  <div
-    class="relative flex flex-col min-w-0 break-words w-full mx-auto mb-6 shadow-lg rounded"
-  >
-    <div class="rounded-t mb-0 px-4 py-3 border-0">
-      <div class="flex flex-wrap items-center">
-        <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-          <h3 class="font-semibold text-lg">Card Tables</h3>
-        </div>
+  <ng-container *ngIf="studentData.length > 0; else noDataMessage">
+    <div
+      class="relative flex flex-col min-w-0 break-words w-full mx-auto mb-6 shadow-lg rounded"
+    >
+      <div class="rounded-t mb-0 px-4 py-3 border-0">
+        <div class="flex flex-wrap items-center"></div>
       </div>
+      <div class="block w-full overflow-x-auto">
+        <!-- Projects table -->
+        <table class="items-center w-full bg-transparent border-collapse">
+          <thead>
+            <tr>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Student
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Guardian
+              </th>
+              <th
+                class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
+              >
+                Contact
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of studentData | paginate
+            : {
+                itemsPerPage: itemsPerPage,
+                currentPage: currentPage
+              }">
+              <th
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
+              >
+                <div class="flex px-1 py-1">
+                  <div class="sm:max-w-sm">
+                    <img
+                      [src]="'http://localhost:3000/studentImage/' + item.image"
+                      class="object-cover w-12 rounded-full sm:h-7 sm:w-7 h-12 md:h-14 md:w-14 md:rounded-full"
+                     
+                    />
+                  </div>
+                  <div class="flex flex-col justify-center">
+                    <h6
+                      class="mb-0 text-sm  font-semibold leading-normal text-left"
+                    >
+                      {{ item.name }}
+                    </h6>
+                    <p
+                      class="mb-0 text-xs font-bold leading-tight text-slate-400 text-left"
+                    >
+                      {{ item.age }}
+                    </p>
+                  </div>
+                </div>
+              </th>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+              
+              <p class="mb-0 text-xs font-semibold leading-tight text-left">{{item.Guardname}}
+              </p>
+              <p class="text-xs font-bold leading-tight text-slate-400 text-left">
+                  {{item.relation}}</p>
+              </td>
+              <td
+                class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+              >
+                <div class="flex flex-col">
+                      <p
+                        class="mb-0 text-xs font-semibold leading-tight text-left"
+                      >
+                        {{ item.phone }}
+                      </p>
+                      <p class="text-xs font-semibold leading-tight text-left">
+                        {{ item.email }}
+                      </p>
+                    </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+      <div class="flex justify-end mt-2">
+        <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
     </div>
-    <div class="block w-full overflow-x-auto">
-      <!-- Projects table -->
-      <table class="items-center w-full bg-transparent border-collapse">
-        <thead>
-          <tr>
-            <th
-              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-            >
-              Student
-            </th>
-            <th
-              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-            >
-              Guardian
-            </th>
-            <th
-              class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left"
-            >
-              Contact
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center"
-            >
-              <img
-                src="assets/img/bootstrap.jpg"
-                class="h-12 w-12 bg-white rounded-full border"
-                alt="..."
-              />
-              <span class="ml-3 font-bold"> Argon Design System </span>
-            </th>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              $2,500 USD
-            </td>
-            <td
-              class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-            >
-              <i class="fas fa-circle text-orange-500 mr-2"></i> pending
-            </td>
-           
-           
-          </tr>
-          
-        </tbody>
-      </table>
     </div>
-  </div>
+  </ng-container>
 </div>
+
+<ng-template #noDataMessage>
+  <p class="sm:mt-6 text-center font-semibold text-lg">No data found.</p>
+</ng-template>

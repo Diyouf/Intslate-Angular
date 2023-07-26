@@ -55,7 +55,7 @@ export class TeacherComponent implements OnInit {
     })
   }
 
-  deleteTeacher(id: any) {
+  deleteTeacher(id:string ) {
     console.log("lfhfhf");
     
     const dialogRef = this.dialog.open(DeleteTeacherComponent,{

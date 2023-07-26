@@ -25,7 +25,7 @@ export class ApproveAdmissionComponent implements OnInit {
 
   }
 
-  id: any = this.data.id
+  id:string  = this.data.id
   studentData: string = this.data.ReqClass
 
   onNoClick() {

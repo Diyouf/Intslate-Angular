@@ -29,7 +29,7 @@ export class AdmissionEnquiryComponent implements OnInit {
   itemsPerPage: number = 6; 
   searchTerm:string  = ''
 
-  approve(id: any, StudnetClass: string) {
+  approve(id:string , StudnetClass: string) {
     const dialogRef = this.dialog.open(ApproveAdmissionComponent, {
       height: '440px',
       width: '650px',
@@ -40,7 +40,7 @@ export class AdmissionEnquiryComponent implements OnInit {
     })
   }
 
-  reject(id: any) {
+  reject(id:string ) {
     const dialogRef = this.dialog.open(RejectAdmissionComponent, {
       height: '280px',
       width: '490px',

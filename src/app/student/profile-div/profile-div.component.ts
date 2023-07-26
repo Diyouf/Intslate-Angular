@@ -10,7 +10,7 @@ import { StudentServiceService } from '../service/student.service';
 export class ProfileDivComponent implements OnInit {
 
   constructor(private service: StudentServiceService) { }
-  private readonly studentId = localStorage.getItem('studentId')
+  private readonly studentId  = localStorage.getItem('studentId')
 
   studentdata!: any;
 

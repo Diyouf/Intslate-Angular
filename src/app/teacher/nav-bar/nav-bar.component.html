@@ -2,7 +2,7 @@
 
 <!-- Navbar -->
 <nav
-  class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4"
+  class="absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4 shadow-md"
 >
   <div
     class="w-full mx-auto items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4"
@@ -21,7 +21,7 @@
        <a  [routerLink]="['/teacher/profile']" class="text-black text-sm font-semibold cursor-pointer">Profile</a>
 
       <li >
-        <button
+        <button (click)="teacherLogout()"
           class="bg-blue-500 text-white text-sm uppercase font-semibold px-4 py-2 rounded-lg"
         >
           Logout

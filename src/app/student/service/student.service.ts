@@ -7,7 +7,7 @@ export class StudentServiceService {
     constructor(private http: HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    fetchStudent(id: any) {
+    fetchStudent(id:string| null ) {
         return this.http.get<any>(`${this.apiUrl}/student/fetchStudentProfile/?id=${id}`)
     }
 
@@ -15,11 +15,11 @@ export class StudentServiceService {
         return this.http.get<any>(`${this.apiUrl}/student/fetchfeesStructure`)
     }
 
-    paidFees(id: any) {
+    paidFees(id:string | null ) {
         return this.http.get<any>(`${this.apiUrl}/student/fetchPaidFees/?id=${id}`)
     }
 
-    hitPayment(paymentData: any, term: any, studentId: any) {
+    hitPayment(paymentData: any, term: any, studentId:string | null) {
         return this.http.post<any>(`${this.apiUrl}/student/hitPayment/?studentId=${studentId}`, { paymentData, term })
     }
 }

@@ -31,7 +31,7 @@ export class ClassesComponent implements OnInit {
     })
   }
 
-  editClass(id: any) {
+  editClass(id:string ) {
     const dialogRef = this.dialog.open(EditClassComponent, {
       height: '420px',
       width: '672px',

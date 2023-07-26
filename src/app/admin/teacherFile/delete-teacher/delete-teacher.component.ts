@@ -16,7 +16,7 @@ export class DeleteTeacherComponent {
     private service:DeleteTeacherService
   ) { }
 
-  id: any = this.data.id
+  id:string  = this.data.id
 
   onNoClick() {
     this.dialogRef.close();

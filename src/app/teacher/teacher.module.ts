@@ -12,6 +12,7 @@ import { TeacherAuthInterceptor } from './TeacherInterceptor/teacher-http-interc
 import { ProfileComponent } from './profile/profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { StudentsComponent } from './students/students.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -36,6 +37,7 @@ import { StudentsComponent } from './students/students.component';
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
+    NgxPaginationModule
   ],
   providers: [
     {

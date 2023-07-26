@@ -1,10 +1,11 @@
 export interface studentData {
+  _id: string;
   studentId: number;
   name: string;
   email: string;
   phone: number;
   class: {
-    _id:string,
+    _id: string;
     className: number;
     division: string;
     students: number;
@@ -12,4 +13,7 @@ export interface studentData {
     classTeacher: string;
   };
   image: string;
+  Guardname:string
+  age:number
+  relation: string
 }
