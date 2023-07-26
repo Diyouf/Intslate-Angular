@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { TeacherRoutingModule } from './teacher-routing.module';
 import { TeacherLoginComponent } from './teacher-login/teacher-login.component';
 import { TeacherRegisterComponent } from './teacher-register/teacher-register.component';
@@ -13,6 +13,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { StudentsComponent } from './students/students.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HomeworkComponent } from './homework/homework.component';
+import { AddHomeworkComponent } from './add-homework/add-homework.component';
 
 
 
@@ -24,7 +26,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NavBarComponent,
     ProfileComponent,
     SideNavComponent,
-    StudentsComponent
+    StudentsComponent,
+    HomeworkComponent,
+    AddHomeworkComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
       positionClass: 'toast-top-center',
       preventDuplicates: true,
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    FormsModule
   ],
   providers: [
     {

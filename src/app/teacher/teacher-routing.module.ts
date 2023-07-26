@@ -7,6 +7,7 @@ import { TeacherAuthGuard } from './guard/guard.guard';
 import { TeacherLoginGuard } from './guard/guard.login';
 import { ProfileComponent } from './profile/profile.component';
 import { StudentsComponent } from './students/students.component';
+import { HomeworkComponent } from './homework/homework.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/teacher/dashboard', pathMatch: 'full' },
@@ -33,6 +34,11 @@ const routes: Routes = [
   {
     path: 'students',
     component: StudentsComponent,
+    canActivate: [TeacherAuthGuard],
+  },
+  {
+    path: 'homeWork',
+    component: HomeworkComponent,
     canActivate: [TeacherAuthGuard],
   },
 ];

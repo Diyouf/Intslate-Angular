@@ -1,2 +1,44 @@
 <app-nav-bar></app-nav-bar>
 <app-profile-div></app-profile-div>
+
+<div class="w-full mt-10 border-t pt-10 h-auto">
+  <p class="text-center font-semibold text-xl">Home Works</p>
+  <div
+    class=" w-11/12  rounded-2xl bg-slate-100 h-auto mx-auto mt-8 p-7"
+  >
+    <ol class="relative border-l border-gray-200">
+      <li class="mb-10 ml-6" *ngFor="let item of homeworkData">
+        <span
+          class="absolute  items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white"
+        >
+          <img
+            class="rounded-full shadow-lg"
+            [src]="'http://localhost:3000/uploads/' + item.teacher.image"
+            
+          />
+        </span>
+        <div class="w-full items-center p-4 bg-white border border-gray-200 rounded-lg shadow-sm ">
+            <div class="text-md mb-2 font-medium">{{ item.teacher.subject.subjectName }}</div>
+            <div class="flex justify-between items-center">
+              <div class="font-normal text-gray-500 dark:text-gray-300">
+                <time class="block mb-2 text-xs font-normal leading-none text-gray-400">
+                  {{ formatDueDate(item.date) }}
+                </time>
+                <a class="font-semibold text-gray-800">{{ item.homework }}</a>
+              </div>
+              <div class="text-gray-600 font-semibold text-sm">
+                Due Date:
+                <span class="ml-2 text-red-400 text-sm font-semibold">
+                  {{ formatDueDate(item.dueDate) }}
+                </span>
+              </div>
+            </div>
+          </div>
+          
+  
+      </li>
+      
+      
+    </ol>
+  </div>
+</div>
