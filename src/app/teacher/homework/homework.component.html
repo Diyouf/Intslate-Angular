@@ -16,6 +16,7 @@
       class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
     />
   </div>
+  <ng-container *ngIf="homeWorkdata.length > 0; else noDataMessage">
   <div
     class="relative flex flex-col min-w-0 break-words p-6 w-full mx-auto mb-6 shadow-lg rounded"
   >
@@ -64,4 +65,8 @@
       </li>
     </ol>
   </div>
+  </ng-container>
+  <ng-template #noDataMessage>
+    <p class="sm:mt-7 text-center font-semibold text-lg">No homeworks.</p>
+  </ng-template>
 </div>

@@ -11,6 +11,7 @@ import { AdminLoginGuard } from './guard/gurad.login';
 import { SubjectComponent } from './subjectFile/subject/subject.component';
 import { ClassesComponent } from './class/classes/classes.component';
 import { FeeStructureComponent } from './fee/fee-structure/fee-structure.component';
+import { EventListComponent } from './event/event-list/event-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'classes', component: ClassesComponent, canActivate: [AdminAuthGuard] },
 
   { path: 'fees', component: FeeStructureComponent, canActivate: [AdminAuthGuard] },
+
+  { path: 'event', component: EventListComponent, canActivate: [AdminAuthGuard] }
 
 
 ];

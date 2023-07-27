@@ -33,7 +33,9 @@ import { EditClassComponent } from './class/edit-class/edit-class.component';
 import { DeleteTeacherComponent } from './teacherFile/delete-teacher/delete-teacher.component'
 import { AdminAuthInterceptor } from './AdminInterceptor/admin-http-Interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AddSubjectComponent } from './subjectFile/add-subject/add-subject.component'
+import { AddSubjectComponent } from './subjectFile/add-subject/add-subject.component';
+import { EventListComponent } from './event/event-list/event-list.component';
+import { AddEventComponent } from './event/add-event/add-event.component'
 
 
 
@@ -57,7 +59,9 @@ import { AddSubjectComponent } from './subjectFile/add-subject/add-subject.compo
     EditFeeComponent,
     EditClassComponent,
     DeleteTeacherComponent,
-    AddSubjectComponent
+    AddSubjectComponent,
+    EventListComponent,
+    AddEventComponent
   ],
   imports: [
     CommonModule,

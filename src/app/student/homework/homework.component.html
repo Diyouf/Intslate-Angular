@@ -6,6 +6,7 @@
   <div
     class=" w-11/12  rounded-2xl bg-slate-100 h-auto mx-auto mt-8 p-7"
   >
+  <ng-container *ngIf="homeworkData.length > 0; else noDataMessage">
     <ol class="relative border-l border-gray-200">
       <li class="mb-10 ml-6" *ngFor="let item of homeworkData">
         <span
@@ -40,5 +41,9 @@
       
       
     </ol>
+  </ng-container>
   </div>
 </div>
+<ng-template #noDataMessage>
+  <p class="sm:mt-7 text-center font-semibold text-lg">No homeworks.</p>
+</ng-template>
