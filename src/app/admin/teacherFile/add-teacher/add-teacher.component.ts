@@ -40,8 +40,8 @@ export class AddTeacherComponent implements OnInit {
   MobErrorMessg!: string;
   file!: File;
 
-  onFileChange(event: any) {
-    this.file = event.target.files[0];
+  onFileChange(event: Event) {
+    this.file = <File>(event.target as HTMLInputElement)?.files?.[0];
     if (this.file) {
       this.data.value.image = this.file.name;
     }
