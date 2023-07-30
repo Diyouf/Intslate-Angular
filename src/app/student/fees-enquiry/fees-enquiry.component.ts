@@ -21,67 +21,68 @@ export class FeesEnquiryComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.studentPaidFees();
-    this.loadFees();
-    this.invokeStripe()
+  async ngOnInit(): Promise<void> {
+    await this.studentPaidFees();
+    await this.loadFees();
+    this.invokeStripe();
+    this.findUpcomingUnpaidTerm(); // Call this function after fetching the data
   }
 
-  loadFees() {
-    this.service.fetchfees().subscribe((res) => {
-      this.feeData = res;
-      this.totalAmount = this.feeData.term1.amount + this.feeData.term2.amount + this.feeData.term3.amount;
-      this.calculateBalanceAmount();
-    });
+
+  async loadFees(): Promise<void> {
+    this.feeData = await this.service.fetchfees().toPromise();
+    this.totalAmount = this.feeData.term1.amount + this.feeData.term2.amount + this.feeData.term3.amount;
+    this.calculateBalanceAmount();
   }
 
-  studentPaidFees() {
-    this.service.paidFees(this.id).subscribe((res) => {
-      this.paidFees = res;
-      this.totalPaid = this.paidFees.term1.amount + this.paidFees.term2.amount + this.paidFees.term3.amount;
-      this.calculateBalanceAmount();
-    });
+
+  async studentPaidFees(): Promise<void> {
+    this.paidFees = await this.service.paidFees(this.id).toPromise();
+    this.totalPaid = this.paidFees.term1.amount + this.paidFees.term2.amount + this.paidFees.term3.amount;
+    this.calculateBalanceAmount();
   }
+
 
   calculateBalanceAmount() {
     this.balanceAmount = this.totalAmount - this.totalPaid;
   }
 
+  findUpcomingUnpaidTerm(): void {
+    const terms = ['term1', 'term2', 'term3'];
+    for (const term of terms) {
+      if (this.paidFees[term].status === 'Unpaid') {
+        this.unpaidTerms = {
+          term: this.capitalizeFirstLetter(term),
+          amount: this.feeData[term].amount,
+          id: this.paidFees[term]._id,
+        };
+        break;
+      }
+    }
+  }
+
+
+  capitalizeFirstLetter(term: string): string {
+    return term.charAt(0).toUpperCase() + term.slice(1);
+  }
+
+
 
 
   payNow() {
-    if (this.paidFees.term1.status === 'Unpaid') {
-      this.unpaidTerms = {
-        term: 'Term 1',
-        amount: this.feeData.term1.amount,
-        id: this.paidFees.term1._id,
-      };
-    } else if (this.paidFees.term2.status === 'Unpaid') {
-      this.unpaidTerms = {
-        term: 'Term 2',
-        amount: this.feeData.term2.amount,
-        id: this.paidFees.term2._id,
-      };
-    } else if (this.paidFees.term3.status === 'Unpaid') {
-      this.unpaidTerms = {
-        term: 'Term 3',
-        amount: this.feeData.term3.amount,
-        id: this.paidFees.term3._id,
-      };
-    }
-
     const paymentHandler = (<any>window).StripeCheckout.configure({
       key: 'pk_test_51NUXPzSDeABFhKBXLo7ny9iBaxUCetBFRxUoHCCzg0NgEKrh5BJCh8UkZI2ysCEN8paCpIDDW3ehf27lCcheypKs00CpowOYEv',
       locale: 'auto',
       token: (stripeToken: any) => {
         this.service.hitPayment(stripeToken, this.unpaidTerms, this.id).subscribe((res: any) => {
-          if(res.success){
+          if(res.success ){
             Swal.fire({
               title: '<span style="font-size: 24px">Payment Successfull!</span>',
               html: '<span style="font-size: 18px; padding-top: -30px">The Payment invoice send through Mail</span>',
               icon: 'success'
             }).then((result)=>{
               if(result.isConfirmed){
+                this.findUpcomingUnpaidTerm();
                 this.studentPaidFees()
               }
             });

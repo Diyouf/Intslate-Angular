@@ -67,12 +67,17 @@
 
         <div class="w-6/12  h-auto bg-gray-50 rounded-2xl p-5">
             <p class="text-center font-semibold mb-4">Payment Gatway</p>
-            <div class="relative overflow-x-auto sm:rounded-lg">
-                <p class="text-left font-semibold mb-7 flex justify-between">Total : <span>₹ {{totalAmount}}</span></p>
+            <div class="relative overflow-x-auto rounded-lg border p-4 bg-gray-100">
+                <p class="text-left font-semibold mb-3 flex justify-between">Total : <span>₹ {{totalAmount}}</span></p>
                 <hr>
-                <p class="text-left font-semibold flex mt-7 justify-between">Balance : <span *ngIf="balanceAmount>0">₹
-                        {{balanceAmount}}</span><span *ngIf="balanceAmount<=0">All Paid</span></p>
-            </div>
+                <p class="text-left font-semibold flex mt-4 mb-3 justify-between">Balance : <span *ngIf="balanceAmount > 0">₹{{balanceAmount}}</span><span *ngIf="balanceAmount <= 0">All Paid</span></p>
+                <hr>
+                <div *ngIf="unpaidTerms">
+                  <p class="text-left font-semibold mt-4 flex justify-between">Unpaid Term :<span *ngIf="balanceAmount > 0">{{unpaidTerms.term}}</span> <span *ngIf="balanceAmount > 0"> ₹{{unpaidTerms.amount}}</span><span *ngIf="balanceAmount <= 0">All Paid</span></p>
+                </div>
+              </div>
+              
+              
 
             <div *ngIf="balanceAmount>0" class="w-full pt-20 flex ">
                 <p class="text-xs font-mono mt-4"> - Debit Cart and Credit card are
