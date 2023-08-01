@@ -36,6 +36,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AddSubjectComponent } from './subjectFile/add-subject/add-subject.component';
 import { EventListComponent } from './event/event-list/event-list.component';
 import { AddEventComponent } from './event/add-event/add-event.component'
+import { _eventGetReducer } from './event/event-list/state/event.reducer';
+import { AllEventEffect } from './event/event-list/state/event.effect';
 
 
 
@@ -77,7 +79,8 @@ import { AddEventComponent } from './event/add-event/add-event.component'
     StoreModule.forFeature('Allteacher', _teacherGetReducer),
     StoreModule.forFeature('Alladmission', _admissionGetReducer),
     StoreModule.forFeature('Allstudent', _studentGetReducer),
-    EffectsModule.forFeature([AllteacherEffect, AlladmissionEffect, AllStudentEffect]),
+    StoreModule.forFeature('AllEvent', _eventGetReducer),
+    EffectsModule.forFeature([AllteacherEffect, AlladmissionEffect, AllStudentEffect,AllEventEffect]),
     MatDialogModule,
     FormsModule,
     NgxPaginationModule

@@ -29,7 +29,7 @@
       </button>
     </div>
 
-    <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+    <form  [formGroup]="formData" (ngSubmit)="onSubmit()">
       <div class="p-6 space-y-6">
         <div class="grid grid-cols-6 gap-6">
           <div class="col-span-12 sm:col-span-6">
@@ -69,6 +69,7 @@
               placeholder=""
               required=""
             />
+            <p *ngIf="dateError" class="text-xs italic text-red-500">{{dateError}}</p>
             <div *ngIf="formData.controls['date'].errors">
                                 <p class="text-xs italic text-red-500"
                                     *ngIf="submit&&formData.controls.date.hasError('required')">Date

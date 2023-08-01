@@ -7,12 +7,14 @@
             <p class="font-mono font-bold">Subjects</p>
         </div>
         <div class="flex ">
-            <input type="text" placeholder="Search..." class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100">
+            <input type="text" placeholder="Search..." class="rounded-lg  px-5 py-2.5  mr-2 mb-2 bg-gray-100" [(ngModel)]="searchText"
+            (ngModelChange)="filterSubjects()">
             <button  type="button" (click)="addSubject()"
                 class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">+
                 Add Subject</button>
         </div>
     </div>
+    <ng-container *ngIf="subjectData.length > 0; else noDataMessage">
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
           <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
@@ -30,7 +32,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr class="p-4" *ngFor="let item of subjectData">
+                    <tr class="p-4" *ngFor="let item of subjectData  | paginate
+                    : {
+                        itemsPerPage: itemsPerPage,
+                        currentPage: currentPage
+                      }">
                       <td class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                         <h6 class="mb-4 text-center text-sm leading-normal">{{item.subjectName}}</h6>
                       </td>
@@ -47,10 +53,18 @@
 
                   </tbody>
                 </table>
+                <div class="flex justify-end mt-7">
+                  <pagination-controls
+                    (pageChange)="currentPage = $event"
+                  ></pagination-controls>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+    </ng-container>
 </div>
+<ng-template #noDataMessage>
+  <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+</ng-template>

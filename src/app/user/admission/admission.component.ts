@@ -124,10 +124,10 @@ export class AdmissionComponent {
         this.age = 0;
       }
 
-      if (this.age < 5) {
+      if (this.age < 5 || this.age > 16) {
         this.ageError =
-          'Your child is too young, minimum age for admission is 5 ';
-      } else if (this.age > 5) {
+          'Minimum age for admission is 5 to 15';
+      } else if (this.age > 5 &&  this.age < 16) {
         this.ageError = '';
       }
     }
