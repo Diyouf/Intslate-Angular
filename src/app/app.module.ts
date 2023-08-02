@@ -8,7 +8,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { AdminAuthInterceptor } from './admin/AdminInterceptor/admin-http-Interceptor';
 import { AdminModule } from './admin/admin.module';
 import { StudentModule } from './student/student.module';
 import { TeacherModule } from './teacher/teacher.module';

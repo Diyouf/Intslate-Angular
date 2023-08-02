@@ -12,5 +12,13 @@ export class loadEventService {
     loadEvent():Observable<EventData[]>{
         return this.http.get<EventData[]>(`${this.apiUrl}/admin/loadEvnets`)
     }
+
+    inactiveEvent(id:string|null):Observable<boolean>{
+        return this.http.get<boolean>(`${this.apiUrl}/admin/inactiveEvent/?id=${id}`)
+    }
+
+    activeEvent(id:string|null):Observable<boolean>{
+        return this.http.get<boolean>(`${this.apiUrl}/admin/activeEvent/?id=${id}`)
+    }
     
 }

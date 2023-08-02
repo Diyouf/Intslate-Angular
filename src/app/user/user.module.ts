@@ -6,13 +6,15 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { HttpClientModule } from '@angular/common/http';
+import { EventsComponent } from './events/events.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     NavBarComponent,
-    AdmissionComponent
+    AdmissionComponent,
+    EventsComponent
   ],
   imports: [
     CommonModule,
