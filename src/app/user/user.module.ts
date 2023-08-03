@@ -11,6 +11,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AllEventUserEffect } from './events/state/events.effects';
 import { _eventUserGetReducer } from './events/state/events.reducer';
+import { EventListhomeComponent } from './event-listhome/event-listhome.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { _eventUserGetReducer } from './events/state/events.reducer';
     HomeComponent,
     NavBarComponent,
     AdmissionComponent,
-    EventsComponent
+    EventsComponent,
+    EventListhomeComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +31,7 @@ import { _eventUserGetReducer } from './events/state/events.reducer';
     HttpClientModule,
     EffectsModule.forFeature([AllEventUserEffect]),
     StoreModule.forFeature('AllEventUser', _eventUserGetReducer),
+  
   ]
 })
 export class UserModule { }

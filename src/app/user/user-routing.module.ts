@@ -5,7 +5,8 @@ import { AdmissionComponent } from './admission/admission.component';
 import { EventsComponent } from './events/events.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'admissionForm', component: AdmissionComponent },
   { path: 'events', component: EventsComponent },
   {

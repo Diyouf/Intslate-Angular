@@ -1,0 +1,49 @@
+<section  class="mt-28 mb-24" >
+  <p id="ptag" class="text-center text-xl mt-8">
+    <span class="border-b-2 border-orange-600 font-medium text-blue-600"
+      >Latest Events</span
+    >
+  </p>
+
+  <div id="content" class="w-full py-6 flex items-center justify-center mt-8">
+    <div class="grid lg:grid-cols-3 gap-16" *ngIf="fetchData$ | async as event">
+      <div *ngFor="let item of event | slice : 0 : 3">
+        <div
+          class="max-w-xs rounded overflow-hidden shadow-lg transform transition duration-300 hover:scale-105"
+        >
+          <div class="h-3/4 w-full">
+            <img
+              class="w-full h-52 object-cover rounded-t"
+              [src]="'http://localhost:3000/events/' + item.image"
+              alt="piña"
+            />
+          </div>
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{ item.title }}</div>
+            <p class="md:text-xs text-gray-500 font-medium">
+              Date : {{ formatDueDate(item.ConductingDate) }} ,
+              {{ item.avenue }}
+            </p>
+            <p class="text-gray-700 text-base mt-3">
+              {{ item.description }}
+            </p>
+          </div>
+          <div class="px-6 pt-4 pb-2">
+            <span
+              class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              >Administration</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="btn" class="flex justify-center mt-8">
+    <button
+      class="py-2 px-4 bg-orange-600 text-white rounded-2xl hover:bg-orange-500 focus:outline-none"
+      [routerLink]="['/events']"
+    >
+      View More
+    </button>
+  </div>
+</section>

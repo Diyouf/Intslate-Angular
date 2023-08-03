@@ -3,8 +3,11 @@
   <h2 class="text-white font-semibold text-3xl">Events</h2>
 </div>
 
-<p class="text-center font-medium text-blue-500 text-xl mt-8">Leatest Events</p>
-<div class="w-full py-6 flex items-center justify-center mt-8">
+<p class="text-center  text-xl mt-8 ">
+  <span class="border-b-2 border-orange-400 font-medium text-blue-600">Latest Events</span>
+</p>
+
+<div class="w-full py-6 flex items-center justify-center mt-8 mb-16">
   <div class="grid lg:grid-cols-3 gap-x-16" *ngIf="fetchData$ | async as event">
     <div *ngFor="let item of event">
       <div class="bg-white w-80 h-fit shadow-md rounded m-3">
@@ -36,3 +39,5 @@
     </div>
   </div>
 </div>
+
+<app-footer></app-footer>

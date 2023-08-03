@@ -13,7 +13,7 @@
         <div>
           <button
             type="button"
-            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
             id="menu-button"
             [class.bg-gray-50]="showDropdown"
             (click)="toggleDropdown()"
@@ -101,43 +101,35 @@
       <ul
         class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white"
       >
+      <li>
+        <a
+          [routerLink]="['/home']"
+          class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:border-gray-700"
+          routerLinkActive = 'active'
+          
+        >
+          Home
+        </a>
+      </li>
+      
         <li>
           <a
-            [routerLink]="['/']"
-            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   dark:border-gray-700"
-            routerLinkActive
-            #userHome="routerLinkActive"
-            [ngClass]="
-            userHome.isActive
-                ? 'text-blue-600 hover:text-blue-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-            >Home</a
-          >
-        </li>
-        <li>
-          <a
-            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   "
+            class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   "
             >About</a
           >
         </li>
         <li>
           <a
-            [routerLink]="['/events']"
-            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   "
-            routerLinkActive
-            #userEvents="routerLinkActive"
-            [ngClass]="
-            userEvents.isActive
-                ? 'text-blue-600 hover:text-blue-700'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
+          [routerLink]="['/events']"
+          class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:border-gray-700"
+          routerLinkActive = 'active'
+          
             >Events</a
           >
         </li>
         <li>
           <a
-            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   "
+            class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0   "
             >Contact</a
           >
         </li>

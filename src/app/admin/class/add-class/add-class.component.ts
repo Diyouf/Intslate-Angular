@@ -5,9 +5,10 @@ import { AddClassService } from './add-class.service';
 import { teacherData } from '../../teacherFile/teacher/state/teacher.interface';
 import { Store, select } from '@ngrx/store';
 import { loadAllTeacher } from '../../teacherFile/teacher/state/teacher.action';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { selectAllteacherData } from '../../teacherFile/teacher/state/teacher.selector';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-class',
@@ -21,6 +22,7 @@ export class AddClassComponent {
     public dialogRef: MatDialogRef<AddClassComponent>,
     private service: AddClassService,
     private store: Store<teacherData[]>,
+    private router :Router
   ) { }
 
 
@@ -43,9 +45,13 @@ export class AddClassComponent {
   }
 
   loadTeacher() {
-    this.store.dispatch((loadAllTeacher()))
-    this.fetchData$ = this.store.pipe(select(selectAllteacherData))
-  }
+  this.store.dispatch(loadAllTeacher());
+  this.fetchData$ = this.store.pipe(
+    select(selectAllteacherData),
+    map((teachers) => teachers.filter((teacher) => teacher.is_classTeacher === false))
+  );
+}
+
 
 
   onClass(classNumber: any) {
@@ -102,6 +108,11 @@ export class AddClassComponent {
       }
       )
     }
+  }
+
+  navigate(){
+    this.dialogRef.close();
+    this.router.navigate(['/admin/add-teacher'])
   }
 
 
