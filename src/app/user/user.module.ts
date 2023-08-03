@@ -7,6 +7,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EventsComponent } from './events/events.component';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { AllEventUserEffect } from './events/state/events.effects';
+import { _eventUserGetReducer } from './events/state/events.reducer';
 
 
 @NgModule({
@@ -20,7 +24,9 @@ import { EventsComponent } from './events/events.component';
     CommonModule,
     UserRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    EffectsModule.forFeature([AllEventUserEffect]),
+    StoreModule.forFeature('AllEventUser', _eventUserGetReducer),
   ]
 })
 export class UserModule { }

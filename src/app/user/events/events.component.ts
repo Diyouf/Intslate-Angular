@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { loadAllEvent } from '../../../app/admin/event/event-list/state/event.action';
-import { EventData } from '../../../app/admin/event/event-list/state/event.interface';
+import { loadAllEventUser } from './state/events.action'; 
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { selectAlleventData } from 'src/app/admin/event/event-list/state/event.selector';
 import { formatDate } from '@angular/common';
+import { EventDataUser } from './state/events.interface';
+import { selectAlleventUserData } from './state/events.selector';
 
 @Component({
   selector: 'app-events',
@@ -12,16 +12,16 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit{
-  constructor( private store: Store<{ events: EventData[] }>){}
+  constructor( private store: Store<{ events: EventDataUser[] }>){}
 
   ngOnInit(): void {
     this.loadEvent()
   }
-  fetchData$!: Observable<EventData[]>;
+  fetchData$!: Observable<EventDataUser[]>;
 
   loadEvent() {
-    this.store.dispatch(loadAllEvent());
-    this.fetchData$ = this.store.pipe(select(selectAlleventData));
+    this.store.dispatch(loadAllEventUser());
+    this.fetchData$ = this.store.pipe(select(selectAlleventUserData));
   }
 
   formatDueDate(date: Date): string {
