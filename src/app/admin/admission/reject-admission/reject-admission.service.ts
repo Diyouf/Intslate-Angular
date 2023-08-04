@@ -5,13 +5,13 @@ import { environment } from '../../../../environment/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RejectAdmissionService {
-    private apiUrl:any = environment.apiUrl
+    private readonly apiUrl = environment.apiUrl
 
     constructor(private http: HttpClient) { }
 
-    rejectAdmission(id:string ): Observable<any> {
+    rejectAdmission(id:string ): Observable<{success:boolean}> {
         
-        return this.http.get<any>(`${this.apiUrl}/admin/rejectAdmission?id=${id}`)
+        return this.http.get<{success:boolean}>(`${this.apiUrl}/admin/rejectAdmission?id=${id}`)
     }
 
 }

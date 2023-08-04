@@ -5,6 +5,7 @@ import * as action from './student.action'
 
 
 const intiialState: studentData[] = []
+type StudentDataAction = typeof action.loadAllStudentSuccess
 
 const studentGetReducer = createReducer(
     intiialState,
@@ -13,6 +14,6 @@ const studentGetReducer = createReducer(
     })
 )
 
-export function _studentGetReducer(state: any, action: any) {
+export function _studentGetReducer(state: studentData[], action: StudentDataAction) {
     return studentGetReducer(state, action)
 }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddFeeComponent } from '../add-fee/add-fee.component';
 import { feeService } from '../service/fee.service';
 import { EditFeeComponent } from '../edit-fee/edit-fee.component';
+import { FeeStructure, StudnetFeeData } from './fee-structure.interface';
 
 @Component({
   selector: 'app-fee-structure',
@@ -12,8 +13,8 @@ import { EditFeeComponent } from '../edit-fee/edit-fee.component';
 export class FeeStructureComponent implements OnInit {
 
 
-  feeData: any[] = []
-  studentData :any[] = []
+  feeData: FeeStructure[] = []
+  studentData :StudnetFeeData[] = []
   currentPage: number = 1; 
   itemsPerPage: number = 6; 
 
@@ -32,6 +33,11 @@ export class FeeStructureComponent implements OnInit {
       height: '380px',
       width: '600px',
     })
+    dialogRef.afterClosed().subscribe(() => {
+
+      this.loadFeeStructure()
+
+    })
   }
 
   loadFeeStructure() {
@@ -40,7 +46,7 @@ export class FeeStructureComponent implements OnInit {
     })
   }
 
-  editfee(id:any){
+  editfee(id:string){
     const dialogRef = this.dialog.open(EditFeeComponent,{
       height:'380px',
       width :'500px',

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddClassComponent } from '../add-class/add-class.component';
 import { ClassesService } from './classes.service';
 import { EditClassComponent } from '../edit-class/edit-class.component';
+import { classData } from './classes.interface';
 
 @Component({
   selector: 'app-classes',
@@ -11,7 +12,7 @@ import { EditClassComponent } from '../edit-class/edit-class.component';
 })
 export class ClassesComponent implements OnInit {
   constructor(private dialog: MatDialog, private service: ClassesService) {}
-  classData!: any[];
+  classData!: classData[];
   searchTerm!: string | number;
   currentPage: number = 1;
   itemsPerPage: number = 6;

@@ -32,7 +32,8 @@
             <div class="flex flex-col justify-between p-4 sm:max-w-sm leading-normal">
               <p class="top-0 left-4 sm:text-xm font-medium text-gray-700">#{{item.teacherId}}</p>
               <p class="mb-1 md:text-xl sm:text-sm font-bold uppercase tracking-tight text-gray-900">{{item.name}}</p>
-              <p class="mb-1 sm:text-sm font-medium text-gray-700">Class Teacher: {{item.class.className}} - {{item.class.division}}</p>
+              <p *ngIf="!item.class" class="mb-1 sm:text-sm font-medium text-gray-700">Class Teacher: Class Not Assigned</p>
+              <p *ngIf="item.class" class="mb-1 sm:text-sm font-medium text-gray-700">Class Teacher: {{item?.class?.className}} - {{item?.class?.division}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Email: {{item.email}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Phone: {{item.phone}}</p>
               <p class="mb-1 sm:text-sm font-medium text-gray-700">Subject: {{item.subject.subjectName}}</p>

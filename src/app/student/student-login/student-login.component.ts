@@ -11,10 +11,10 @@ import { StudentLoginData } from './student-login.interface';
 })
 export class StudentLoginComponent {
   submit : boolean = false 
-  idMatch: any;
-  emailMatch: any;
-  passError: any;
-  alreadyReg: any;
+  idMatch!: string;
+  emailMatch!: string;
+  passError!: string;
+  alreadyReg!: string;
   constructor(private fb : FormBuilder , private service:StudentLoginService,private router:Router){}
 
 

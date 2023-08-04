@@ -18,13 +18,17 @@
               alt="piña"
             />
           </div>
-          <div class="px-6 py-4">
-            <div class="font-bold text-xl mb-2">{{ item.title }}</div>
-            <p class="md:text-xs text-gray-500 font-medium">
+          <div class="px-5 py-4">
+            <a class="hover:text-yellow-600 text-gray-700">
+              <span class="text-md font-semibold uppercase "
+                >{{ item.title }}</span
+              >
+            </a>
+            <p class="md:text-xs text-gray-500 font-medium mt-1">
               Date : {{ formatDueDate(item.ConductingDate) }} ,
               {{ item.avenue }}
             </p>
-            <p class="text-gray-700 text-base mt-3">
+            <p class="text-gray-700 text-base mt-3 line-clamp-3">
               {{ item.description }}
             </p>
           </div>

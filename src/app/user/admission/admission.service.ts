@@ -9,8 +9,8 @@ export class AdmissionRequestService {
     constructor(private http:HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    admissionReq(data:any):Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/admin/admissionRequest`,data)
+    admissionReq(data:FormData):Observable<{ success: boolean }>{
+        return this.http.post<{ success: boolean }>(`${this.apiUrl}/admin/admissionRequest`,data)
     }
     
 }

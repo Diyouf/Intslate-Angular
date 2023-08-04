@@ -5,6 +5,7 @@ import * as action from './admission.action'
 
 
 const intiialState : admissionData[] = []
+type AdmissionAction = typeof action.loadAllAdmissionSuccess
 
 const admissionGetReducer = createReducer(
     intiialState,
@@ -13,6 +14,6 @@ const admissionGetReducer = createReducer(
     })
 )
 
-export function _admissionGetReducer(state:admissionData[],action:any){
+export function _admissionGetReducer(state:admissionData[],action:AdmissionAction){
     return admissionGetReducer(state,action)
 }

@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { loadAllStudent } from './state/student.action';
 import { selectAllStudentData } from './state/student.selector';
 import { ClassesService } from '../class/classes/classes.service';
+import { classData } from '../class/classes/classes.interface';
 
 @Component({
   selector: 'app-student',
@@ -12,7 +13,7 @@ import { ClassesService } from '../class/classes/classes.service';
   styleUrls: ['./student.component.css']
 })
 export class StudentComponent {
-  classData!: any[];
+  classData!: classData[];
 
   constructor(private store : Store<studentData[]>,private service : ClassesService ){ }
 

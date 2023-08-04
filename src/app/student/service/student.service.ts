@@ -4,6 +4,7 @@ import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
 import { FeeStructure, PaidFeesInterface, token, unpaidTermsData } from '../fees-enquiry/fees-enquiry.interface';
 import { studentProfileData } from '../profile-div/profile-div.interface';
+import { Homework } from '../homework/homework.interface';
 
 @Injectable({ providedIn: 'root' })
 export class StudentServiceService {
@@ -26,7 +27,7 @@ export class StudentServiceService {
         return this.http.post<{success:boolean}>(`${this.apiUrl}/student/hitPayment/?studentId=${studentId}`, { paymentData, term })
     }
 
-    fetchHomeWorks(id:string|null):Observable<any>{
-        return this.http.get(`${this.apiUrl}/student/fetchHomeWorks/?id=${id}`)
+    fetchHomeWorks(id:string|null):Observable<Homework[]>{
+        return this.http.get<Homework[]>(`${this.apiUrl}/student/fetchHomeWorks/?id=${id}`)
     }
 }

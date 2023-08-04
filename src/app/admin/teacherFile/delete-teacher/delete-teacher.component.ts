@@ -12,7 +12,7 @@ export class DeleteTeacherComponent {
 
   constructor(
     private dialogRef: MatDialogRef<DeleteTeacherComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: {id :string},
     private service:DeleteTeacherService
   ) { }
 

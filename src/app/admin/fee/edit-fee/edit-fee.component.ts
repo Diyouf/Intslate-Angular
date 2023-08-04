@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { feeService } from '../service/fee.service';
 import Swal from 'sweetalert2';
+import { EditFee } from './edit-fee.interface';
+import { FeeStructure } from '../fee-structure/fee-structure.interface';
 
 @Component({
   selector: 'app-edit-fee',
@@ -15,7 +17,7 @@ export class EditFeeComponent implements OnInit {
     private dialogRef: MatDialogRef<EditFeeComponent>,
     private fb: FormBuilder,
     private service: feeService,
-    @Inject(MAT_DIALOG_DATA) public parentData: any
+    @Inject(MAT_DIALOG_DATA) public parentData: {id:string}
   ) { }
 
   data = this.fb.group({
@@ -25,9 +27,9 @@ export class EditFeeComponent implements OnInit {
   })
 
 
-  feeData: any[] = []
+  feeData: FeeStructure[] = []
   submit: boolean = false
-  id:any = this.parentData.id
+  id:string = this.parentData.id
 
 
   ngOnInit(): void {
@@ -42,7 +44,12 @@ export class EditFeeComponent implements OnInit {
   onSubmit() {
     this.submit = true
     if (this.data.valid) {
-      this.service.editFeeStructure(this.id,this.data.value).subscribe((res)=>{
+      const formData: EditFee = {
+        term1: this.data.value.term1 ? Number(this.data.value.term1) : null,
+        term2: this.data.value.term2 ? Number(this.data.value.term2) : null,
+        term3: this.data.value.term3 ? Number(this.data.value.term3) : null,
+      };
+      this.service.editFeeStructure(this.id,formData).subscribe((res)=>{
         if(res.success){
           if (res.success) {
             const Toast = Swal.mixin({

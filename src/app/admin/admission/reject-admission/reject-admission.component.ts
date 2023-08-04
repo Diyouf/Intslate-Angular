@@ -12,11 +12,11 @@ export class RejectAdmissionComponent {
 
   constructor(
     private dialogRef: MatDialogRef<RejectAdmissionComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: {id:string},
     private service:RejectAdmissionService
     ) { }
 
-    id:any = this.data.id
+    id:string  = this.data.id
   onNoClick() {
     this.dialogRef.close();
   }

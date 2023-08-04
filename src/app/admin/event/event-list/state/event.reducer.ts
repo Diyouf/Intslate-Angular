@@ -5,6 +5,7 @@ import * as action from './event.action'
 
 
 const intiialState : EventData[] = []
+type EventAction = typeof action.loadAllEventSuccess
 
 const eventGetReducer = createReducer(
     intiialState,
@@ -13,6 +14,6 @@ const eventGetReducer = createReducer(
     })
 )
 
-export function _eventGetReducer(state:any,action:any){
+export function _eventGetReducer(state:EventData[],action:EventAction){
     return eventGetReducer(state,action)
 }

@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environment/environment';
 import { Observable } from 'rxjs';
+import { AddFee } from '../add-fee/add-fee.interface';
+import { EditFee } from '../edit-fee/edit-fee.interface';
+import { FeeStructure, StudnetFeeData } from '../fee-structure/fee-structure.interface';
 
 @Injectable({providedIn: 'root' })
 export class feeService {
@@ -9,20 +12,20 @@ export class feeService {
     constructor(private http : HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    addFee(data:any):Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/admin/addfee`,data)
+    addFee(data:AddFee):Observable<{success:boolean}>{
+        return this.http.post<{success:boolean}>(`${this.apiUrl}/admin/addfee`,data)
     }
 
-    fetchAllFee():Observable<any>{
-        return this.http.get<any>(`${this.apiUrl}/admin/fetchFeeStructure`)
+    fetchAllFee():Observable<FeeStructure[]>{
+        return this.http.get<FeeStructure[]>(`${this.apiUrl}/admin/fetchFeeStructure`)
     }
 
-    editFeeStructure(id:any,formData:any):Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/admin/editFeeStructue/?id=${id}`,formData)
+    editFeeStructure(id:string,formData:EditFee):Observable<{ success: boolean }>{
+        return this.http.post<{ success: boolean }>(`${this.apiUrl}/admin/editFeeStructue/?id=${id}`,formData)
     }
 
-    studentFee():Observable<any>{
-        return this.http.get<any>(`${this.apiUrl}/admin/studentFee`)
+    studentFee():Observable<StudnetFeeData[]>{
+        return this.http.get<StudnetFeeData[]>(`${this.apiUrl}/admin/studentFee`)
     }
     
 }

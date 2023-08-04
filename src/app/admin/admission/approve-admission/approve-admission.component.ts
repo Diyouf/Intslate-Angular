@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApproveAdmissionService } from './approve-admission.service';
 import Swal from 'sweetalert2';
+import { Division, classForm } from './approve-admission.interface ';
 
 @Component({
   selector: 'app-approve-admission',
@@ -10,13 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./approve-admission.component.css']
 })
 export class ApproveAdmissionComponent implements OnInit {
-  cDivision!: any[];
+  cDivision!: Division[];
 
 
   constructor(
     private dialogRef: MatDialogRef<ApproveAdmissionComponent>,
     private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: {id:string,ReqClass:string},
     private service: ApproveAdmissionService
   ) {
   }
@@ -40,31 +41,39 @@ export class ApproveAdmissionComponent implements OnInit {
 
 
   onSubmit() {
-    this.service.approveAdmission(this.id, this.classForm.value).subscribe((res) => {
-      if (res.success) {
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        })
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Admission Approved'
-        })
-        this.dialogRef.close()
-      }
-    })
+    if(this.classForm.valid){
+      const formValues:classForm  = {
+        class: this.classForm.value.class ? Number(this.classForm.value.class) : null,
+        division: this.classForm.value.division || null,
+        
+      };
+      this.service.approveAdmission(this.id, formValues).subscribe((res) => {
+        if (res.success) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+  
+          Toast.fire({
+            icon: 'success',
+            title: 'Admission Approved'
+          })
+          this.dialogRef.close()
+        }
+      })
+    }
+    
   }
 
   onSelectClass(classNum: string) {
-    this.service.getDivision(classNum).subscribe((res: any) => {
+    this.service.getDivision(classNum).subscribe((res: Division[]) => {
       this.cDivision = res
     })
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environment/environment'
+import { classData } from './classes.interface';
 
 @Injectable({providedIn: 'root'})
 export class ClassesService {
@@ -10,8 +11,8 @@ export class ClassesService {
     { }
     private apiUrl = environment.apiUrl
 
-    fetchClasses():Observable<any>{
-        return this.http.get<any>(`${this.apiUrl}/admin/fetchClasses`)
+    fetchClasses():Observable<classData[]>{
+        return this.http.get<classData[]>(`${this.apiUrl}/admin/fetchClasses`)
     }
     
 }

@@ -25,7 +25,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddClassComponent } from './class/add-class/add-class.component';
 import { ApproveAdmissionComponent } from './admission/approve-admission/approve-admission.component';
 import { RejectAdmissionComponent } from './admission/reject-admission/reject-admission.component';
-import { EditTeacherComponent } from './teacherFile/edit-teacher/edit-teacher.component';
 import { FeeStructureComponent } from './fee/fee-structure/fee-structure.component';
 import { AddFeeComponent } from './fee/add-fee/add-fee.component';
 import { EditFeeComponent } from './fee/edit-fee/edit-fee.component';
@@ -55,7 +54,6 @@ import { AllEventEffect } from './event/event-list/state/event.effect';
     AddClassComponent,
     ApproveAdmissionComponent,
     RejectAdmissionComponent,
-    EditTeacherComponent,
     FeeStructureComponent,
     AddFeeComponent,
     EditFeeComponent,

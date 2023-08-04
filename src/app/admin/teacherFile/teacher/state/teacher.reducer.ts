@@ -5,14 +5,16 @@ import * as action from './teacher.action'
 
 
 const intiialState : teacherData[] = []
+type teacherAction = typeof action.loadAllTeacherSuccess
 
 const teacherGetReducer = createReducer(
     intiialState,
     on(action.loadAllTeacherSuccess, (_state, { allteacher }) => {
-        return Object.values(allteacher[0]) 
+        
+        return allteacher
     })
 )
 
-export function _teacherGetReducer(state:any,action:any){
+export function _teacherGetReducer(state:teacherData[],action:teacherAction){
     return teacherGetReducer(state,action)
 }

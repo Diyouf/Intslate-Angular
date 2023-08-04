@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddteacherService } from './add-teacher.service';
 import { SubjectService } from '../../subjectFile/service/subject.service';
+import { LoadSubject} from '../../subjectFile/interface/subject.interface';
 
 @Component({
   selector: 'app-add-teacher',
@@ -11,7 +12,7 @@ import { SubjectService } from '../../subjectFile/service/subject.service';
 })
 export class AddTeacherComponent implements OnInit {
   submit: boolean = false;
-  subjectdata!: any[];
+  subjectdata!: LoadSubject[];
 
   constructor(
     private fb: FormBuilder,
@@ -66,7 +67,7 @@ export class AddTeacherComponent implements OnInit {
     }
   }
 
-  createTeacher(userData: any): void {
+  createTeacher(userData: FormData): void {
     this.service.addTeacher(userData).subscribe((res) => {
       if (res.EmailError) {
         this.EmailerrorMessg = res.EmailError;

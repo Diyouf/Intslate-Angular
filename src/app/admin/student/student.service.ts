@@ -10,7 +10,7 @@ export class StudentService {
     constructor(private http : HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    fetchStudent():Observable<any>{
+    fetchStudent():Observable<studentData[]>{
         return this.http.get<studentData[]>(`${this.apiUrl}/admin/fetchStudent`);
     }
     

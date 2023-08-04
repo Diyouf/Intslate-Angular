@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminloginService } from './login.service'
+import { AdminLogin } from './login.interface';
 
 
 @Component({
@@ -27,12 +28,16 @@ export class LoginComponent {
     this.submit = true
     const { email, password } = this.data.value
     if (email && password) {
-      this.loginData(this.data.value)
+      this.loginData()
     }
   }
 
-    loginData(loginData: any) {
-      this.service.adminLogin(loginData).subscribe((response) => {        
+    loginData() {
+      const formData :AdminLogin={
+        email:this.data.value.email || null,
+        password:this.data.value.password || null
+      } 
+      this.service.adminLogin(formData).subscribe((response) => {        
         if (response.Emailmessage) {
           this.EmailerrorMessg = response.Emailmessage
           setTimeout(() => {

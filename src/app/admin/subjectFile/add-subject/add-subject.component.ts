@@ -28,7 +28,7 @@ export class AddSubjectComponent {
   onSubmit() {
     this.submit = true;
     if (this.data.valid) {
-      this.service.addSubject(this.data.value).subscribe((res: any) => {
+      this.service.addSubject(this.data.value).subscribe((res: {alreadyExist?:boolean,success?:boolean}) => {
         if (res.alreadyExist) {
           this.nameExist = 'This subject is aready Exist..';
           setTimeout(() => {

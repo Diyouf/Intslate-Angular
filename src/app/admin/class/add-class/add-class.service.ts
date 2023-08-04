@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environment/environment'
 import { Observable } from 'rxjs';
+import { addClassData } from './add-class.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AddClassService {
@@ -10,12 +11,12 @@ export class AddClassService {
     private apiUrl = environment.apiUrl
 
 
-    addClass(data: any): Observable<any>  {
-        return this.http.post<any>(`${this.apiUrl}/admin/addClass`, data)
+    addClass(data: addClassData): Observable<{ success: boolean }>  {
+        return this.http.post<{ success: boolean }>(`${this.apiUrl}/admin/addClass`, data)
     }
 
-    fetchDivision(className: number): Observable<any> {
-        return this.http.get<any>(`${this.apiUrl}/admin/fetchDivision/?classNum=${className}`)
+    fetchDivision(className: number): Observable<{division:string}> {
+        return this.http.get<{division:string}>(`${this.apiUrl}/admin/fetchDivision/?classNum=${className}`)
     }
 
 }

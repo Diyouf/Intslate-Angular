@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
 import { selectAllteacherData } from '../../teacherFile/teacher/state/teacher.selector';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { addClassData } from './add-class.interface';
 
 @Component({
   selector: 'app-add-class',
@@ -30,8 +31,7 @@ export class AddClassComponent {
   breadcrumbName = "Classes"
   classOptions: number[] = Array.from({ length: 10 }, (_, index) => index + 1);
   divison: string = ''
-  classList!: any[]
-  fetchData$!: Observable<any>
+  fetchData$!: Observable<teacherData[]>
   submit: boolean = false
   fieldsError!: string;
 
@@ -54,13 +54,17 @@ export class AddClassComponent {
 
 
 
-  onClass(classNumber: any) {
-    this.service.fetchDivision(Number(classNumber.value)).subscribe((res: any) => {
+onClass(event: Event) {
+  const classNumberSelect = event.target as HTMLInputElement;
+  if (classNumberSelect) {
+    this.service.fetchDivision(Number(classNumberSelect.value)).subscribe((res: {division: string}) => {
       if (res.division) {
         this.divison = res.division;
       }
-    })
+    });
   }
+}
+
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -69,16 +73,13 @@ export class AddClassComponent {
   onSubmit() {
     this.submit = true
     if (this.classForm.valid) {
-      const classNumber = parseInt(this.classForm.get('classNumber')?.value as string)
-      const maxStudents = this.classForm.value.maxStudents
-      const classTeacher = this.classForm.value.classTeacher
-      const division: string = this.divison
-      const classForm = {
-        classNumber,
-        maxStudents,
-        division,
-        classTeacher
-      }
+      const classForm:addClassData  = {
+        classNumber: this.classForm.value.classNumber ? Number(this.classForm.value.classNumber) : null,
+        maxStudents: this.classForm.value.maxStudents ? Number(this.classForm.value.maxStudents) : null,
+        division: this.divison,
+        classTeacher:this.classForm.value.classTeacher || null
+        
+      };
 
       this.service.addClass(classForm).subscribe((res) => {
 

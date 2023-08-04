@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environment/environment'
+import { returnData } from './add-teacher.model';
 
 @Injectable({ providedIn:'root' })
 export class AddteacherService {
@@ -13,8 +14,8 @@ export class AddteacherService {
     }
     toaster : boolean = false
 
-    addTeacher(formdata:any):Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/admin/addTeacher`,formdata)
+    addTeacher(formdata:FormData):Observable<returnData>{
+        return this.http.post<returnData>(`${this.apiUrl}/admin/addTeacher`,formdata)
     }
 
 }

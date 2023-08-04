@@ -14,7 +14,7 @@ export class StudentRegisterComponent {
   idMatch!: string;
   emailMatch!: string;
   phoneMatch!: string;
-  alreadyReg: any;
+  alreadyReg!: string;
 
   constructor(private fb: FormBuilder, private service: StudentLoginService, private router: Router) { }
 
@@ -42,7 +42,7 @@ export class StudentRegisterComponent {
           name: this.data.value.name || null,
           phone: this.data.value.phone ? Number(this.data.value.phone) : null,
         };
-        this._createTeacher(this.data.value)
+        this._createTeacher(formValues)
       } else {
         this.confirmError = 'password and confirm password should be same'
         setTimeout(() => {
@@ -53,8 +53,8 @@ export class StudentRegisterComponent {
 
   }
 
-  _createTeacher(data: any) {
-    this.service.studentRegister(data).subscribe((res:any) => {
+  _createTeacher(data: StudnetRegisterData) {
+    this.service.studentRegister(data).subscribe((res) => {
       if (res.idMatch) {
         this.idMatch = res.idMatch
         setTimeout(() => {

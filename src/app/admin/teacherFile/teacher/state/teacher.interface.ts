@@ -5,10 +5,16 @@ export interface teacherData {
     gender:string,
     email: string,
     phone:number,
-    subject:any, 
+    subject:{
+        _id:string
+        subjectName:string
+    }, 
     address:string,
     image:string
     is_classTeacher:boolean
-    class:any
+    class?:{
+        className:number
+        division:string
+    }
 
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { subject } from '../interface/subject.interface';
+import { LoadSubject, subject } from '../interface/subject.interface';
 import { environment } from 'src/environment/environment';
 import { Observable } from 'rxjs';
 
@@ -10,12 +10,12 @@ export class SubjectService {
     constructor(private http:HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    addSubject(data:subject):Observable<any>{
-        return this.http.post<any>(`${this.apiUrl}/admin/addSubject`,data)
+    addSubject(data:subject):Observable< {alreadyExist?:boolean,success?:boolean}>{
+        return this.http.post< {alreadyExist?:boolean,success?:boolean}>(`${this.apiUrl}/admin/addSubject`,data)
     }
 
-    fetchSubject(){
-        return this.http.get<any>(`${this.apiUrl}/admin/fetchSubject`)
+    fetchSubject():Observable<LoadSubject[]>{
+        return this.http.get<LoadSubject[]>(`${this.apiUrl}/admin/fetchSubject`)
     }
     
 }

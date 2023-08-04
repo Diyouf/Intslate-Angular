@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTeacherComponent } from '../delete-teacher/delete-teacher.component';
 import { SubjectService } from '../../subjectFile/service/subject.service';
+import { SubData } from './teacher.interface';
 
 
 @Component({
@@ -30,7 +31,7 @@ export class TeacherComponent implements OnInit {
   currentPage: number = 1; 
   itemsPerPage: number = 6;
   searchTerm:string = ''
-  subjectData!:any[]
+  subjectData!:SubData[]
   selectedValue: string = 'Recent Added ';
 
   ngOnInit(): void {
@@ -46,7 +47,7 @@ export class TeacherComponent implements OnInit {
   loadTeachers() {
     this.store.dispatch((loadAllTeacher()))
     this.fetchData$ = this.store.pipe(select(selectAllteacherData))
-
+    
   }
 
   loadsubject(){
@@ -56,7 +57,6 @@ export class TeacherComponent implements OnInit {
   }
 
   deleteTeacher(id:string ) {
-    console.log("lfhfhf");
     
     const dialogRef = this.dialog.open(DeleteTeacherComponent,{
       height: '280px',

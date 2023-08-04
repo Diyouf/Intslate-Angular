@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentServiceService } from '../service/student.service';
-import { Observable } from 'rxjs';
 import { formatDate } from '@angular/common';
+import { Homework } from './homework.interface';
 
 @Component({
   selector: 'app-homework',
@@ -12,7 +12,7 @@ export class HomeworkComponent  implements OnInit{
   constructor(private service:StudentServiceService){}
   readonly id = localStorage.getItem('studentId')
 
-  homeworkData:any[]  = []
+  homeworkData:Homework[]  = []
 
   ngOnInit(): void {
     this.loadHomeWorks()
