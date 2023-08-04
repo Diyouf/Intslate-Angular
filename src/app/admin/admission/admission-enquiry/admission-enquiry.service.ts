@@ -10,7 +10,7 @@ export class admissionActionService {
     constructor(private http: HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    fetchAdmission():Observable<any>{
+    fetchAdmission():Observable<admissionData[]>{
         return this.http.get<admissionData[]>(`${this.apiUrl}/admin/getAdmissionData`);
     }
 

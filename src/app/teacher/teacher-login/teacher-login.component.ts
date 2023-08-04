@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { TeacherLoginValidation } from './teacher.service'
 import { Router } from '@angular/router';
+import { TeacherloginData } from './teacher-login.interface';
 
 @Component({
   selector: 'app-teacher-login',
@@ -11,10 +12,10 @@ import { Router } from '@angular/router';
 export class TeacherLoginComponent {
 
   submit: boolean = false
-  idMatch: any;
-  emailMatch: any;
-  passError: any;
-  alreadyReg: any;
+  idMatch!: string;
+  emailMatch!: string;
+  passError!: string;
+  alreadyReg!: string;
   constructor(private fb: FormBuilder, private service: TeacherLoginValidation, private router: Router) { }
 
 
@@ -27,7 +28,12 @@ export class TeacherLoginComponent {
   onSubmit() {
     this.submit = true
     if (this.data.valid) {
-      this._TeacherLogin(this.data.value)
+      const formValues: TeacherloginData = {
+        teacherId: this.data.value.teacherId ? Number(this.data.value.teacherId) : null,
+        email: this.data.value.email || null,
+        password: this.data.value.password || null,
+      };
+      this._TeacherLogin(formValues)
     }
 
   }
@@ -36,7 +42,7 @@ export class TeacherLoginComponent {
     return this.data.controls
   }
 
-  _TeacherLogin(data: any) {
+  _TeacherLogin(data: TeacherloginData) {
     this.service.validateLogin(data).subscribe((res) => {
       if (res.idNotmatch) {
         this.idMatch = res.idNotmatch

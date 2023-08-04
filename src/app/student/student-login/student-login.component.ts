@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { StudentLoginService } from './student-login.service';
 import { Router } from '@angular/router';
+import { StudentLoginData } from './student-login.interface';
 
 @Component({
   selector: 'app-student-login',
@@ -26,7 +27,12 @@ export class StudentLoginComponent {
   onSubmit(){
     this.submit = true
     if(this.data.valid){
-      this._TeacherLogin(this.data.value)
+      const formValues: StudentLoginData = {
+        studentId: this.data.value.studentId ? Number(this.data.value.studentId) : null,
+        email: this.data.value.email || null,
+        password: this.data.value.password || null,
+      };
+      this._studentLogin(formValues)
     }
 
   }
@@ -35,7 +41,7 @@ export class StudentLoginComponent {
     return this.data.controls
   }
 
-  _TeacherLogin(data:any){
+  _studentLogin(data:StudentLoginData){
     this.service.studentLogin(data).subscribe((res)=>{      
       if (res.idNotmatch) {
         this.idMatch = res.idNotmatch

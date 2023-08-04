@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { StudentLoginService } from './student-register.service';
+import { StudnetRegisterData } from './student-register.interface';
 
 @Component({
   selector: 'app-student-register',
@@ -33,6 +34,14 @@ export class StudentRegisterComponent {
     this.submit = true
     if (this.data.valid) {
       if (this.data.value.Conpassword === this.data.value.password) {
+        const formValues: StudnetRegisterData = {
+          studentId: this.data.value.studentId ? Number(this.data.value.studentId) : null,
+          email: this.data.value.email || null,
+          password: this.data.value.password || null,
+          Conpassword: this.data.value.Conpassword || null,
+          name: this.data.value.name || null,
+          phone: this.data.value.phone ? Number(this.data.value.phone) : null,
+        };
         this._createTeacher(this.data.value)
       } else {
         this.confirmError = 'password and confirm password should be same'

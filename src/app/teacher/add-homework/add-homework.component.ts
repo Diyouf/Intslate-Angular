@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ClassesService } from '../../../app/admin/class/classes/classes.service';
 import { AddHomeWorkService } from './add-homework.service';
-import { homeWorkData } from './add-homework.interface';
+import { classData, homeWorkData } from './add-homework.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +19,7 @@ export class AddHomeworkComponent implements OnInit {
     private service: AddHomeWorkService
   ) {}
 
-  classData: any[] = [];
+  classData: classData[] = [];
   submit: boolean = false;
   currentDate = new Date();
   dateError: string = '';

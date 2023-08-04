@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherProfileService } from './profile.service';
+import { teacherProfileData } from './profile.interface';
 
 @Component({
   selector: 'app-profile',
@@ -8,7 +9,7 @@ import { TeacherProfileService } from './profile.service';
 })
 export class ProfileComponent  implements OnInit{
 
-  teacherData:any
+  teacherData!:teacherProfileData
 
   constructor(private service : TeacherProfileService){}
   readonly id = localStorage.getItem('teacherId')
@@ -18,7 +19,7 @@ export class ProfileComponent  implements OnInit{
   }
 
   loadTeacherProfile(){
-    this.service.loadTeacherProfile(this.id).subscribe((res)=>{
+    this.service.loadTeacherProfile(this.id).subscribe((res:teacherProfileData)=>{
       this.teacherData = res
     })
   }

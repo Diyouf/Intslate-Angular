@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AdmissionRequestService } from './admission.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-admission',
@@ -27,7 +28,7 @@ export class AdmissionComponent {
     DOB: ['', [Validators.required]],
     gender: ['', [Validators.required]],
     class: ['', [Validators.required]],
-    image: new FormControl(null, [Validators.required]),
+    image: ['', [Validators.required]],
     Guardname: ['', [Validators.required]],
     relation: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
@@ -38,15 +39,13 @@ export class AdmissionComponent {
     address: ['', [Validators.required]],
   });
 
-  classData!: any[];
 
   file!: File;
 
-  onFileChange(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.file = file;
-      this.data.value.image = file.name;
+  onFileChange(event: Event) {
+    this.file = <File>(event.target as HTMLInputElement)?.files?.[0];
+    if (this.file) {
+      this.data.value.image = this.file.name;
     }
   }
 
@@ -74,7 +73,7 @@ export class AdmissionComponent {
     }
   }
 
-  _admissionReq(data: any): void {
+  _admissionReq(data: FormData): void {
     this.service.admissionReq(data).subscribe((res) => {
       this.btnClick();
     });

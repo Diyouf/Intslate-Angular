@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentServiceService } from '../service/student.service';
+import { studentProfileData } from './profile-div.interface';
 
 
 @Component({
@@ -12,7 +13,7 @@ export class ProfileDivComponent implements OnInit {
   constructor(private service: StudentServiceService) { }
   private readonly studentId  = localStorage.getItem('studentId')
 
-  studentdata!: any;
+  studentdata!: studentProfileData;
 
   ngOnInit(): void {
     this.loadStudentdata()

@@ -2,26 +2,28 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environment/environment';
 import { Observable } from 'rxjs';
+import { FeeStructure, PaidFeesInterface, token, unpaidTermsData } from '../fees-enquiry/fees-enquiry.interface';
+import { studentProfileData } from '../profile-div/profile-div.interface';
 
 @Injectable({ providedIn: 'root' })
 export class StudentServiceService {
     constructor(private http: HttpClient) { }
     private apiUrl = environment.apiUrl
 
-    fetchStudent(id:string| null ) {
-        return this.http.get<any>(`${this.apiUrl}/student/fetchStudentProfile/?id=${id}`)
+    fetchStudent(id:string| null ):Observable<studentProfileData> {
+        return this.http.get<studentProfileData>(`${this.apiUrl}/student/fetchStudentProfile/?id=${id}`)
     }
 
-    fetchfees() {
-        return this.http.get<any>(`${this.apiUrl}/student/fetchfeesStructure`)
+    fetchfees():Observable<FeeStructure> {
+        return this.http.get<FeeStructure>(`${this.apiUrl}/student/fetchfeesStructure`)
     }
 
-    paidFees(id:string | null ) {
-        return this.http.get<any>(`${this.apiUrl}/student/fetchPaidFees/?id=${id}`)
+    paidFees(id:string | null ):Observable<PaidFeesInterface> {
+        return this.http.get<PaidFeesInterface>(`${this.apiUrl}/student/fetchPaidFees/?id=${id}`)
     }
 
-    hitPayment(paymentData: any, term: any, studentId:string | null) {
-        return this.http.post<any>(`${this.apiUrl}/student/hitPayment/?studentId=${studentId}`, { paymentData, term })
+    hitPayment(paymentData: token, term: unpaidTermsData, studentId:string | null):Observable<{success:boolean}> {
+        return this.http.post<{success:boolean}>(`${this.apiUrl}/student/hitPayment/?studentId=${studentId}`, { paymentData, term })
     }
 
     fetchHomeWorks(id:string|null):Observable<any>{

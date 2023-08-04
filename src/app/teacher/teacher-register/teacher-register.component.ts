@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { RegisterTeacherService } from './teacher-register.service'
 import { Router } from '@angular/router';
+import { TeacherRegisterData } from './teacher-register.interface';
 
 @Component({
   selector: 'app-teacher-register',
@@ -12,7 +13,7 @@ export class TeacherRegisterComponent {
   idMatch!: string;
   emailMatch!: string;
   phoneMatch!: string;
-  alreadyReg: any;
+  alreadyReg!: string;
 
   constructor(private fb: FormBuilder, private service: RegisterTeacherService, private router: Router) { }
 
@@ -32,7 +33,16 @@ export class TeacherRegisterComponent {
     this.submit = true
     if (this.data.valid) {
       if (this.data.value.Conpassword === this.data.value.password) {
-        this._createTeacher(this.data.value)
+        const formValues: TeacherRegisterData = {
+          teacherId: this.data.value.teacherId ? Number(this.data.value.teacherId) : null,
+          email: this.data.value.email || null,
+          password: this.data.value.password || null,
+          Conpassword: this.data.value.Conpassword || null,
+          name: this.data.value.name || null,
+          phone: this.data.value.phone ? Number(this.data.value.phone) : null,
+        };
+
+        this._createTeacher(formValues)
       } else {
         this.confirmError = 'password and confirm password should be same'
         setTimeout(() => {
@@ -43,7 +53,7 @@ export class TeacherRegisterComponent {
 
   }
 
-  _createTeacher(data: any) {
+  _createTeacher(data: TeacherRegisterData) {
     this.service.createTeacherAccount(data).subscribe((res) => {
       if (res.idMatch) {
         this.idMatch = res.idMatch

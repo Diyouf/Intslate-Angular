@@ -3,3 +3,9 @@ export interface homeWorkData {
     homework?:string | null | undefined,
     dueDate?:Date | null | undefined
 }
+
+export interface classData{
+    _id:string
+    className:number
+    division:string
+}
