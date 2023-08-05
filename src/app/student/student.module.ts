@@ -11,6 +11,8 @@ import { ProfileDivComponent } from './profile-div/profile-div.component';
 import { FeesEnquiryComponent } from './fees-enquiry/fees-enquiry.component'; 
 import { StudentAuthInterceptor } from './StudentInterceptor/student-http-interceptor';
 import { HomeworkComponent } from './homework/homework.component';
+import { AttendanceComponent } from './attendance/attendance.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 
 
@@ -22,13 +24,15 @@ import { HomeworkComponent } from './homework/homework.component';
     NavBarComponent,
     ProfileDivComponent,
     FeesEnquiryComponent,
-    HomeworkComponent
+    HomeworkComponent,
+    AttendanceComponent
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [
     {

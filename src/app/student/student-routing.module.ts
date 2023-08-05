@@ -7,6 +7,7 @@ import { StudentAuthGuard } from './guard/guard.guard'
 import { StudentLoginGuard } from './guard/guard.login';
 import { FeesEnquiryComponent } from './fees-enquiry/fees-enquiry.component';
 import { HomeworkComponent } from './homework/homework.component';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,8 @@ const routes: Routes = [
   { path: 'fees', component: FeesEnquiryComponent,canActivate:[StudentAuthGuard] },
 
   { path: 'homeworks', component: HomeworkComponent,canActivate:[StudentAuthGuard] },
+
+  { path: 'attendance', component: AttendanceComponent,canActivate:[StudentAuthGuard] },
 ];
 
 @NgModule({
