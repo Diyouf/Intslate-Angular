@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentRoutingModule } from './student-routing.module';
 import { StudentRegisterComponent } from './student-register/student-register.component';
 import { StudentLoginComponent } from './student-login/student-login.component';
@@ -13,6 +13,8 @@ import { StudentAuthInterceptor } from './StudentInterceptor/student-http-interc
 import { HomeworkComponent } from './homework/homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin.component';
+
 
 
 
@@ -25,14 +27,16 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     ProfileDivComponent,
     FeesEnquiryComponent,
     HomeworkComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    LeaveApplicatoinComponent
   ],
   imports: [
     CommonModule,
     StudentRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FullCalendarModule
+    FullCalendarModule,
+    FormsModule
   ],
   providers: [
     {
