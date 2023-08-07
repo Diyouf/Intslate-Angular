@@ -22,7 +22,11 @@
   >
     <ol
       class="relative border-l border-gray-200"
-      *ngFor="let item of homeWorkdata"
+      *ngFor="let item of homeWorkdata | paginate
+      : {
+          itemsPerPage: itemsPerPage,
+          currentPage: currentPage
+        }"
     >
       <li class="mb-10 ml-6">
         <span
@@ -64,6 +68,9 @@
         </div>
       </li>
     </ol>
+    <div class="flex justify-center mt-2">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
   </div>
   </ng-container>
   <ng-template #noDataMessage>

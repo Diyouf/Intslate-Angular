@@ -15,6 +15,8 @@ export class HomeworkComponent implements OnInit{
   constructor(private dialog : MatDialog,private service : homeworkService){}
   readonly id = localStorage.getItem('teacherId')
   homeWorkdata: HomeWork[] = []
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
 
   ngOnInit(): void {
     this.loadHomework()

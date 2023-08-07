@@ -15,6 +15,8 @@ import { StudentsComponent } from './students/students.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HomeworkComponent } from './homework/homework.component';
 import { AddHomeworkComponent } from './add-homework/add-homework.component';
+import { AttendanceComponent } from './attendance/attendance.component';
+import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
 
 
 
@@ -28,7 +30,9 @@ import { AddHomeworkComponent } from './add-homework/add-homework.component';
     SideNavComponent,
     StudentsComponent,
     HomeworkComponent,
-    AddHomeworkComponent
+    AddHomeworkComponent,
+    AttendanceComponent,
+    LeaveRequestsComponent
   ],
   imports: [
     CommonModule,

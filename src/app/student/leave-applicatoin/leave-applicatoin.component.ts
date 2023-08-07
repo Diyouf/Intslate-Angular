@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { LeaveApplicationService } from './leave-application.service';
+import { leaveFormData } from './leave-application.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-leave-applicatoin',
@@ -10,17 +13,21 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class LeaveApplicatoinComponent {
   constructor(
     private dialogRef: MatDialogRef<LeaveApplicatoinComponent>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private service:LeaveApplicationService,
+    private snackBar : MatSnackBar
   ) {}
 
   submit: boolean = false;
   numberOfDays!: number;
+
+  readonly id:string | null= localStorage.getItem('studentId') 
   onNoClick() {
     this.dialogRef.close();
   }
 
   formData = this.fb.group({
-    date: ['', [Validators.required]],
+   
     noofday: [0],
     startDate: ['', [Validators.required]],
     endDate: ['', [Validators.required]],
@@ -29,10 +36,25 @@ export class LeaveApplicatoinComponent {
 
   onSubmit() {
     this.submit = true;
-    console.log(this.formData.value);
-    
-    
+    if (this.formData.valid) {
+      const leaveData: leaveFormData = {
+        noofday: this.formData.value.noofday ? Number(this.formData.value.noofday) : null,
+        startDate: this.formData.value.startDate ? new Date(this.formData.value.startDate) : null,
+        endDate: this.formData.value.endDate ? new Date(this.formData.value.endDate) : null,
+        reason: this.formData.value.reason || null
+      };
+      this.service.leaveApplicatiion(this.id, leaveData).subscribe((res)=>{
+        if(res.success){
+          this.dialogRef.close();
+          this.snackBar.open('Leave Request Sended , Successfully','close',{
+            panelClass: 'custom-snackbar', 
+            duration:3000,
+          })
+        }
+      })
+    }
   }
+  
 
   startDate(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -105,7 +127,7 @@ export class LeaveApplicatoinComponent {
         ) {
           const differenceInTime =
             parsedEndDate.getTime() - parsedStartDate.getTime();
-          const differenceInDays: number | null = differenceInTime / (1000 * 3600 * 24);
+          const differenceInDays: number | null = differenceInTime / (1000 * 3600 * 24) +1;
           this.numberOfDays = differenceInDays || 0; // Use 0 as default if null
           this.formData.patchValue({ noofday: differenceInDays });
         }

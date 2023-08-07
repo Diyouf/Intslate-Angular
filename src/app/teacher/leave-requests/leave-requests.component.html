@@ -1,0 +1,166 @@
+<div class="relative w-full max-w-full max-h-full">
+  <!-- Modal content -->
+  <div class="relative bg-white rounded-lg">
+    <!-- Modal header -->
+    <div class="flex justify-between items-start p-5 rounded-t border-b">
+      <h3 class="text-xl font-semibold">Leave Requests</h3>
+      <button
+        type="button"
+        (click)="onNoClick()"
+        class="bg-transparent hover:bg-blue-200 hover:text-white rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+        data-modal-hide="defaultModal"
+      >
+        <svg
+          class="w-3 h-3"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 14"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+          />
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+    </div>
+    <ng-container *ngIf="LeaveData.length > 0; else noDataMessage">
+      <div
+        class="flex flex-col my-6 mx-4 rounded-2xl shadow-xl shadow-gray-200"
+      >
+        <div class="overflow-x-auto rounded-2xl">
+          <div class="inline-block min-w-full align-middle">
+            <div class="overflow-hidden shadow-lg">
+              <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                <thead class="bg-white">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                      Name
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                      Leave Start Date 
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                    Leave End Date 
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                     Number of Days
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                     Reason
+                    </th>
+                    <th
+                      scope="col"
+                      class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
+                    >
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr
+                    class="hover:bg-gray-100"
+                    *ngFor="
+                      let item of LeaveData
+                       
+                    "
+                  >
+                    <td
+                      class="p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center"
+                    >
+                      <p
+                        class="text-base font-semibold text-gray-900 text-center"
+                      >
+                        {{ item.student.name }}
+                      </p>
+                    </td>
+                    <td
+                      class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
+                    >
+                      {{ formatDueDate(item.startDate ) }}
+                    </td>
+                    <td
+                      class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
+                    >
+                      {{  formatDueDate(item.endDate ) }}
+                    </td>
+                    <td
+                      class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
+                    >
+                      <div class="flex items-center justify-center text-center">
+                        <span
+                          class="mr-4 text-base font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          {{ item.noofday }}
+                        </span>
+
+                        <div></div>
+                      </div>
+                    </td>
+                    <td
+                      class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
+                    >
+                      {{ item.reason }}
+                    </td>
+                    <td
+                      class="p-4 space-x-2 whitespace-nowrap lg:p-5 text-center"
+                    >
+                    <div class="flex gap-6">
+                      <button
+                        type="button"
+                        data-modal-toggle="user-modal"
+                        (click)="approveLeave(item._id)"
+                        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-green-400 rounded-lg hover:bg-green-300  hover:scale-[1.02] transition-all"
+                      >
+                        
+                        Approve 
+                      </button>
+                      <button
+                      type="button"
+                      data-modal-toggle="user-modal"
+                      (click)="rejectLeave(item._id)"
+                      class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-red-400 rounded-lg hover:bg-red-300  hover:scale-[1.02] transition-all"
+                    >
+                      
+                      Reject 
+                    </button>
+                    </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- <div class="flex justify-end mt-7">
+                <pagination-controls
+                  (pageChange)="currentPage = $event"
+                ></pagination-controls>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #noDataMessage>
+      <p class="sm:mt-7 text-center font-semibold text-lg">No data found.</p>
+    </ng-template>
+  </div>
+</div>

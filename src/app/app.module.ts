@@ -12,6 +12,7 @@ import { AdminModule } from './admin/admin.module';
 import { StudentModule } from './student/student.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { ErrorInterceptor } from './error-interceptor/global-errorHadling';
+import { MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { ErrorInterceptor } from './error-interceptor/global-errorHadling';
     AdminModule,
     StudentModule,
     TeacherModule,
+    MatSnackBarModule
 
 
   ],

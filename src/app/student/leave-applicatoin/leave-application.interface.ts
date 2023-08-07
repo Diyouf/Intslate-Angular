@@ -1,7 +1,6 @@
 export interface leaveFormData {
-    date:Date
-    noofday:number
-    startDate :Date
-    endDate :Date
-    reason:string
+    noofday?:number | null | undefined
+    startDate ?:Date | null | undefined
+    endDate ?:Date | null | undefined
+    reason?:string | null | undefined
 }

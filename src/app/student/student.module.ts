@@ -18,6 +18,7 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
 
 
 
+
 @NgModule({
   declarations: [
     StudentRegisterComponent,
@@ -37,6 +38,7 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
     HttpClientModule,
     FullCalendarModule,
     FormsModule
+   
   ],
   providers: [
     {
