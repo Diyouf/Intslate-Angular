@@ -5,7 +5,8 @@ import { formatDate } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LeaveRequestsComponent } from '../leave-requests/leave-requests.component';
 import { AttendanceService } from './attendance.service';
-import { AddAttendance } from './attendance.interface';
+import { AddAttendance, attendanceData } from './attendance.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-attendance',
@@ -16,7 +17,8 @@ export class AttendanceComponent implements OnInit {
   constructor(
     private serviceSudent: TeacherStudentService,
     private dialog: MatDialog,
-    private service: AttendanceService
+    private service: AttendanceService,
+    private snackBar : MatSnackBar
   ) {}
   private readonly id: string | null = localStorage.getItem('teacherId');
 
@@ -27,9 +29,11 @@ export class AttendanceComponent implements OnInit {
   searchText: string = '';
   errorMessage: string = '';
   todayDate: Date = new Date();
+  attendanceData! :attendanceData 
 
   ngOnInit(): void {
     this.loadStudent();
+    this.loadAttendance()
   }
 
   loadStudent() {
@@ -88,10 +92,17 @@ export class AttendanceComponent implements OnInit {
       const addAttendanceData: AddAttendance = {
         attendance: this.attendanceArray,
       };
-      console.log(addAttendanceData);
+      
       
       this.service.addAttendance(this.id, addAttendanceData).subscribe((res)=>{
-        console.log('response from server ', res )
+        if(res.alreadySubmitted){
+          this.snackBar.open( `today's attendance is already submitted`,'close',{
+            panelClass: 'custom-snackbar', 
+            duration:4000,
+          })
+        }else if (res.success == true){
+          this.loadAttendance()
+        }
       })
     }
   }
@@ -106,5 +117,19 @@ export class AttendanceComponent implements OnInit {
       height: '600px',
       data: { id: this.id },
     });
+  }
+
+  loadAttendance(){
+    const today = new Date();
+    const id = this.id
+    
+    this.service.loadAttendance(id,today).subscribe((res)=>{
+     this.attendanceData = res
+     console.log(this.attendanceData.attendance);
+     
+      
+    })
+    
+
   }
 }
