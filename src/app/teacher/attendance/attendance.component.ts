@@ -4,6 +4,8 @@ import { studentData } from '../students/sudent.interface';
 import { formatDate } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LeaveRequestsComponent } from '../leave-requests/leave-requests.component';
+import { AttendanceService } from './attendance.service';
+import { AddAttendance } from './attendance.interface';
 
 @Component({
   selector: 'app-attendance',
@@ -12,8 +14,9 @@ import { LeaveRequestsComponent } from '../leave-requests/leave-requests.compone
 })
 export class AttendanceComponent implements OnInit {
   constructor(
-    private service: TeacherStudentService,
-    private dialog: MatDialog
+    private serviceSudent: TeacherStudentService,
+    private dialog: MatDialog,
+    private service: AttendanceService
   ) {}
   private readonly id: string | null = localStorage.getItem('teacherId');
 
@@ -30,7 +33,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadStudent() {
-    this.service.loadStudents(this.id).subscribe((res: studentData[]) => {
+    this.serviceSudent.loadStudents(this.id).subscribe((res: studentData[]) => {
       this.studentData = res;
       this.originalStudentData = [...res]; // Make a copy of the original data
       this.filterStudents(); // Initial filtering of students (optional)
@@ -82,7 +85,14 @@ export class AttendanceComponent implements OnInit {
         this.errorMessage = '';
       }, 4000);
     } else {
-      console.log(this.attendanceArray);
+      const addAttendanceData: AddAttendance = {
+        attendance: this.attendanceArray,
+      };
+      console.log(addAttendanceData);
+      
+      this.service.addAttendance(this.id, addAttendanceData).subscribe((res)=>{
+        console.log('response from server ', res )
+      })
     }
   }
 
@@ -93,7 +103,7 @@ export class AttendanceComponent implements OnInit {
   leaveReq() {
     const dialogRef = this.dialog.open(LeaveRequestsComponent, {
       width: '1200px',
-      height:'600px',
+      height: '600px',
       data: { id: this.id },
     });
   }

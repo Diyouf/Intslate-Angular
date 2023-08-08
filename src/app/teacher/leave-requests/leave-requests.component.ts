@@ -39,12 +39,16 @@ export class LeaveRequestsComponent implements OnInit {
 
   approveLeave(id:string){
     this.service.approve(id).subscribe((res)=>{
-        console.log("approved")
+       if(res.success === true ){
+        this.loadLeaveReq();
+       }
     })
   }
   rejectLeave(id:string){
     this.service.reject(id).subscribe((res)=>{
-        console.log("Rejected")
+        if(res.success === true){
+          this.loadLeaveReq();
+        }
     })
   }
 }

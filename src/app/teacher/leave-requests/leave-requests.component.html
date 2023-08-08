@@ -48,25 +48,25 @@
                       scope="col"
                       class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
                     >
-                      Leave Start Date 
+                      Leave Start Date
                     </th>
                     <th
                       scope="col"
                       class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
                     >
-                    Leave End Date 
+                      Leave End Date
                     </th>
                     <th
                       scope="col"
                       class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
                     >
-                     Number of Days
+                      Number of Days
                     </th>
                     <th
                       scope="col"
                       class="p-4 text-xs font-medium text-gray-500 uppercase lg:p-5 text-center"
                     >
-                     Reason
+                      Reason
                     </th>
                     <th
                       scope="col"
@@ -77,13 +77,7 @@
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                  <tr
-                    class="hover:bg-gray-100"
-                    *ngFor="
-                      let item of LeaveData
-                       
-                    "
-                  >
+                  <tr class="hover:bg-gray-100" *ngFor="let item of LeaveData">
                     <td
                       class="p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center"
                     >
@@ -96,12 +90,12 @@
                     <td
                       class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
                     >
-                      {{ formatDueDate(item.startDate ) }}
+                      {{ formatDueDate(item.startDate) }}
                     </td>
                     <td
                       class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
                     >
-                      {{  formatDueDate(item.endDate ) }}
+                      {{ formatDueDate(item.endDate) }}
                     </td>
                     <td
                       class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center"
@@ -112,8 +106,6 @@
                         >
                           {{ item.noofday }}
                         </span>
-
-                        <div></div>
                       </div>
                     </td>
                     <td
@@ -124,35 +116,34 @@
                     <td
                       class="p-4 space-x-2 whitespace-nowrap lg:p-5 text-center"
                     >
-                    <div class="flex gap-6">
-                      <button
-                        type="button"
-                        data-modal-toggle="user-modal"
-                        (click)="approveLeave(item._id)"
-                        class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-green-400 rounded-lg hover:bg-green-300  hover:scale-[1.02] transition-all"
-                      >
-                        
-                        Approve 
-                      </button>
-                      <button
-                      type="button"
-                      data-modal-toggle="user-modal"
-                      (click)="rejectLeave(item._id)"
-                      class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-red-400 rounded-lg hover:bg-red-300  hover:scale-[1.02] transition-all"
-                    >
-                      
-                      Reject 
-                    </button>
-                    </div>
+                      <div class="flex gap-6" *ngIf="item.status === 'Pending'">
+                        <button
+                          type="button"
+                          data-modal-toggle="user-modal"
+                          (click)="approveLeave(item._id)"
+                          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-green-400 rounded-lg hover:bg-green-300 hover:scale-[1.02] transition-all"
+                        >
+                          Approve
+                        </button>
+                        <button
+                          type="button"
+                          data-modal-toggle="user-modal"
+                          (click)="rejectLeave(item._id)"
+                          class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-gray-100 bg-red-400 rounded-lg hover:bg-red-300 hover:scale-[1.02] transition-all"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                      <div class="flex gap-6 justify-center" *ngIf="item.status === 'Approved'">
+                        <span class="bg-green-300 border-green-700 font-medium rounded-lg text-green-500 p-1">Approved</span>
+                      </div>
+                      <div class="flex gap-6  justify-center" *ngIf="item.status === 'Rejected'">
+                        <span class="bg-red-300 border-red-700 font-medium rounded-lg text-red-500 p-1">Rejected</span>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <!-- <div class="flex justify-end mt-7">
-                <pagination-controls
-                  (pageChange)="currentPage = $event"
-                ></pagination-controls>
-              </div> -->
             </div>
           </div>
         </div>
