@@ -9,6 +9,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { StudentsComponent } from './students/students.component';
 import { HomeworkComponent } from './homework/homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/teacher/dashboard', pathMatch: 'full' },
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: 'attendance',
     component: AttendanceComponent,
+    canActivate: [TeacherAuthGuard],
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
     canActivate: [TeacherAuthGuard],
   },
 ];

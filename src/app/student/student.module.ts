@@ -14,9 +14,10 @@ import { HomeworkComponent } from './homework/homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin.component';
+import { ChatComponent } from './chat/chat.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-
-
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
     FeesEnquiryComponent,
     HomeworkComponent,
     AttendanceComponent,
-    LeaveApplicatoinComponent
+    LeaveApplicatoinComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
     ReactiveFormsModule,
     HttpClientModule,
     FullCalendarModule,
-    FormsModule
+    FormsModule,
+    SocketIoModule.forRoot(config)
    
   ],
   providers: [

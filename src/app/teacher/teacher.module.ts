@@ -17,6 +17,7 @@ import { HomeworkComponent } from './homework/homework.component';
 import { AddHomeworkComponent } from './add-homework/add-homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -32,7 +33,8 @@ import { LeaveRequestsComponent } from './leave-requests/leave-requests.componen
     HomeworkComponent,
     AddHomeworkComponent,
     AttendanceComponent,
-    LeaveRequestsComponent
+    LeaveRequestsComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
