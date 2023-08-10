@@ -22,4 +22,7 @@ export class ChatService {
     sendMessage(message:any):void{
         this.socket.emit('sendMessage',message)
     }
+    getNewMessage():Observable<string>{
+        return this.socket.fromEvent<string>('newMessages')
+    }
 }

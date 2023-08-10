@@ -22,7 +22,6 @@ export class ChatComponent implements OnInit{
     this.chatService.getNewMessage().pipe(
       tap((message: string) => {
         this.messages.push(message)
-       
       })
     ).subscribe(() => {
       this.loadMessages();
@@ -40,10 +39,6 @@ export class ChatComponent implements OnInit{
     if(!message){
       return
     }else{
-      console.log("from "+this.studentId);
-      console.log("to "+this.connectionData.connection?.teacher._id );
-      
-      
       const data = {
         senderName:this.studentId,
         message:message,
@@ -79,7 +74,6 @@ export class ChatComponent implements OnInit{
       });
   }
   
-
   loadMessages(){
     this.chatService.loadMessages(this.connectionData._id).subscribe((res:any)=>{
       this.allMessages = res
