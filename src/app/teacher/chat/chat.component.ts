@@ -26,7 +26,7 @@ export class ChatComponent implements OnInit {
        
       })
     ).subscribe(() => {
-      this. allmessages()
+      this.allmessages()
     });
 
    

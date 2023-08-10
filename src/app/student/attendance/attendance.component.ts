@@ -43,6 +43,7 @@ export class AttendanceComponent implements OnInit {
       return {
         title: item.attendance,
         date: item.date,
+        display:'background',
         color: item.attendance === 'present' ? '#00FF00' : '#FF0000'
       };
     });
