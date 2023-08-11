@@ -8,7 +8,7 @@ import {  HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { StudentComponent } from './student/student.component';
+import { StudentComponent } from './studentFile/student/student.component';
 import { TeacherComponent } from './teacherFile/teacher/teacher.component';
 import { AddTeacherComponent } from './teacherFile/add-teacher/add-teacher.component'
 import { ToastrModule } from 'ngx-toastr';
@@ -17,8 +17,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { AdmissionEnquiryComponent } from './admission/admission-enquiry/admission-enquiry.component';
 import { AlladmissionEffect } from './admission/admission-enquiry/state/admission.effect'
 import { _admissionGetReducer } from './admission/admission-enquiry/state/admission.reducer'
-import { _studentGetReducer } from './student/state/student.reducer';
-import { AllStudentEffect } from './student/state/student.effect';
+import { _studentGetReducer } from './studentFile/student/state/student.reducer';
+import { AllStudentEffect } from './studentFile/student/state/student.effect';
 import { SubjectComponent } from './subjectFile/subject/subject.component';
 import { ClassesComponent } from './class/classes/classes.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -37,6 +37,7 @@ import { EventListComponent } from './event/event-list/event-list.component';
 import { AddEventComponent } from './event/add-event/add-event.component'
 import { _eventGetReducer } from './event/event-list/state/event.reducer';
 import { AllEventEffect } from './event/event-list/state/event.effect';
+import { ViewMoreComponent } from './studentFile/view-more/view-more.component';
 
 
 
@@ -61,7 +62,8 @@ import { AllEventEffect } from './event/event-list/state/event.effect';
     DeleteTeacherComponent,
     AddSubjectComponent,
     EventListComponent,
-    AddEventComponent
+    AddEventComponent,
+    ViewMoreComponent
   ],
   imports: [
     CommonModule,

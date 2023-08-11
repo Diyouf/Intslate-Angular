@@ -1,4 +1,5 @@
 export interface studentData {
+  _id:string
   studentId: number;
   name: string;
   email: string;

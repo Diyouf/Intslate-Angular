@@ -27,6 +27,7 @@ export class AttendanceComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin],
+    weekends:false,
     events: [],
   };
 
