@@ -1,0 +1,6 @@
+a.active {
+  background-color: #2d3748; /* Change this to your desired active background color */
+  color: #ffffff; /* Change this to your desired active text color */
+  transform: scale(1.1); /* Scale the element to 1.2 times its size */
+  transition: transform 0.1s ease-in-out; /* Add a transition effect with a duration of 0.3 seconds */
+}

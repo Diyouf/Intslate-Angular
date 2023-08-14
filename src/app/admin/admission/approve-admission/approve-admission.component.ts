@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApproveAdmissionService } from './approve-admission.service';
 import Swal from 'sweetalert2';
 import { Division, classForm } from './approve-admission.interface ';
+import { AddClassComponent } from '../../class/add-class/add-class.component';
 
 @Component({
   selector: 'app-approve-admission',
@@ -16,6 +17,7 @@ export class ApproveAdmissionComponent implements OnInit {
 
   constructor(
     private dialogRef: MatDialogRef<ApproveAdmissionComponent>,
+    private dialog :MatDialog,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: {id:string,ReqClass:string},
     private service: ApproveAdmissionService
@@ -45,7 +47,6 @@ export class ApproveAdmissionComponent implements OnInit {
       const formValues:classForm  = {
         class: this.classForm.value.class ? Number(this.classForm.value.class) : null,
         division: this.classForm.value.division || null,
-        
       };
       this.service.approveAdmission(this.id, formValues).subscribe((res) => {
         if (res.success) {
@@ -77,6 +78,14 @@ export class ApproveAdmissionComponent implements OnInit {
       this.cDivision = res
     })
 
+  }
+
+  navigate(){
+    this.dialogRef.close()
+    this.dialog.open(AddClassComponent,{
+      height: '394px',
+      width: '672px',
+    })
   }
 
 

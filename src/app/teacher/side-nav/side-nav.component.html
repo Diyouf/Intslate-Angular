@@ -35,7 +35,7 @@
        
       </div>
       <!-- Form -->
-      <a [routerLink]="['/teacher/dashboard']" class="text-black text-sm uppercase hidden lg:inline-block font-bold "
+      <a [routerLink]="['/teacher/dashboard']" class="text-black text-sm uppercase hidden  lg:inline-block font-bold "
       >Intslate</a
     >
  
@@ -49,12 +49,12 @@
         <li class="items-center">
           <a
             [routerLink]="['/teacher/dashboard']"
-            class="text-xs uppercase py-3 font-bold block"
+            class="text-xs uppercase py-3 font-bold block px-2"
             routerLinkActive
             #teacherDashboard="routerLinkActive"
             [ngClass]="
             teacherDashboard.isActive
-                ? 'text-blue-600 hover:text-blue-700'
+                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
           >
@@ -65,12 +65,12 @@
         <li class="items-center">
           <a
             [routerLink]="['/teacher/students']"
-            class="text-xs uppercase py-3 font-bold block"
+            class="text-xs uppercase py-3 font-bold block px-2"
             routerLinkActive
             #teacherStudents="routerLinkActive"
             [ngClass]="
             teacherStudents.isActive
-                ? 'text-blue-600 hover:text-blue-700'
+                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
           >
@@ -82,12 +82,12 @@
         <li class="items-center">
           <a
             [routerLink]="['/teacher/homeWork']"
-            class="text-xs uppercase py-3 font-bold block"
+            class="text-xs uppercase py-3 font-bold block px-2"
             routerLinkActive
             #teacherHomework="routerLinkActive"
             [ngClass]="
             teacherHomework.isActive
-                ? 'text-blue-600 hover:text-blue-700'
+                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
           >
@@ -99,12 +99,12 @@
         <li class="items-center">
           <a
             [routerLink]="['/teacher/attendance']"
-            class="text-xs uppercase py-3 font-bold block"
+            class="text-xs uppercase py-3 font-bold block px-2"
             routerLinkActive
             #adminTables="routerLinkActive"
             [ngClass]="
               adminTables.isActive
-                ? 'text-blue-600 hover:text-blue-700'
+                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
           >
@@ -116,12 +116,12 @@
         <li class="items-center">
           <a
             [routerLink]="['/teacher/chat']"
-            class="text-xs uppercase py-3 font-bold block"
+            class="text-xs uppercase py-3 font-bold block px-2"
             routerLinkActive
             #adminMaps="routerLinkActive"
             [ngClass]="
               adminMaps.isActive
-                ? 'text-blue-600 hover:text-blue-700'
+                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
                 : 'text-blueGray-700 hover:text-blueGray-500'
             "
           >

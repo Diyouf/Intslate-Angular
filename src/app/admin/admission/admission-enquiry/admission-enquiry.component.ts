@@ -17,6 +17,7 @@ export class AdmissionEnquiryComponent implements OnInit {
 
 
   fetchData$!: Observable<admissionData[]>;
+  pendingCount!:number
 
 
   constructor(
@@ -56,9 +57,15 @@ export class AdmissionEnquiryComponent implements OnInit {
   }
 
   loadAdmissionData() {
-    this.store.dispatch((loadAllAdmission()))
-    this.fetchData$ = this.store.pipe(select(selectAlladmissionData))
+    this.store.dispatch(loadAllAdmission());
+    this.fetchData$ = this.store.pipe(select(selectAlladmissionData));
+    this.fetchData$.subscribe(admissionData => {
+      this.pendingCount = admissionData.filter(entry => entry.is_approved === 'pending').length;
+     });
+  
+     
   }
+  
 
   updateFilteredData() {
     this.fetchData$ = this.store.pipe(

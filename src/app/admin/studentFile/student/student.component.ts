@@ -8,7 +8,6 @@ import { ClassesService } from '../../class/classes/classes.service';
 import { classData } from '../../class/classes/classes.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewMoreComponent } from '../view-more/view-more.component';
-// import { ViewMoreComponent } from '../studentFile/view-more/view-more.component';
 
 @Component({
   selector: 'app-student',
@@ -74,9 +73,13 @@ export class StudentComponent {
   
 
   viewMore(id:string){
+    
     const dialogRef = this.dialog.open(ViewMoreComponent ,{
+      width:'50%',
+      data:{id : id},
 
     })
+    
   }
   
 

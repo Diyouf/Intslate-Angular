@@ -1,126 +1,91 @@
-<main>
-    <div class="grid grid-cols-1 px-4 pt-2 xl:grid-cols-3 xl:gap-6">
-
-
-        <div class="col-span-full xl:col-auto">
-            <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-6">
-                <div class="sm:flex xl:block sm:space-x-4 xl:space-x-0">
-                    <img class="mb-2 w-20 h-20 rounded-2xl shadow-lg shadow-gray-300"
-                    [src]="'http://localhost:3000/uploads/' + studentDetails.profilePicture"
-                        alt="Jese portrait">
-                    <div>
-                        <h2 class="text-lg font-bold">{{studentDetails.firstName+" "+studentDetails.lastName}}</h2>
-                        <ul >
-
-                            <li class="flex items-center text-sm font-normal text-gray-500">
-
-                                #{{studentDetails.admissionId}}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="mb-4 sm:flex xl:block">
-                    <div class="sm:flex-1">
-                        <address class="text-sm not-italic font-normal text-gray-500">
-                            <div class="flex items-center text-sm font-normal text-gray-500">
-                            <p class="text-sm font-medium text-gray-900"> 
-                                {{studentDetails.studentEmail}}</p></div>
-                            <p class="text-sm">DOB : <span class="text-sm font-medium text-gray-900">{{studentDetails.dob | date}}</span></p>
-
-                            <p class="text-sm">Gender : <span class="text-sm font-medium text-gray-900">{{studentDetails.gender}}</span></p>
-                            <p class="text-sm">Phone No. : <span class="text-sm font-medium text-gray-900">{{studentDetails.studentPhone}}</span></p>
-
-                            <div class="mt-4">Home adress</div>
-                            <div class="mb-2 text-sm font-medium text-gray-900 max-w-[20ch] break-words">
-                                {{studentDetails.address}}
-                            </div>
-                            <div class="mt-4 font-medium text-gray-800">Guardian Details</div>
-                            <div class="mb-2 text-sm text-gray-900">
-                                Name : <span class="font-medium ">{{studentDetails.guardianName}}</span> <br>
-                                Occupation : <span class="font-medium ">{{studentDetails.occupation}} </span> <br>
-                                Relation : <span class="font-medium ">{{studentDetails.relation}}</span> <br>
-                                Phone No : <span class="font-medium ">{{studentDetails.guardianPhone}}</span> 
-                            </div>
-                        </address>
-                    </div>
-                </div>
+<main *ngIf="fetchData$ | async as studentDetails">
+  <div
+    class="grid grid-cols-4 px-4 pt-2 xl:grid-cols-1 xl:gap-6"
+    *ngFor="let studentDetails of studentDetails"
+  >
+    <div class="col-span-full xl:col-auto">
+      <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-6  justify-between flex">
+    
+       <div>
+        <div class="flex space-x-4">
+            <!-- Use 'flex' and 'space-x' for horizontal spacing -->
+            <img
+              class="w-20 h-20 rounded-2xl shadow-lg shadow-gray-300"
+              [src]="'http://localhost:3000/studentImage/' + studentDetails.image"
+              alt="Student portrait"
+            />
+            <div>
+              <h2 class="text-lg font-bold">{{ studentDetails.name }}</h2>
+              <ul>
+                <li class="text-sm font-normal text-gray-500">
+                  Student ID: #{{ studentDetails.studentId }}
+                </li>
+              </ul>
             </div>
-        </div>
-        <div class="col-span-2">
-            <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-6">
-                <h3 class="mb-2 text-xl font-bold">Admission Detials</h3>
-
-                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                   
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Admission Date</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.admissionDate | date}}
-                        </dd>
-                    </div>
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Admission Status</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.admissionStatus}}
-                        </dd>
-                    </div>
-                    
-                </dl>
-            </div>
-            <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-6">
-                <h3 class="mb-2 text-xl font-bold">Course Details</h3>
-                
-                <div class="mb-3">
-                    <dt class="text-sm font-medium text-gray-500">Department</dt>
-                    <dd class="text-sm font-semibold text-gray-900">
-                        {{studentDetails.department.departmentName}}
-                    </dd>
-                </div>
-                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                   
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Admission Type</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.admissionType}}
-                        </dd>
-                    </div>
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Quota</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.quota}}
-                        </dd>
-                    </div>
-                    
-                </dl>
-            </div>
-            
-            <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-2">
-                <h3 class="mb-2 text-xl font-bold">Previous Education Qualification</h3>
-                
-                <div class="mb-3">
-                    <dt class="text-sm font-medium text-gray-500">Institute / School</dt>
-                    <dd class="text-sm font-semibold text-gray-900">
-                        {{studentDetails.previousInstitute}}
-                    </dd>
-                </div>
-                <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-                   
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Course</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.courseStudied}}
-                        </dd>
-                    </div>
-                    <div>
-                        <dt class="text-sm font-medium text-gray-500">Passing Year</dt>
-                        <dd class="text-sm font-semibold text-gray-900">
-                            {{studentDetails.passingYear}}
-                        </dd>
-                    </div>
-                    
-                </dl>
-            </div>
-            
-        </div>
+          </div>
+          
+          <div class="mt-4">
+            <address class="text-sm not-italic font-normal text-gray-500">
+              <p class="text-sm font-medium text-gray-900">
+                {{ studentDetails.email }}
+              </p>
+              <p class="text-sm">
+                DOB:
+                <span class="font-medium text-gray-900">{{
+                  studentDetails.DOB | date
+                }}</span>
+              </p>
+              <p class="text-sm">
+                Gender:
+                <span class="font-medium text-gray-900">{{
+                  studentDetails.gender
+                }}</span>
+              </p>
+              <p class="text-sm">
+                Phone No.:
+                <span class="font-medium text-gray-900">{{
+                  studentDetails.phone
+                }}</span>
+              </p>
+  
+              <div class="mt-4 font-medium text-gray-800">Home Address:</div>
+              <div class="text-sm font-medium text-gray-900 max-w-[20ch] flex">
+                {{ studentDetails.address }}, {{ studentDetails.city }},
+                {{ studentDetails.state }}, {{ studentDetails.zip }}
+              </div>
+            </address>
+          </div>
+          
+       </div>
+       <div class="flex flex-col">
+        <p class="text-sm">
+            Class:
+            <span class="font-medium text-gray-900">{{
+              studentDetails.class.className
+            }} - {{studentDetails.class.division}}</span>
+        </p>
+          <p class="text-sm">
+            Class Teacher:
+            <span class="font-medium text-gray-900">{{
+              studentDetails.class.classTeacher.name
+            }}</span>
+          </p>
+      </div>
+      </div>
     </div>
+
+    <div class="col-span-2">
+      <div class="bg-white shadow-lg shadow-gray-200 rounded-2xl p-4 mb-6">
+        <div class="mt-4 font-medium text-gray-800">Guardian Details</div>
+        <div class="text-sm text-gray-900">
+          Name:
+          <span class="font-medium">{{ studentDetails.Guardname }}</span
+          ><br />
+          Relation:
+          <span class="font-medium">{{ studentDetails.relation }}</span
+          ><br />
+        </div>
+      </div>
+    </div>
+  </div>
 </main>

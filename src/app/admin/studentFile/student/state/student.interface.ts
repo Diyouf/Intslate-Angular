@@ -8,9 +8,19 @@ export interface studentData {
     _id:string,
     className: number;
     division: string;
-    students: number;
-    maxStudent: number;
-    classTeacher: string;
+    classTeacher: {
+      name:string
+    };
   };
   image: string;
+  DOB:Date
+  gender:string
+  address:string
+  status?:boolean
+  city:string
+  state:string
+  zip:string
+  Guardname:string
+  relation:string
+
 }
