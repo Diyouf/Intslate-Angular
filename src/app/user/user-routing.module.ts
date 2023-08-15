@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { EventsComponent } from './events/events.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'admissionForm', component: AdmissionComponent },
   { path: 'events', component: EventsComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'student',
     loadChildren: () =>

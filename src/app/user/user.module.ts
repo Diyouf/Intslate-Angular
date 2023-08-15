@@ -13,7 +13,8 @@ import { AllEventUserEffect } from './events/state/events.effects';
 import { _eventUserGetReducer } from './events/state/events.reducer';
 import { EventListhomeComponent } from './event-listhome/event-listhome.component';
 import { FooterComponent } from './footer/footer.component';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { ContactComponent } from './contact/contact.component'
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MatIconModule} from '@angular/material/icon'
     AdmissionComponent,
     EventsComponent,
     EventListhomeComponent,
-    FooterComponent
+    FooterComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
