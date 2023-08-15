@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,AfterViewChecked,ElementRef,ViewChild} from '@angular/core';
 import { ChatService } from './chat.service';
-import { connectionData } from './chat.interface';
+import { allChat, connectionData, studentData } from './chat.interface';
 import { FormBuilder } from '@angular/forms';
 import { tap } from 'rxjs';
 
@@ -9,75 +9,84 @@ import { tap } from 'rxjs';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit {
-  constructor(private chatService: ChatService,private fb:FormBuilder) {}
+export class ChatComponent implements OnInit,AfterViewChecked {
+  constructor(private chatService: ChatService, private fb: FormBuilder) {}
   readonly id = localStorage.getItem('teacherId');
-  studentdata!:connectionData[]
-  allchats :any=[]
-  connection!:string |undefined
-  studentId!:any
-  messages:any[]=[]
+  @ViewChild('chatContainer') private chatContainer!: ElementRef;
+  studentdata!: connectionData[];
+  allchats: allChat[] = [];
+  connection!: string | undefined;
+  studentId!: {id:string};
+  messages: string[] = [];
 
   ngOnInit(): void {
     this.loadConnection();
-    this.chatService.getNewMessage().pipe(
-      tap((message: string) => {
-        this.messages.push(message)
-       
-      })
-    ).subscribe(() => {
-      this.allmessages()
-    });
+    this.chatService
+      .getNewMessage()
+      .pipe(
+        tap((message: string) => {
+          this.messages.push(message);
+        })
+      )
+      .subscribe(() => {
+        this.allmessages();
+      });
+      
+      
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
 
-   
+  scrollToBottom(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
   loadConnection() {
     this.chatService.loadConnection(this.id).subscribe((res) => {
-      this.studentdata = res
+      this.studentdata = res;
+      console.log(this.studentdata);
     });
-
   }
 
-  loadChats(id:string|undefined,studentId:any){
-    this.connection = id
-    this.studentId = studentId
-    this.allmessages()
-    
+  loadChats(id: string | undefined, studentId:string ) {
+
+    console.log(studentId);
+
+    this.connection = id;
+    this.studentId ={
+      id : studentId
+    } ;
+    this.allmessages();
   }
 
-  allmessages(){
-    this.chatService.loadAllChats(this.connection).subscribe((res)=>{
-      this.allchats = res
+  allmessages() {
+    this.chatService.loadAllChats(this.connection).subscribe((res:allChat[]) => {
       
+      this.allchats = res;
       
-    })
+    });
   }
 
- 
+  formData = this.fb.group({
+    message: '',
+  });
 
-  formData=this.fb.group({
-    message:'',
-  })
-
-  onSubmit(){
-    const {message} = this.formData.value
-    if(!message){
-      return
-    }else{
-           
+  onSubmit() {
+    const { message } = this.formData.value;
+    if (!message) {
+      return;
+    } else {
       const data = {
-        senderName:this.id,
-        message:message,
-        connectionId:this.connection,
-        to:this.studentId
-      }
-      this.chatService.sendMessage(data)
-      this.formData.reset()
+        senderName: this.id,
+        message: message,
+        connectionId: this.connection,
+        to: this.studentId,
+      };
+      this.chatService.sendMessage(data);
+      this.formData.reset();
     }
   }
-
-
-
-
 }

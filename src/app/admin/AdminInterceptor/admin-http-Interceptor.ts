@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AdminAuthInterceptor implements HttpInterceptor {
     constructor(private router: Router) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<string>, next: HttpHandler): Observable<HttpEvent<string>> {
         const token = localStorage.getItem('adminToken');
         if (token) {
 

@@ -24,3 +24,38 @@ export interface returnData {
     }
 
 }
+
+export interface allChat {
+    _id: string;
+    content: string;
+    date: string;
+    from: string;
+    to: string;
+    connection?:{
+      connection?: {
+          student: {
+            _id: string;
+            image: string;
+            name: string;
+            class: {
+              className: number;
+              division: string;
+            };
+          };
+          teacher: {
+            _id: string;
+            image: string;
+          };
+        };
+    }
+   
+  }
+
+  export interface Message {
+    senderName:string 
+    message:string 
+    connectionId:string 
+    to:{
+        _id:string 
+    }
+  }

@@ -13,6 +13,7 @@ import { AllEventUserEffect } from './events/state/events.effects';
 import { _eventUserGetReducer } from './events/state/events.reducer';
 import { EventListhomeComponent } from './event-listhome/event-listhome.component';
 import { FooterComponent } from './footer/footer.component';
+import {MatIconModule} from '@angular/material/icon'
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     EffectsModule.forFeature([AllEventUserEffect]),
     StoreModule.forFeature('AllEventUser', _eventUserGetReducer),
+    MatIconModule
   
   ]
 })

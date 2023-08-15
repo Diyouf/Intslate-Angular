@@ -1,29 +1,28 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild , AfterViewChecked ,ElementRef} from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ChatService } from './chat.service';
 import { FormBuilder } from '@angular/forms';
-import { returnData, teacherData } from './chat.interface';
+import { Message, allChat, returnData, teacherData } from './chat.interface';
+
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit{
+export class ChatComponent implements OnInit ,AfterViewChecked{
   constructor(private chatService : ChatService,private fb:FormBuilder){}
   newMessage$!:Observable<string>
   messages:string [] =[]
   teacherData!:teacherData[]
-  readonly studentId = localStorage.getItem('studentId')
+  readonly studentId:string | null = localStorage.getItem('studentId')
   connectionData !:returnData
-  allMessages:any[] = []
+  allMessages:allChat[] = []
+  @ViewChild('chatContainer') private chatContainer!: ElementRef;
+
 
   ngOnInit() {
-    this.chatService.getNewMessage().pipe(
-      tap((message: string) => {
-        this.messages.push(message)
-      })
-    ).subscribe(() => {
+    this.chatService.getNewMessage().subscribe(() => {
       this.loadMessages();
     });
 
@@ -34,16 +33,28 @@ export class ChatComponent implements OnInit{
     message:'',
   })
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+  }
+
+
+
   onSubmit(){
     const {message} = this.formData.value
     if(!message){
       return
     }else{
-      const data = {
-        senderName:this.studentId,
+      const data:Message = {
+        senderName:<string>this.studentId,
         message:message,
-        connectionId:this.connectionData._id,
-        to:this.connectionData.connection?.teacher
+        connectionId:<string>this.connectionData._id,
+        to:<{_id:string}>this.connectionData.connection?.teacher
       }
       this.chatService.sendMessage(data)
       this.formData.reset()
@@ -75,11 +86,14 @@ export class ChatComponent implements OnInit{
   }
   
   loadMessages(){
-    this.chatService.loadMessages(this.connectionData._id).subscribe((res:any)=>{
+    this.chatService.loadMessages(this.connectionData._id).subscribe((res:allChat[])=>{
       this.allMessages = res
-      console.log(this.allMessages);
+      
+      
       
     })
   }
+
+  
 
 }

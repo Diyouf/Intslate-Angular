@@ -15,6 +15,8 @@ import { ErrorInterceptor } from './error-interceptor/global-errorHadling';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     AdminModule,
     StudentModule,
     TeacherModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    
+
 
 
   ],

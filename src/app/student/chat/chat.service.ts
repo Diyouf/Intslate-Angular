@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
-import { returnData, teacherData } from './chat.interface';
+import { Message, allChat, returnData, teacherData } from './chat.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 
@@ -11,7 +11,7 @@ export class ChatService {
     private readonly apiUrl = environment.apiUrl
     
 
-    sendMessage(message:any):void{
+    sendMessage(message:Message ):void{
         this.socket.emit('sendMessage',message)
     }
 
@@ -29,7 +29,7 @@ export class ChatService {
     }
     
 
-    loadMessages(id:string|null|undefined){
-        return this.http.get(`${this.apiUrl}/student/loadMesssages/?id=${id}`)
+    loadMessages(id:string|null|undefined):Observable<allChat[]>{
+        return this.http.get<allChat[]>(`${this.apiUrl}/student/loadMesssages/?id=${id}`)
     }
 }

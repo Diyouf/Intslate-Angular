@@ -38,6 +38,7 @@ import { AddEventComponent } from './event/add-event/add-event.component'
 import { _eventGetReducer } from './event/event-list/state/event.reducer';
 import { AllEventEffect } from './event/event-list/state/event.effect';
 import { ViewMoreComponent } from './studentFile/view-more/view-more.component';
+import {MatIconModule} from '@angular/material/icon'
 
 
 
@@ -83,7 +84,8 @@ import { ViewMoreComponent } from './studentFile/view-more/view-more.component';
     EffectsModule.forFeature([AllteacherEffect, AlladmissionEffect, AllStudentEffect,AllEventEffect]),
     MatDialogModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatIconModule
   ],
   providers: [
     {

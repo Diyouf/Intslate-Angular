@@ -16,6 +16,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin.component';
 import { ChatComponent } from './chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { FooterComponent } from './footer/footer.component';
+import {MatIconModule} from '@angular/material/icon'
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -31,7 +33,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HomeworkComponent,
     AttendanceComponent,
     LeaveApplicatoinComponent,
-    ChatComponent
+    ChatComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -40,8 +43,9 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HttpClientModule,
     FullCalendarModule,
     FormsModule,
-    SocketIoModule.forRoot(config)
-   
+    SocketIoModule.forRoot(config),
+    MatIconModule
+
   ],
   providers: [
     {

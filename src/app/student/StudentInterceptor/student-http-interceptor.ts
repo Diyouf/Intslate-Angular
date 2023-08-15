@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class StudentAuthInterceptor implements HttpInterceptor {
     constructor(private router:Router) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    intercept(request: HttpRequest<string>, next: HttpHandler): Observable<HttpEvent<string>> {
         const token = localStorage.getItem('studentToken');
         if (token) {
            
@@ -37,19 +37,20 @@ export class StudentAuthInterceptor implements HttpInterceptor {
 
     private getUserRoleFromToken(token: string): string {
        
-        const decodedToken: any = this.decodeToken(token);
+        const decodedToken: {role:string} = this.decodeToken(token);
         const role = decodedToken.role;
         return role;
     }
 
-    private decodeToken(token: string): any {
+    private decodeToken(token: string): any  {
         try {
             const decodedToken: JwtPayload = jwtDecode(token);
-            
+            console.log(decodedToken);
+
             return decodedToken;
         } catch (error) {
             console.error('Error decoding JWT token:', error);
-            return {};
+            
         }
 
     }
@@ -74,4 +75,12 @@ export class StudentAuthInterceptor implements HttpInterceptor {
           })
 
     }
+}
+
+interface decodeData {
+    email:string
+    exp:number
+    sub:string
+    role:string
+    iat:number
 }

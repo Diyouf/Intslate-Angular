@@ -39,7 +39,7 @@
       <div
         class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
       >
-        <div class="flex flex-col h-full overflow-x-auto mb-4" >
+        <div class="flex flex-col h-full overflow-x-auto mb-4" #chatContainer>
           <div class="flex flex-col h-full">
             <div class="grid grid-cols-12 gap-y-2" *ngFor="let item of allMessages">
               <div class="col-start-1 col-end-8 p-3 rounded-lg" *ngIf="item.from === connectionData.connection?.teacher?._id" >
@@ -56,6 +56,11 @@
                     class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                   >
                     <div *ngIf="item.from === connectionData.connection?.teacher?._id" >{{item.content}}</div>
+                    <div
+                    class="absolute text-xs bottom-0 left-0 -mb-5 mr-2 text-gray-500"
+                  >
+                    {{ item.date | date : "shortTime" }}
+                  </div>
                   </div>
                 </div>
               </div>
@@ -73,7 +78,13 @@
                     class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
                   >
                     <div  *ngIf="item.from === connectionData.connection?.student?._id && item.to === connectionData.connection?.teacher?._id">{{item.content}}</div>
+                   
                   </div>
+                  <div
+                  class="text-xs bottom-0 right-0 mr-2 text-gray-500"
+                >
+                  {{ item.date | date : "shortTime" }}
+                </div>
                 </div>
               </div>
             </div>

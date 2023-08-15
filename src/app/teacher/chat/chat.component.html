@@ -11,28 +11,29 @@
           <div *ngFor="let item of studentdata">
             <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
               <button
-                (click)="loadChats(item._id,item.connection?.student)"
+                (click)="loadChats(item._id, item.connection.student._id)"
                 class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
               >
                 <div
                   class="flex items-center justify-center h-8 w-8 rounded-full"
                 >
-                  <img class="rounded-full"
+                  <img
+                    class="rounded-full"
                     [src]="
                       'http://localhost:3000/studentImage/' +
-                      item.connection?.student?.image
+                      item.connection.student.image
                     "
                     alt=""
                   />
                 </div>
                 <div>
                   <div class="ml-2 text-sm text-left font-semibold">
-                    {{ item.connection?.student?.name }}
+                    {{ item.connection.student.name }}
                   </div>
 
                   <div class="text-xs ml-2 font-medium">
-                    {{ item.connection?.student?.class?.className }} -
-                    {{ item.connection?.student?.class?.division }}
+                    {{ item.connection.student.class.className }} -
+                    {{ item.connection.student.class.division }}
                   </div>
                 </div>
               </button>
@@ -44,41 +45,84 @@
         <div
           class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
         >
-          <div class="flex flex-col h-full overflow-x-auto mb-4" >
+          <div class="flex flex-col h-full overflow-x-auto mb-4" #chatContainer>
             <div class="flex flex-col h-full">
-              <div class="grid grid-cols-12 gap-y-2" *ngFor="let item of allchats">
-               
-                <div class="col-start-1 col-end-8 p-3 rounded-lg" *ngIf="item.from === item.connection?.connection?.student?._id" >
+              <div
+                class="grid grid-cols-12 gap-y-2"
+                *ngFor="let item of allchats"
+              >
+                <div
+                  class="col-start-1 col-end-8 p-3 rounded-lg"
+                  *ngIf="
+                    item.from === item.connection?.connection?.student?._id
+                  "
+                >
                   <div class="flex flex-row items-center">
                     <div
                       class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
                     >
-                    <img class="rounded-full"
-                    [src]="'http://localhost:3000/studentImage/' + item?.connection?.connection?.student?.image"
-                    alt="">
-  
+                      <img
+                        class="rounded-full"
+                        [src]="
+                          'http://localhost:3000/studentImage/' +
+                          item?.connection?.connection?.student?.image
+                        "
+                        alt=""
+                      />
                     </div>
                     <div
                       class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
                     >
-                      <div *ngIf="item.from === item.connection?.connection?.student?._id" >{{item.content}}</div>
+                      <div
+                        *ngIf="
+                          item.from ===
+                          item.connection?.connection?.student?._id
+                        "
+                      >
+                        {{ item.content }}
+                      </div>
+                      <div
+                        class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"
+                      >
+                        {{ item.date | date : "shortTime" }}
+                      </div>
                     </div>
                   </div>
                 </div>
-                
-                <div class="col-start-6 col-end-13 p-3 rounded-lg" *ngIf="item.from === item.connection?.connection?.teacher?._id && item.to === item.connection?.connection?.student?._id">
+
+                <div
+                  class="col-start-6 col-end-13 p-3 rounded-lg"
+                  *ngIf="
+                    item.from === item.connection?.connection?.teacher?._id &&
+                    item.to === item.connection?.connection?.student?._id
+                  "
+                >
                   <div class="flex items-center justify-start flex-row-reverse">
                     <div
                       class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0"
                     >
-                    <img class="rounded-full"
-                    [src]="'http://localhost:3000/uploads/' + item.connection?.connection?.teacher?.image"
-                    alt="">
+                      <img
+                        class="rounded-full"
+                        [src]="
+                          'http://localhost:3000/uploads/' +
+                          item.connection?.connection?.teacher?.image
+                        "
+                        alt=""
+                      />
                     </div>
                     <div
                       class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
                     >
-                      <div  *ngIf="item.from === item.connection?.connection?.teacher?._id && item.to === item.connection?.connection?.student?._id">{{item.content}}</div>
+                      <div
+                        *ngIf="
+                          item.from ===
+                            item.connection?.connection?.teacher?._id &&
+                          item.to === item.connection?.connection?.student?._id
+                        "
+                      >
+                        {{ item.content }}
+                      </div>
+                     
                     </div>
                   </div>
                 </div>
@@ -117,7 +161,6 @@
                     formControlName="message"
                   />
                   <button
-                    
                     class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600"
                   >
                     <svg
