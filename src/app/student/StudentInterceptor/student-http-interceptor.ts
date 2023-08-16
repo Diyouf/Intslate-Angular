@@ -45,7 +45,7 @@ export class StudentAuthInterceptor implements HttpInterceptor {
     private decodeToken(token: string): any  {
         try {
             const decodedToken: JwtPayload = jwtDecode(token);
-            console.log(decodedToken);
+            
 
             return decodedToken;
         } catch (error) {

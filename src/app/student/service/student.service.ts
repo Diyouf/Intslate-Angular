@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { FeeStructure, PaidFeesInterface, token, unpaidTermsData } from '../fees-enquiry/fees-enquiry.interface';
 import { studentProfileData } from '../profile-div/profile-div.interface';
 import { Homework } from '../homework/homework.interface';
+import { formData, returnData } from '../editprofile/editprofile.interface';
 
 @Injectable({ providedIn: 'root' })
 export class StudentServiceService {
@@ -29,5 +30,9 @@ export class StudentServiceService {
 
     fetchHomeWorks(id:string|null):Observable<Homework[]>{
         return this.http.get<Homework[]>(`${this.apiUrl}/student/fetchHomeWorks/?id=${id}`)
+    }
+
+    resetPassword(id:string | null,data :formData):Observable<returnData>{
+        return this.http.post<returnData>(`${this.apiUrl}/student/resetPassword/?id=${id}`,data)
     }
 }

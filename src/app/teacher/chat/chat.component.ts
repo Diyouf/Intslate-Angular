@@ -71,7 +71,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   formData = this.fb.group({
-    message: ['', Validators.pattern('^[s\t\n]*$')],
+    message: [''],
   });
 
   onSubmit() {

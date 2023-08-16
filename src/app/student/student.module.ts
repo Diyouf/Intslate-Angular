@@ -17,7 +17,8 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
 import { ChatComponent } from './chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FooterComponent } from './footer/footer.component';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { EditprofileComponent } from './editprofile/editprofile.component'
 
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
@@ -35,7 +36,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     AttendanceComponent,
     LeaveApplicatoinComponent,
     ChatComponent,
-    FooterComponent
+    FooterComponent,
+    EditprofileComponent
   ],
   imports: [
     CommonModule,

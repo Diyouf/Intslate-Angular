@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentServiceService } from '../service/student.service';
 import { studentProfileData } from './profile-div.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { EditprofileComponent } from '../editprofile/editprofile.component';
 
 
 @Component({
@@ -10,18 +12,29 @@ import { studentProfileData } from './profile-div.interface';
 })
 export class ProfileDivComponent implements OnInit {
 
-  constructor(private service: StudentServiceService) { }
+  constructor(private service: StudentServiceService,private dialog:MatDialog) { }
   private readonly studentId  = localStorage.getItem('studentId')
 
-  studentdata!: studentProfileData;
+  studentdata!: studentProfileData | undefined;
 
   ngOnInit(): void {
     this.loadStudentdata()
   }
 
-  loadStudentdata() {
-    this.service.fetchStudent(this.studentId).subscribe((res) => {
-      this.studentdata = res
+  async loadStudentdata() {
+    try {
+      const res = await this.service.fetchStudent(this.studentId).toPromise();
+      this.studentdata = res;
+    } catch (error) {
+      // Handle error here
+      console.error("An error occurred while fetching student data:", error);
+    }
+  }
+  
+
+  editStudentProfile(){
+    const dialogRef = this.dialog.open(EditprofileComponent,{
+      width:'40%'
     })
   }
 
