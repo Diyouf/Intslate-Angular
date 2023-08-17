@@ -52,3 +52,12 @@ export interface studentData {
     division: string;
   };
 }
+
+export interface Message {
+  senderName:string 
+  message:string 
+  connectionId:string 
+  to:{
+      _id:string 
+  }
+}

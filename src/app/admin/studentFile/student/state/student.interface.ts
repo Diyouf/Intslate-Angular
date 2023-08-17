@@ -4,6 +4,7 @@ export interface studentData {
   name: string;
   email: string;
   phone: number;
+  age:number
   class: {
     _id:string,
     className: number;

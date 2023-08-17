@@ -1,14 +1,123 @@
 <app-side-nav></app-side-nav>
 
 <div class="p-4 sm:ml-64">
-    <div class="card w-96 bg-base-100 shadow-xl">
-        <figure><img src="https://ih1.redbubble.net/image.852443317.2770/mp,504x498,matte,f8f8f8,t-pad,600x600,f8f8f8.u3.jpg" alt="Shoes" /></figure>
-        <div class="card-body">
-          <h2 class="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div class="card-actions justify-end">
-            <button class="btn btn-primary">Buy Now</button>
-          </div>
+  <div class="flex items-center justify-center">
+    <div class="grid mt-20 grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4">
+      <!-- 1 card -->
+      <div class="relative bg-white py-6 px-6 rounded-3xl w-72 my-4 shadow-md">
+        <div class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-blue-400 left-4 -top-6 ">
+          <!-- svg  -->
+          <mat-icon>supervisor_account</mat-icon>
+        </div>
+        <div class="mt-10 flex justify-between">
+          <p class="text-lg font-semibold my-2">Total Students</p>
+          <p class="text-2xl font-semibold my-2"> {{studentCount}}</p>
+          
         </div>
       </div>
+
+      <!-- 2 card -->
+      <div class="relative bg-white py-6 px-6 rounded-3xl w-72 my-4 shadow-md">
+        <div class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-green-500 left-4 -top-6">
+          <!-- svg  -->
+          <mat-icon>supervised_user_circle</mat-icon>
+        </div>
+        <div class="mt-10  flex justify-between">
+          <p class="text-lg font-semibold my-2">Total Teachers</p>
+          <p class="text-2xl font-semibold my-2"> {{teacherCount}}</p>
+        </div>
+      </div>
+
+      <!-- 3 card -->
+      <div class="relative bg-white py-6 px-6 rounded-3xl w-72 my-4 shadow-md">
+        <div class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-blue-500 left-4 -top-6">
+          <!-- svg  -->
+          <mat-icon>class</mat-icon>
+        </div>
+        <div class="mt-10 flex justify-between">
+          <p class="text-lg font-semibold my-2">Total Classes</p>
+          <p class="text-2xl font-semibold my-2"> {{classCount}}</p>
+        </div>
+      </div>
+
+      <!-- 4 card -->
+      <div class="relative bg-white py-6 px-6 rounded-3xl w-72 my-4 shadow-md">
+        <div
+          class=" text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-yellow-500 left-4 -top-6">
+          <!-- svg  -->
+          <mat-icon>subject</mat-icon>
+        </div>
+        <div class="mt-10 flex justify-between">
+          <p class="text-lg font-semibold my-2">Total Subjects</p>
+          <p class="text-2xl font-semibold my-2"> {{subjectCount}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full sm:flex">
+    <div class="w-full sm:w-1/2 p-4  mt-5 sm:p-10 shadow-xl rounded-xl">
+      <app-chart></app-chart>
+    </div>
+    <div class="w-full sm:w-1/2">
+      <div class="flex flex-col my-6 mx-4 rounded-2xl shadow-xl shadow-gray-200">
+        <div class="overflow-x-auto rounded-2xl">
+            <div class="inline-block w-full align-middle">
+
+                <div class="overflow-hidden shadow-lg ">
+
+                    <table class="min-w-full divide-y divide-gray-200 table-fixed">
+                        <thead class="bg-white">
+                            <tr>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Studnet
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    Class
+                                </th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" *ngIf="fetchDataStudent$ | async as student">
+                            <tr class="hover:bg-gray-100" *ngFor="let item of student | slice:0:5">
+                                <td class=" p-4 mr-12 space-x-6 whitespace-nowrap lg:p-5 lg:mr-0 text-center">
+                                  <div class="flex px-1 py-1">
+                                    <div class="sm:max-w-sm">
+                                      <img
+                                        [src]="'http://localhost:3000/studentImage/' + item.image"
+                                        class="object-cover w-12 rounded-full sm:h-7 sm:w-7 h-12 md:h-14 md:w-14 md:rounded-full"
+                                       
+                                      />
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                      <h6
+                                        class="mb-0 text-sm  font-semibold leading-normal text-left"
+                                      >
+                                        {{ item.name }}
+                                      </h6>
+                                      <p
+                                        class="mb-0 text-xs font-bold leading-tight text-slate-400 text-left"
+                                      >
+                                        {{ item.age }}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </td>
+                                <td
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    {{item.class.className}} - {{item.class.division}}
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+
 </div>

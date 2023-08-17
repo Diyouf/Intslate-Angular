@@ -1,4 +1,5 @@
 <app-nav-bar></app-nav-bar>
+
 <div class="flex h-screen antialiased text-gray-800">
   <div class="flex flex-row h-full w-full overflow-x-hidden">
     <div class="flex flex-col py-8 pl-8 pr-2 w-64 bg-white flex-shrink-0">
@@ -9,18 +10,11 @@
 
         <div *ngFor="let item of teacherData">
           <div class="flex flex-col space-y-1 mt-4 -mx-2 overflow-y-auto">
-            <button
-              (click)="setConnection(item._id)"
+            <button (click)="setConnection(item._id)"
               class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
-              [class.active]="item._id === activeItemId"
-            >
-              <div
-                class="flex items-center justify-center h-8 w-8 rounded-full"
-              >
-                <img
-                  [src]="'http://localhost:3000/uploads/' + item.image"
-                  alt=""
-                />
+              [class.active]="item._id === activeItemId">
+              <div class="flex items-center justify-center h-8 w-8 rounded-full">
+                <img [src]="'http://localhost:3000/uploads/' + item.image" alt="" />
               </div>
               <div>
                 <div class="ml-2 text-sm text-left font-semibold">
@@ -36,93 +30,73 @@
       </div>
     </div>
     <div class="flex flex-col flex-auto h-full p-6">
-      <div
-        class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
-      >
+      <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
         <div class="flex flex-col h-full overflow-x-auto mb-4" #chatContainer>
           <ng-container *ngIf="connectionData; else noConnection">
             <div class="flex flex-col h-full">
-              <div
-                class="grid grid-cols-12 gap-y-2"
-                *ngFor="let item of allMessages"
-              >
-                <div
-                  class="col-start-1 col-end-8 p-3 rounded-lg"
-                  *ngIf="item.from === connectionData.connection?.teacher?._id"
-                >
-                  <div class="flex flex-row items-center">
-                    <div
-                      class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0"
-                    >
-                      <img
-                        class="rounded-full"
-                        [src]="
+              <ng-container *ngIf="allMessages.length > 0;else noMessage">
+                <div class="grid grid-cols-12 gap-y-2" *ngFor="let item of allMessages">
+                  <div class="col-start-1 col-end-8 p-3 rounded-lg"
+                    *ngIf="item.from === connectionData.connection?.teacher?._id">
+                    <div class="flex flex-row items-center">
+                      <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
+                        <img class="rounded-full" [src]="
                           'http://localhost:3000/uploads/' +
                           connectionData.connection?.teacher?.image
-                        "
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl"
-                    >
-                      <div
-                        *ngIf="
-                          item.from === connectionData.connection?.teacher?._id
-                        "
-                      >
-                        {{ item.content }}
+                        " alt="" />
                       </div>
-                      <div
-                        class="absolute text-[9px] bottom-0 left-0 -mb-5 mr-2 text-gray-500"
-                      >
-                        <p>{{ item.date | date : "shortTime" }}</p>
+                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                        <div *ngIf="
+                          item.from === connectionData.connection?.teacher?._id
+                        ">
+                          {{ item.content }}
+                        </div>
+                        <div class="absolute text-[9px] bottom-0 left-0 -mb-5 mr-2 text-gray-500">
+                          <p>{{ item.date | date : "shortTime" }}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div
-                  class="col-start-6 col-end-13 p-3 rounded-lg"
-                  *ngIf="
+                  <div class="col-start-6 col-end-13 p-3 rounded-lg" *ngIf="
                     item.from === connectionData.connection?.student?._id &&
                     item.to === connectionData.connection?.teacher?._id
-                  "
-                >
-                  <div class="flex items-center justify-start flex-row-reverse">
-                    <div
-                      class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0"
-                    >
-                      <img
-                        class="rounded-full"
-                        [src]="
+                  ">
+                    <div class="flex items-center justify-start flex-row-reverse">
+                      <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
+                        <img class="rounded-full" [src]="
                           'http://localhost:3000/studentImage/' +
                           connectionData.connection?.student?.image
-                        "
-                        alt=""
-                      />
-                    </div>
-                    <div
-                      class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
-                    >
-                      <div
-                        *ngIf="
+                        " alt="" />
+                      </div>
+                      <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                        <div *ngIf="
                           item.from ===
                             connectionData.connection?.student?._id &&
                           item.to === connectionData.connection?.teacher?._id
-                        "
-                      >
-                        {{ item.content }}
-                      </div>
-                      <div
-                        class="absolute text-[9px] bottom-0 right-0 mr-2 -mb-5 text-gray-500"
-                      >
-                        {{ item.date | date : "shortTime" }}
+                        ">
+                          {{ item.content }}
+                        </div>
+                        <div class="absolute text-[9px] bottom-0 right-0 mr-2 -mb-5 text-gray-500">
+                          {{ item.date | date : "shortTime" }}
+                        </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
-              </div>
+
+              </ng-container>
+              <ng-template #noMessage>
+                <div class="flex flex-col h-full justify-center items-center">
+                  <!-- Your existing content -->
+
+                  <div class="mt-auto">
+                    <span class="bg-slate-400 px-2 py-1 text-white font-medium rounded-xl">no messages</span>
+                  </div>
+                </div>
+              </ng-template>
+
             </div>
           </ng-container>
           <ng-template #noConnection>
@@ -137,82 +111,54 @@
             </div>
           </ng-template>
         </div>
-        <form
-          [formGroup]="formData"
-          (ngSubmit)="onSubmit()"
-          *ngIf="connectionData"
-        >
-        <div class="flex flex-col space-y-2">
-          <!-- Add a div for question suggestions -->
-          <div class="p-2 bg-gray-200 rounded-xl">
-            <p class="text-sm text-gray-600 mb-2">Question Suggestions:</p>
-            <ul class="flex space-x-2 list-none pl-0">
-              <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50" (click)="addSuggestionToMessage('How is my child\'s progress?')">How is my child's progress?</li>
-              <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50" (click)="addSuggestionToMessage('Are there any areas my child needs improvement in?')">Are there any areas my child needs improvement in?</li>
-              <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50" (click)="addSuggestionToMessage('How can I support my child\'s learning at home?')">How can I support my child's learning at home?</li>
-            </ul>
+        <form [formGroup]="formData" (ngSubmit)="onSubmit()" *ngIf="connectionData">
+          <div class="flex flex-col space-y-2">
+            <!-- Add a div for question suggestions -->
+            <div class="p-2 bg-gray-200 rounded-xl">
+              <p class="text-sm text-gray-600 mb-2">Question Suggestions:</p>
+              <ul class="flex space-x-2 list-none pl-0">
+                <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50"
+                  (click)="addSuggestionToMessage('How is my child\'s progress?')">How is my child's progress?</li>
+                <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50"
+                  (click)="addSuggestionToMessage('Are there any areas my child needs improvement in?')">Are there any
+                  areas my child needs improvement in?</li>
+                <li class="text-sm rounded-lg cursor-pointer p-2 bg-slate-50"
+                  (click)="addSuggestionToMessage('How can I support my child\'s learning at home?')">How can I support
+                  my child's learning at home?</li>
+              </ul>
+            </div>
           </div>
-        </div>
-          <div
-            class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
-          >
+          <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
             <div>
-              <button
-                class="flex items-center justify-center text-gray-400 hover:text-gray-600"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-                  ></path>
+              <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
+                  </path>
                 </svg>
               </button>
             </div>
             <div class="flex-grow ml-4">
               <div class="relative w-full">
-                <input
-                  type="text"
+                <input type="text"
                   class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
-                  formControlName="message"
-                />
+                  formControlName="message" />
               </div>
             </div>
             <div class="ml-4">
-              <button
-                data-tooltip-target="tooltip-default"
-                type="submit"
-                class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-full text-white px-2 py-2"
-              >
+              <button data-tooltip-target="tooltip-default" type="submit"
+                class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-full text-white px-2 py-2">
                 <span class="ml-2">
-                  <svg
-                    class="w-4 h-4 transform rotate-45 -mt-px"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                    ></path>
+                  <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                   </svg>
                 </span>
               </button>
-              <div
-                id="tooltip-default"
-                role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-              >
+              <div id="tooltip-default" role="tooltip"
+                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                 Send
                 <div class="tooltip-arrow" data-popper-arrow></div>
               </div>

@@ -6,7 +6,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ChatService } from './chat.service';
-import { allChat, connectionData } from './chat.interface';
+import { Message, allChat, connectionData } from './chat.interface';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -77,12 +77,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   onSubmit() {
     const { message } = this.formData.value;
     if (message && message.trim() && this.formData.value) {
-      const data = {
-        senderName: this.id,
+      const data:Message = {
+        senderName: <string>this.id,
         message: message,
-        connectionId: this.connection,
-        to: this.studentId,
+        connectionId: <string>this.connection,
+        to: <{ _id: string }>this.studentId,
       };
+      console.log(data);
+      
       this.chatService.sendMessage(data);
       this.formData.reset();
     } else {

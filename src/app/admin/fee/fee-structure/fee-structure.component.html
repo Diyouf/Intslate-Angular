@@ -83,15 +83,15 @@
                                     class
                                 </th>
                                 <th scope="col"
-                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-left">
                                     Term 1
                                 </th>
                                 <th scope="col"
-                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-left">
                                     Term 2
                                 </th>
                                 <th scope="col"
-                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-center">
+                                    class="p-4 text-xs font-medium  text-gray-500 uppercase lg:p-5 text-left">
                                     Term 3
                                 </th>
                                 
@@ -107,16 +107,22 @@
                                     {{value.student.class.className}} - {{value.student.class.division}}
                                 </td>
                                 <td
-                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    class="p-4  text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-left">
                                     {{value.term1.status}}
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term1.status === 'Paid'">{{value.term1.paymentDate | date }}</p>
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term1.status === 'Paid'">{{value.term1.paymentId}}</p>
                                 </td>
                                 <td
-                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-left">
                                     {{value.term2.status}}
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term1.status === 'Paid'">{{value.term2.paymentDate | date }}</p>
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term2.status === 'Paid'">{{value.term2.paymentId}}</p>
                                 </td>
                                 <td
-                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-center">
+                                    class="p-4 text-base font-medium text-gray-900 whitespace-nowrap lg:p-5 text-left">
                                     {{value.term3.status}}
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term1.status === 'Paid'">{{value.term3.paymentDate | date }}</p>
+                                    <p class="text-xs font-medium text-gray-500 " *ngIf="value.term3.status === 'Paid'">{{value.term3.paymentId}}</p>
                                 </td>
                                
                             </tr>

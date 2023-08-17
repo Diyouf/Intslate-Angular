@@ -20,12 +20,18 @@ export interface StudnetFeeData {
         }
     }
     term1:{
-        status:string
+        status:string,
+        paymentId:string
+        paymentDate:Date
     }
     term2:{
-        status:string
+        status:string,
+        paymentId:string
+        paymentDate:Date
     }
     term3:{
-        status:string
+        status:string,
+        paymentId:string
+        paymentDate:Date
     }
 }

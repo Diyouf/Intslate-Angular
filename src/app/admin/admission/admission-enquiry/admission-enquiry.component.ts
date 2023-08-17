@@ -62,8 +62,6 @@ export class AdmissionEnquiryComponent implements OnInit {
     this.fetchData$.subscribe(admissionData => {
       this.pendingCount = admissionData.filter(entry => entry.is_approved === 'pending').length;
      });
-  
-     
   }
   
 

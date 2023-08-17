@@ -38,7 +38,10 @@ import { AddEventComponent } from './event/add-event/add-event.component'
 import { _eventGetReducer } from './event/event-list/state/event.reducer';
 import { AllEventEffect } from './event/event-list/state/event.effect';
 import { ViewMoreComponent } from './studentFile/view-more/view-more.component';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { ChartDashboardComponent } from './chart/chart.component'
+import { NgApexchartsModule } from "ng-apexcharts";
+
 
 
 
@@ -64,7 +67,8 @@ import {MatIconModule} from '@angular/material/icon'
     AddSubjectComponent,
     EventListComponent,
     AddEventComponent,
-    ViewMoreComponent
+    ViewMoreComponent,
+    ChartDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -85,7 +89,8 @@ import {MatIconModule} from '@angular/material/icon'
     MatDialogModule,
     FormsModule,
     NgxPaginationModule,
-    MatIconModule
+    MatIconModule,
+    NgApexchartsModule,
   ],
   providers: [
     {
