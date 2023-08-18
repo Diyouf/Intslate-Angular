@@ -26,7 +26,6 @@ export class TeacherAuthInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401) {
-                    this.router.navigate(['/teacher/login'])
                     this.handleUnauthorizedAccess();
                 }
                 return throwError(error);
@@ -55,22 +54,20 @@ export class TeacherAuthInterceptor implements HttpInterceptor {
     }
 
     private handleUnauthorizedAccess() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+        Swal.fire({
+            icon: 'warning',
+            title: 'Session Expired',
+            text: 'Your session has expired. Please log in again.',
+            confirmButtonText: 'Login',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                localStorage.removeItem('teacherToken')
+                localStorage.removeItem('teacherId')
+                this.router.navigate(['teacher/login']);
             }
         });
-
-        Toast.fire({
-            icon: 'error',
-            title: 'Unauthorized Error'
-          })
 
     }
 }

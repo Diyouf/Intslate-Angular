@@ -8,7 +8,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileDivComponent } from './profile-div/profile-div.component';
-import { FeesEnquiryComponent } from './fees-enquiry/fees-enquiry.component'; 
+import { FeesEnquiryComponent } from './fees-enquiry/fees-enquiry.component';
 import { StudentAuthInterceptor } from './StudentInterceptor/student-http-interceptor';
 import { HomeworkComponent } from './homework/homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
@@ -17,11 +17,11 @@ import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin
 import { ChatComponent } from './chat/chat.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FooterComponent } from './footer/footer.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { EditprofileComponent } from './editprofile/editprofile.component'
+import { environment } from 'src/environment/environment';
 
 
-const config: SocketIoConfig = { url: 'https://intslate.onrender.com', options: {} };
 
 
 @NgModule({
@@ -46,16 +46,12 @@ const config: SocketIoConfig = { url: 'https://intslate.onrender.com', options: 
     HttpClientModule,
     FullCalendarModule,
     FormsModule,
-    SocketIoModule.forRoot(config),
+    
     MatIconModule
 
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: StudentAuthInterceptor,
-      multi: true
-    }
+    
   ]
 })
 export class StudentModule { }

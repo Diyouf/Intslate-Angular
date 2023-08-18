@@ -27,7 +27,7 @@ export class StudentAuthInterceptor implements HttpInterceptor {
         return next.handle(request).pipe(
             catchError((error: HttpErrorResponse) => {
                 if (error.status === 401) {
-                    this.router.navigate(['/student/login'])
+                   
                     this.handleUnauthorizedAccess();
                 }
                 return throwError(error);
@@ -57,23 +57,20 @@ export class StudentAuthInterceptor implements HttpInterceptor {
 
 
     private handleUnauthorizedAccess() {
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
+        Swal.fire({
+            icon: 'warning',
+            title: 'Session Expired',
+            text: 'Your session has expired. Please log in again.',
+            confirmButtonText: 'Login',
+            allowOutsideClick: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                localStorage.removeItem('studentToken')
+                localStorage.removeItem('studentId')
+                this.router.navigate(['student/login']);
             }
         });
-
-        Toast.fire({
-            icon: 'error',
-            title: 'Unauthorized Error'
-          })
-
     }
 }
 

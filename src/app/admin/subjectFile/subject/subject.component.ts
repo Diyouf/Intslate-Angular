@@ -19,7 +19,7 @@ export class SubjectComponent implements OnInit {
   currentPage: number = 1; 
   itemsPerPage: number = 6; 
   subjectData!: LoadSubject[];
-  searchText: string = ''; // Property to hold the search input
+  searchText: string = ''; 
   originalSubjectData!: LoadSubject[];
 
   addSubject() {

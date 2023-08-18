@@ -79,7 +79,7 @@ export class StudentRegisterComponent {
         }, 3000);
 
       } else {
-        this.router.navigate(['/student/login'])
+        this.router.navigate(['student/login'])
       }
     })
   }

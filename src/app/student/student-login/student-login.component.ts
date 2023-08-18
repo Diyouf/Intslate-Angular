@@ -66,7 +66,7 @@ export class StudentLoginComponent {
           this.alreadyReg = ''
         }, 3000);
       } else {
-        this.router.navigate(['/student/home'])
+        this.router.navigate(['student/home'])
         localStorage.setItem('studentToken', res.access_token);
         localStorage.setItem('studentId', res.id);
       }

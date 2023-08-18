@@ -92,12 +92,6 @@ import { NgApexchartsModule } from "ng-apexcharts";
     MatIconModule,
     NgApexchartsModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AdminAuthInterceptor,
-      multi: true
-    }
-  ]
+  providers: []
 })
 export class AdminModule { }

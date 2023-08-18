@@ -9,7 +9,7 @@ export class ClassesService {
     
     constructor(private http:HttpClient) 
     { }
-    private apiUrl = environment.apiUrl
+    private readonly apiUrl = environment.apiUrl
 
     fetchClasses():Observable<classData[]>{
         return this.http.get<classData[]>(`${this.apiUrl}/admin/fetchClasses`)

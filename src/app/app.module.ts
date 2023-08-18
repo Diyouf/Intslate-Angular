@@ -8,19 +8,25 @@ import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { AdminModule } from './admin/admin.module';
-import { StudentModule } from './student/student.module';
-import { TeacherModule } from './teacher/teacher.module';
 import { ErrorInterceptor } from './error-interceptor/global-errorHadling';
-import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environment/environment';
+import { AdminAuthInterceptor } from './admin/AdminInterceptor/admin-http-Interceptor';
+import { StudentAuthInterceptor } from './student/StudentInterceptor/student-http-interceptor';
+import { TeacherAuthInterceptor } from './teacher/TeacherInterceptor/teacher-http-interceptor';
+import { SpinnerComponent } from './loading/spinner/spinner.component';
+import { LoadingInterceptor } from './loading/loading.interceptor';
 
 
-
+const apiUrl = environment.apiUrl
+const config: SocketIoConfig = { url: apiUrl, options: {} };
 
 @NgModule({
   declarations: [
     AppComponent,
-   
+    SpinnerComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,17 +42,15 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     StoreModule.forRoot(),
     EffectsModule.forRoot(),
     FontAwesomeModule,
-    AdminModule,
-    StudentModule,
-    TeacherModule,
     MatSnackBarModule,
-    
-
-
-
+    SocketIoModule.forRoot(config),
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AdminAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: StudentAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TeacherAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
