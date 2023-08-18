@@ -21,7 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { EditprofileComponent } from './editprofile/editprofile.component'
 
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: 'https://intslate.onrender.com', options: {} };
 
 
 @NgModule({

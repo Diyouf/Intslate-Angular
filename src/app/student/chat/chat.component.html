@@ -14,7 +14,7 @@
               class="flex flex-row items-center hover:bg-gray-100 rounded-xl p-2"
               [class.active]="item._id === activeItemId">
               <div class="flex items-center justify-center h-8 w-8 rounded-full">
-                <img [src]="'http://localhost:3000/uploads/' + item.image" alt="" />
+                <img [src]="'https://intslate.onrender.com/uploads/' + item.image" alt="" />
               </div>
               <div>
                 <div class="ml-2 text-sm text-left font-semibold">
@@ -41,7 +41,7 @@
                     <div class="flex flex-row items-center">
                       <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
                         <img class="rounded-full" [src]="
-                          'http://localhost:3000/uploads/' +
+                          'https://intslate.onrender.com/uploads/' +
                           connectionData.connection?.teacher?.image
                         " alt="" />
                       </div>
@@ -65,7 +65,7 @@
                     <div class="flex items-center justify-start flex-row-reverse">
                       <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
                         <img class="rounded-full" [src]="
-                          'http://localhost:3000/studentImage/' +
+                          'https://intslate.onrender.com/studentImage/' +
                           connectionData.connection?.student?.image
                         " alt="" />
                       </div>

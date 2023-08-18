@@ -25,7 +25,7 @@
                 <div *ngFor="let item of student | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }"
                     class="flex items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl sm:max-w-sm  text-black px-6  ">
                     <div class="w-full md:w-1/4 bg-white grid place-items-center">
-                        <img [src]="'http://localhost:3000/studentImage/' + item.image" alt="tailwind logo"
+                        <img [src]="'https://intslate.onrender.com/studentImage/' + item.image" alt="tailwind logo"
                             class="rounded-xl" />
                     </div>
                     <div class="w-full md:w-full bg-white flex flex-col  space-y-1 p-4">
