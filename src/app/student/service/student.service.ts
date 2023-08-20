@@ -6,6 +6,7 @@ import { FeeStructure, PaidFeesInterface, token, unpaidTermsData } from '../fees
 import { studentProfileData } from '../profile-div/profile-div.interface';
 import { Homework } from '../homework/homework.interface';
 import { formData, returnData } from '../editprofile/editprofile.interface';
+import { LeaveReqData } from '../leave-requests/leave-request.interface';
 
 @Injectable({ providedIn: 'root' })
 export class StudentServiceService {
@@ -34,5 +35,13 @@ export class StudentServiceService {
 
     resetPassword(id:string | null,data :formData):Observable<returnData>{
         return this.http.post<returnData>(`${this.apiUrl}/student/resetPassword/?id=${id}`,data)
+    }
+
+    loadLeaveReq(id:string | null):Observable<LeaveReqData[]>{
+        return this.http.get<LeaveReqData[]>(`${this.apiUrl}/student/loadleaveRequest/?id=${id}`);
+    }
+
+    deleteLeaveReq(id:string):Observable<{success:boolean}>{
+        return this.http.get<{success:boolean}>(`${this.apiUrl}/student/deleteLeaveReq/?id=${id}`)
     }
 }

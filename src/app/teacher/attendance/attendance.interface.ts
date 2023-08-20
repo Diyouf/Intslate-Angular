@@ -6,7 +6,7 @@ export interface AddAttendance {
 export interface attendanceData {
   _id?: string
   class:string
-  date : Date
+  date : string
   attendance:[
     {
       studentId:{
@@ -14,7 +14,7 @@ export interface attendanceData {
         name:string
         email:string
       },
-      attendance:'string',
+      attendance:string,
     }
   ]
 }

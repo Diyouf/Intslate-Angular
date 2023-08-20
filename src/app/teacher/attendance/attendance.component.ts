@@ -7,6 +7,7 @@ import { LeaveRequestsComponent } from '../leave-requests/leave-requests.compone
 import { AttendanceService } from './attendance.service';
 import { AddAttendance, attendanceData } from './attendance.interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-attendance',
@@ -18,8 +19,8 @@ export class AttendanceComponent implements OnInit {
     private serviceSudent: TeacherStudentService,
     private dialog: MatDialog,
     private service: AttendanceService,
-    private snackBar : MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar
+  ) { }
   private readonly id: string | null = localStorage.getItem('teacherId');
 
   studentData: studentData[] = [];
@@ -27,13 +28,20 @@ export class AttendanceComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
   searchText: string = '';
+  NoDataMessage: string = '';
   errorMessage: string = '';
+  date!: string ;
   todayDate: Date = new Date();
-  attendanceData! :attendanceData 
+  attendanceData: attendanceData[] = []
+  filterDateData: attendanceData[] = []
+  searchDate: string = ''
+  formattedDate!:string
 
   ngOnInit(): void {
     this.loadStudent();
     this.loadAttendance()
+
+
   }
 
   loadStudent() {
@@ -89,21 +97,36 @@ export class AttendanceComponent implements OnInit {
         this.errorMessage = '';
       }, 4000);
     } else {
-      const addAttendanceData: AddAttendance = {
-        attendance: this.attendanceArray,
-      };
-      
-      
-      this.service.addAttendance(this.id, addAttendanceData).subscribe((res)=>{
-        if(res.alreadySubmitted){
-          this.snackBar.open( `today's attendance is already submitted`,'close',{
-            panelClass: 'custom-snackbar', 
-            duration:4000,
+      Swal.fire({
+        title: 'Submit the Attendance?',
+        text: 'After you cant change the Attendace!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ok!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          const addAttendanceData: AddAttendance = {
+            attendance: this.attendanceArray,
+          };
+    
+    
+          this.service.addAttendance(this.id, addAttendanceData).subscribe((res) => {
+            if (res.alreadySubmitted) {
+              this.snackBar.open(`today's attendance is already submitted`, 'close', {
+                panelClass: 'custom-snackbar',
+                duration: 4000,
+              })
+            } else if (res.success == true) {
+              this.loadAttendance()
+            
+            }
           })
-        }else if (res.success == true){
-          this.loadAttendance()
         }
-      })
+      });
+      
     }
   }
 
@@ -119,17 +142,54 @@ export class AttendanceComponent implements OnInit {
     });
   }
 
-  loadAttendance(){
-    const today = new Date();
+  loadAttendance() {
     const id = this.id
-    
-    this.service.loadAttendance(id,today).subscribe((res)=>{
-     this.attendanceData = res
-     console.log(this.attendanceData.attendance);
-     
-      
+    this.service.loadAttendance(id).subscribe((res) => {
+      this.attendanceData = res
+      this.filterDate();
     })
-    
 
   }
+
+  filterDate() {
+    // Get the selected date from the input field (searchDate)
+    const selectedDate = this.searchDate;
+  
+    if (selectedDate === '') {
+      // If the input is empty, set the filter date to today's date
+      const today = new Date();
+      this.formattedDate = today.toISOString().split('T')[0]; // Get YYYY-MM-DD part
+  
+      // Filter attendanceData by today's date
+      this.filterDateData = this.attendanceData.filter((item) => {
+        // Extract the date part from item.date in ISO 8601 format
+        const itemDate = item.date.split('T')[0];
+        return itemDate === this.formattedDate;
+      });
+    } else {
+      // Parse the selected date string into a Date object
+      const today = new Date();
+      this. date = today.toISOString().split('T')[0].toString()
+      
+      if (selectedDate <= this.date ) {
+       
+        
+        this.filterDateData = this.attendanceData.filter((item) => {
+          // Extract the date part from item.date in ISO 8601 format
+          const itemDate = item.date.split('T')[0];
+          return itemDate === selectedDate;
+        });
+      } else {
+       this.filterDateData = []
+        this.NoDataMessage = "Selected date must be lesser  than today's date";
+      }
+      
+      
+    }
+  }
+  
+  
+
+
+
 }

@@ -20,6 +20,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { EditprofileComponent } from './editprofile/editprofile.component'
 import { environment } from 'src/environment/environment';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
 
 
 
@@ -37,7 +39,8 @@ import { environment } from 'src/environment/environment';
     LeaveApplicatoinComponent,
     ChatComponent,
     FooterComponent,
-    EditprofileComponent
+    EditprofileComponent,
+    LeaveRequestsComponent
   ],
   imports: [
     CommonModule,
@@ -46,8 +49,8 @@ import { environment } from 'src/environment/environment';
     HttpClientModule,
     FullCalendarModule,
     FormsModule,
-    
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
 
   ],
   providers: [

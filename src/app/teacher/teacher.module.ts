@@ -18,6 +18,7 @@ import { AddHomeworkComponent } from './add-homework/add-homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
 import { ChatComponent } from './chat/chat.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -48,14 +49,11 @@ import { ChatComponent } from './chat/chat.component';
       preventDuplicates: true,
     }),
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TeacherAuthInterceptor,
-      multi: true
-    }
+    
   ]
 })
 export class TeacherModule { }

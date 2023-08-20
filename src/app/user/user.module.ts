@@ -14,7 +14,8 @@ import { _eventUserGetReducer } from './events/state/events.reducer';
 import { EventListhomeComponent } from './event-listhome/event-listhome.component';
 import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
-import { ContactComponent } from './contact/contact.component'
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component'
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ContactComponent } from './contact/contact.component'
     EventsComponent,
     EventListhomeComponent,
     FooterComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule,

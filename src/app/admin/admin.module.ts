@@ -4,7 +4,7 @@ import { _teacherGetReducer } from './teacherFile/teacher/state/teacher.reducer'
 import { AllteacherEffect } from './teacherFile/teacher/state/teacher.effect'
 import { AdminRoutingModule } from './admin-routing.module';
 import { LoginComponent } from './login/login.component';
-import {  HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import {  HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -30,7 +30,6 @@ import { AddFeeComponent } from './fee/add-fee/add-fee.component';
 import { EditFeeComponent } from './fee/edit-fee/edit-fee.component';
 import { EditClassComponent } from './class/edit-class/edit-class.component';
 import { DeleteTeacherComponent } from './teacherFile/delete-teacher/delete-teacher.component'
-import { AdminAuthInterceptor } from './AdminInterceptor/admin-http-Interceptor';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AddSubjectComponent } from './subjectFile/add-subject/add-subject.component';
 import { EventListComponent } from './event/event-list/event-list.component';

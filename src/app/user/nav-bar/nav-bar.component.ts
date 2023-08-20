@@ -7,9 +7,14 @@ import { Component } from '@angular/core';
 })
 export class NavBarComponent {
   showDropdown = false;
+  showMobileMenu = false;
 
   toggleDropdown() {
     this.showDropdown = !this.showDropdown;
   }
 
+
+  toggleMobileMenu(){
+    this.showMobileMenu = !this.showMobileMenu;
+  }
 }

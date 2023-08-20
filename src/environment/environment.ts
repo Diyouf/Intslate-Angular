@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://intslate.onrender.com',
+    apiUrl: 'http://localhost:3000',
     appName: 'My Angular App',
     
 };

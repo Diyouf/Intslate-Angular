@@ -14,9 +14,9 @@ export class AttendanceService {
         return this.http.post<{success?:boolean,alreadySubmitted?:string}>(`${this.apiUrl}/teacher/addAttendance/?id=${id}`,data)
     }
 
-    loadAttendance(id: string | null, today: Date): Observable<attendanceData> {
-        const formattedDate = today.toISOString(); // Convert date to ISO string
-        return this.http.get<attendanceData>(`${this.apiUrl}/teacher/loadAttendance/?id=${id}&today=${formattedDate}`);
+    loadAttendance(id: string | null): Observable<attendanceData[]> {
+         // Convert date to ISO string
+        return this.http.get<attendanceData[]>(`${this.apiUrl}/teacher/loadAttendance/?id=${id}`);
       }
       
     

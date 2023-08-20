@@ -5,6 +5,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { LeaveApplicatoinComponent } from '../leave-applicatoin/leave-applicatoin.component';
 import { AttendanceService } from './attendance.service';
 import { attendanceData } from './attendance.interface';
+import { LeaveRequestsComponent } from '../leave-requests/leave-requests.component';
 
 @Component({
   selector: 'app-attendance',
@@ -55,5 +56,13 @@ export class AttendanceComponent implements OnInit {
     const dialogRef = this.dialog.open(LeaveApplicatoinComponent, {
       width: '490px',
     });
+  }
+
+  manageReq(){
+    const dialogRef = this.dialog.open(LeaveRequestsComponent, {
+      data: {},
+      height:'459px'
+    });
+
   }
 }

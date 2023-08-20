@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { EventsComponent } from './events/events.component';
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'admissionForm', component: AdmissionComponent },
   { path: 'events', component: EventsComponent },
   { path: 'contact', component: ContactComponent },
+  { path: 'about', component: AboutComponent },
   {
     path: 'student',
     loadChildren: () =>
