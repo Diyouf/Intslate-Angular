@@ -12,4 +12,5 @@ export  interface teacherProfileData {
         subjectName:string
     }
     address:string
+    is_delete:boolean
 }
