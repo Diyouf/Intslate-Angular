@@ -15,7 +15,7 @@ export class TeacherAuthGuard implements CanActivate {
   
 
   teacherData!:teacherProfileData
-  readonly id = localStorage.getItem('teacherId')
+  readonly id:string | null = localStorage.getItem('teacherId')
   loadTeacherProfile(){
     this.service.loadTeacherProfile(this.id).subscribe((res:teacherProfileData)=>{
       this.teacherData = res
