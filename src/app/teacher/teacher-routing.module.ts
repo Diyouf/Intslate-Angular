@@ -11,7 +11,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/teacher/student', pathMatch: 'full' },
+  { path: '', redirectTo: '/teacher/students', pathMatch: 'full' },
   {
     path: 'login',
     component: TeacherLoginComponent,

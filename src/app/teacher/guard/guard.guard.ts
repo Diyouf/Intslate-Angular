@@ -15,7 +15,6 @@ export class TeacherAuthGuard implements CanActivate {
   
 
   teacherData!:teacherProfileData
-
   readonly id = localStorage.getItem('teacherId')
   loadTeacherProfile(){
     this.service.loadTeacherProfile(this.id).subscribe((res:teacherProfileData)=>{
@@ -41,14 +40,16 @@ export class TeacherAuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
-    this.loadTeacherProfile()
+    
     const isAuthenticated = localStorage.getItem('teacherToken');
     if (isAuthenticated) {
+      this.loadTeacherProfile()
       return true;
     } else {
       this.router.navigate(['/teacher/login']);
       return false;
     }
+    
   }
 
 }

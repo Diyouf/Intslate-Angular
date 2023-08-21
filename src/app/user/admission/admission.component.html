@@ -58,7 +58,7 @@
                         for="grid-password">
                         age
                     </label>
-                    <input formControlName="age" [class.border-red-500]="f.age.invalid&&submit"
+                    <input  formControlName="age" [class.border-red-500]="f.age.invalid&&submit"
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4  leading-tight focus:outline-none  focus:border-gray-500 cursor-not-allowed"
                         id="grid-password" type="text" placeholder="" [ngModel]="age" readonly>
                         <p class="text-xs italic text-red-500" >{{ageError}}</p>

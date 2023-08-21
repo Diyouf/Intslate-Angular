@@ -16,6 +16,7 @@ import { FooterComponent } from './footer/footer.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component'
+import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { AboutComponent } from './about/about.component'
     HttpClientModule,
     EffectsModule.forFeature([AllEventUserEffect]),
     StoreModule.forFeature('AllEventUser', _eventUserGetReducer),
-    MatIconModule
+    MatIconModule,
+    SharedModule
   
   ]
 })

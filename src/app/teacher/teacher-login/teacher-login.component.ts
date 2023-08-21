@@ -74,7 +74,7 @@ export class TeacherLoginComponent {
       } else {
         localStorage.setItem('teacherToken', res.access_token);
         localStorage.setItem('teacherId',res.id)
-        this.router.navigate(['teacher/dashboard'])
+        this.router.navigate(['teacher/students'])
       }
     })
   }
