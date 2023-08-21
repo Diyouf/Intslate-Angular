@@ -6,9 +6,7 @@ import { TeacherLoginComponent } from './teacher-login/teacher-login.component';
 import { TeacherRegisterComponent } from './teacher-register/teacher-register.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { TeacherAuthInterceptor } from './TeacherInterceptor/teacher-http-interceptor';
 import { ProfileComponent } from './profile/profile.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { StudentsComponent } from './students/students.component';
@@ -19,6 +17,7 @@ import { AttendanceComponent } from './attendance/attendance.component';
 import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
 import { ChatComponent } from './chat/chat.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
 
 
 
@@ -26,7 +25,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     TeacherLoginComponent,
     TeacherRegisterComponent,
-    TeacherDashboardComponent,
     NavBarComponent,
     ProfileComponent,
     SideNavComponent,
@@ -35,7 +33,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddHomeworkComponent,
     AttendanceComponent,
     LeaveRequestsComponent,
-    ChatComponent
+    ChatComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -50,7 +49,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     }),
     NgxPaginationModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedModule
   ],
   providers: [
     

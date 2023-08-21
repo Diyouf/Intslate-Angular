@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 export class TeacherAuthGuard implements CanActivate {
 
   constructor(private router: Router,private service:TeacherProfileService) {
-    this.loadTeacherProfile()
+   
   }
   
 
@@ -41,6 +41,7 @@ export class TeacherAuthGuard implements CanActivate {
   }
 
   canActivate(): boolean {
+    this.loadTeacherProfile()
     const isAuthenticated = localStorage.getItem('teacherToken');
     if (isAuthenticated) {
       return true;

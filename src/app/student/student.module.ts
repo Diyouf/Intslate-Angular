@@ -9,19 +9,17 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileDivComponent } from './profile-div/profile-div.component';
 import { FeesEnquiryComponent } from './fees-enquiry/fees-enquiry.component';
-import { StudentAuthInterceptor } from './StudentInterceptor/student-http-interceptor';
 import { HomeworkComponent } from './homework/homework.component';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { LeaveApplicatoinComponent } from './leave-applicatoin/leave-applicatoin.component';
 import { ChatComponent } from './chat/chat.component';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { EditprofileComponent } from './editprofile/editprofile.component'
-import { environment } from 'src/environment/environment';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LeaveRequestsComponent } from './leave-requests/leave-requests.component';
+import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
 
 
 
@@ -40,7 +38,7 @@ import { LeaveRequestsComponent } from './leave-requests/leave-requests.componen
     ChatComponent,
     FooterComponent,
     EditprofileComponent,
-    LeaveRequestsComponent
+    LeaveRequestsComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +48,8 @@ import { LeaveRequestsComponent } from './leave-requests/leave-requests.componen
     FullCalendarModule,
     FormsModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedModule
 
   ],
   providers: [

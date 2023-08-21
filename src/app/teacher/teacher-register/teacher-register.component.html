@@ -16,7 +16,7 @@
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
                                     Teacher Id
                                 </label>
-                                <input [class.border-red-500]="f.teacherId.invalid&&submit||idMatch"
+                                <input  appNoLeadingSpace  [class.border-red-500]="f.teacherId.invalid&&submit||idMatch"
                                     class="w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="firstName" type="text" placeholder="Teacher Id" formControlName='teacherId' />
                                     <p class="text-xs text-red-500 italic">{{idMatch}}</p>
@@ -34,7 +34,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="name">
                                 Name
                             </label>
-                            <input [class.border-red-500]="f.name.invalid&&submit"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.name.invalid&&submit"
                                 class="w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="name" type="name" placeholder="Name" formControlName="name" />
                             <div *ngIf="data.controls['name'].errors">
@@ -47,7 +47,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                 Email
                             </label>
-                            <input [class.border-red-500]="f.email.invalid&&submit||emailMatch"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.email.invalid&&submit||emailMatch"
                                 class="w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="email" type="email" placeholder="Email" formControlName="email" />
                                 <p class="text-xs text-red-500 italic">{{emailMatch}}</p>
@@ -64,7 +64,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
                                 Phone
                             </label>
-                            <input [class.border-red-500]="f.phone.invalid&&submit||phoneMatch"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.phone.invalid&&submit||phoneMatch"
                                 class="w-full px-3 py-2 mb-1 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="phone" type="number" placeholder="Phone" formControlName="phone" />
                                 <p class="text-xs text-red-500 italic">{{phoneMatch}}</p>
@@ -83,7 +83,7 @@
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
                                     Password
                                 </label>
-                                <input [class.border-red-500]="f.password.invalid&&submit"
+                                <input  appNoLeadingSpace  [class.border-red-500]="f.password.invalid&&submit"
                                     class="w-full px-3 py-2 mt-1 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="password" type="password" placeholder="******************"
                                     formControlName="password" />
@@ -100,7 +100,7 @@
                                 <label class="block mb-2 text-sm font-bold text-gray-700" for="c_password">
                                     Confirm Password
                                 </label>
-                                <input [class.border-red-500]="f.Conpassword.invalid&&submit||confirmError&&submit"
+                                <input  appNoLeadingSpace  [class.border-red-500]="f.Conpassword.invalid&&submit||confirmError&&submit"
                                     class="w-full px-3 py-2 mt-1 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                     id="c_password" type="password" placeholder="******************"
                                     formControlName="Conpassword" />

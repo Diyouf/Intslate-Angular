@@ -25,7 +25,7 @@
                    
                     <div class="col-span-6 sm:col-span-3">
                         <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900">Term 1</label>
-                        <input type="number"  formControlName="term1"
+                        <input  appNoLeadingSpace  type="number"  formControlName="term1"
                             class="shadow-lg-sm border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 block w-full p-2.5 "
                             placeholder="Amount.." required="" >
                             <div *ngIf="data.controls['term1'].errors">
@@ -40,7 +40,7 @@
                     <div class="col-span-6 sm:col-span-3">
                         <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900">
                             Term 2</label>
-                        <input type="number" name="phone-number" formControlName="term2" id="phone-number"
+                        <input  appNoLeadingSpace  type="number" name="phone-number" formControlName="term2" id="phone-number"
                             class="shadow-lg-sm border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 block w-full p-2.5"
                             placeholder="Amount.." required="">
                             <div *ngIf="data.controls['term2'].errors">
@@ -54,7 +54,7 @@
                     <div class="col-span-6 sm:col-span-3">
                         <label for="phone-number" class="block mb-2 text-sm font-medium text-gray-900">
                             Term 3</label>
-                        <input type="number" name="phone-number" formControlName="term3" id="phone-number"
+                        <input  appNoLeadingSpace  type="number" name="phone-number" formControlName="term3" id="phone-number"
                             class="shadow-lg-sm border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 block w-full p-2.5"
                             placeholder="Amount.." required="">
                             <div *ngIf="data.controls['term3'].errors">

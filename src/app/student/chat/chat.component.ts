@@ -22,12 +22,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     private fb: FormBuilder,
     private snackBar: MatSnackBar
   ) {}
-  newMessage$!: Observable<string>;
-  messages: string[] = [];
+
   teacherData!: teacherData[];
   readonly studentId: string | null = localStorage.getItem('studentId');
   connectionData!: returnData;
   allMessages: allChat[] = [];
+  groupedMessages: { date: string, messages: allChat[] }[] = []
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   activeItemId: string | null = null;
 
@@ -113,7 +113,38 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.chatService
       .loadMessages(this.connectionData._id)
       .subscribe((res: allChat[]) => {
-        this.allMessages = res;
+        this.groupedMessages = []
+         res.forEach((message)=>{
+          const formattedDate = this.formatDate(message.date); // Assuming the date property is in the correct format
+          const groupIndex = this.groupedMessages.findIndex((group) => group.date === formattedDate);
+    
+          if (groupIndex === -1) {
+            this.groupedMessages.push({ date: formattedDate, messages: [message] });
+          } else {
+            this.groupedMessages[groupIndex].messages.push(message);
+          }
+         })
       });
+  }
+  formatDate(date: Date | string): string {
+    if (typeof date === 'string') {
+      date = new Date(date);
+    } 
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      return '';
+    }
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    if (date >= today) {
+      return 'Today';
+    } else if (date >= yesterday) {
+      return 'Yesterday';
+    } else {
+      const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString(undefined, options);
+    }
   }
 }

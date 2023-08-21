@@ -18,7 +18,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
                                 Student Id
                             </label>
-                            <input [class.border-red-500]="f.studentId.invalid&&submit||idMatch"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.studentId.invalid&&submit||idMatch"
                                 class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="firstName" type="text" placeholder="Student Id" formControlName='studentId' />
                             <p class="text-xs text-red-500 italic">{{idMatch}}</p>
@@ -35,7 +35,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="username">
                                 Email
                             </label>
-                            <input [class.border-red-500]="f.email.invalid&&submit||emailMatch"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.email.invalid&&submit||emailMatch"
                                 class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="username" type="email" formControlName="email" placeholder="Email" />
                             <p class="text-xs italic text-red-500">{{emailMatch}}</p>
@@ -52,7 +52,7 @@
                             <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
                                 Password
                             </label>
-                            <input [class.border-red-500]="f.password.invalid&&submit||passError"
+                            <input  appNoLeadingSpace  [class.border-red-500]="f.password.invalid&&submit||passError"
                                 class="w-full px-3 py-2  text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                 id="password" formControlName="password" type="password"
                                 placeholder="******************" />

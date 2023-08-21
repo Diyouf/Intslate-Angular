@@ -21,9 +21,9 @@
             <div class="py-6 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div class="flex flex-col">
                     <label class="text-sm font-medium ">Current Password</label>
-                    <input formControlName="currentPass" type="text"
+                    <input appNoLeadingSpace  formControlName="currentPass" type="text"
                         class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
-                        placeholder="Current Password">
+                        placeholder="Current Password" >
                 </div>
                 <p *ngIf="currWrong" class="text-xs text-red-500">{{currWrong}}</p>
                 <div *ngIf="data.controls['currentPass'].errors">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="flex flex-col">
                     <label class="text-sm font-medium ">New  Password</label>
-                    <input formControlName="newPass" type="password"
+                    <input  appNoLeadingSpace  formControlName="newPass" type="password"
                         class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                         placeholder="New Password">
                 </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="flex flex-col">
                     <label class="text-sm font-medium ">Confirm Password</label>
-                    <input formControlName="confirmPass" type="password"
+                    <input  appNoLeadingSpace  formControlName="confirmPass" type="password"
                         class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                         placeholder="Confirm Password">
                 </div>

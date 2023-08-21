@@ -34,59 +34,68 @@
         <div class="flex flex-col h-full overflow-x-auto mb-4" #chatContainer>
           <ng-container *ngIf="connectionData; else noConnection">
             <div class="flex flex-col h-full">
-              <ng-container *ngIf="allMessages.length > 0;else noMessage">
-                <div class="grid grid-cols-12 gap-y-2" *ngFor="let item of allMessages">
-                  <div class="col-start-1 col-end-8 p-3 rounded-lg"
-                    *ngIf="item.from === connectionData.connection?.teacher?._id">
-                    <div class="flex flex-row items-center">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
-                        <img class="rounded-full" [src]="
-                          'https://intslate.onrender.com/uploads/' +
-                          connectionData.connection?.teacher?.image
-                        " alt="" />
-                      </div>
-                      <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
-                        <div *ngIf="
-                          item.from === connectionData.connection?.teacher?._id
-                        ">
-                          {{ item.content }}
+              <div *ngFor="let message of groupedMessages">
+                
+                <ng-container *ngIf="message.messages.length;else noMessage">
+                  <div class="mx-4 flex items-center space-x-3">
+                    <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                    <p class="text-sm text-gray-400 font-semibold">{{ message.date }}</p>
+                    <div class="h-px flex-1 bg-slate-200 dark:bg-navy-500"></div>
+                  </div>
+                  <div class="grid grid-cols-12 gap-y-2" *ngFor="let item of message.messages">
+                    <div class="col-start-1 col-end-8 p-3 rounded-lg"
+                      *ngIf="item.from === connectionData.connection?.teacher?._id">
+                      <div class="flex flex-row items-center">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
+                          <img class="rounded-full" [src]="
+                            'https://intslate.onrender.com/uploads/' +
+                            connectionData.connection?.teacher?.image
+                          " alt="" />
                         </div>
-                        <div class="absolute text-[9px] bottom-0 left-0 -mb-5 mr-2 text-gray-500">
-                          <p>{{ item.date | date : "shortTime" }}</p>
+                        <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                          <div *ngIf="
+                            item.from === connectionData.connection?.teacher?._id
+                          ">
+                            {{ item.content }}
+                          </div>
+                          <div class="absolute text-[9px] bottom-0 left-0 -mb-5 mr-2 text-gray-500">
+                            <p>{{ item.date | date : "shortTime" }}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="col-start-6 col-end-13 p-3 rounded-lg" *ngIf="
-                    item.from === connectionData.connection?.student?._id &&
-                    item.to === connectionData.connection?.teacher?._id
-                  ">
-                    <div class="flex items-center justify-start flex-row-reverse">
-                      <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
-                        <img class="rounded-full" [src]="
-                          'https://intslate.onrender.com/studentImage/' +
-                          connectionData.connection?.student?.image
-                        " alt="" />
-                      </div>
-                      <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
-                        <div *ngIf="
-                          item.from ===
-                            connectionData.connection?.student?._id &&
-                          item.to === connectionData.connection?.teacher?._id
-                        ">
-                          {{ item.content }}
+                    <div class="col-start-6 col-end-13 p-3 rounded-lg" *ngIf="
+                      item.from === connectionData.connection?.student?._id &&
+                      item.to === connectionData.connection?.teacher?._id
+                    ">
+                      <div class="flex items-center justify-start flex-row-reverse">
+                        <div class="flex items-center justify-center h-10 w-10 rounded-full mb-5 flex-shrink-0">
+                          <img class="rounded-full" [src]="
+                            'https://intslate.onrender.com/studentImage/' +
+                            connectionData.connection?.student?.image
+                          " alt="" />
                         </div>
-                        <div class="absolute text-[9px] bottom-0 right-0 mr-2 -mb-5 text-gray-500">
-                          {{ item.date | date : "shortTime" }}
+                        <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                          <div *ngIf="
+                            item.from ===
+                              connectionData.connection?.student?._id &&
+                            item.to === connectionData.connection?.teacher?._id
+                          ">
+                            {{ item.content }}
+                          </div>
+                          <div class="absolute text-[9px] bottom-0 right-0 mr-2 -mb-5 text-gray-500">
+                            {{ item.date | date : "shortTime" }}
+                          </div>
                         </div>
                       </div>
                     </div>
+
                   </div>
 
-                </div>
+                </ng-container>
+              </div>
 
-              </ng-container>
               <ng-template #noMessage>
                 <div class="flex flex-col h-full justify-center items-center">
                   <!-- Your existing content -->
@@ -129,19 +138,10 @@
             </div>
           </div>
           <div class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
-            <div>
-              <button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13">
-                  </path>
-                </svg>
-              </button>
-            </div>
+           
             <div class="flex-grow ml-4">
               <div class="relative w-full">
-                <input type="text"
+                <input  appNoLeadingSpace  type="text"
                   class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                   formControlName="message" />
               </div>

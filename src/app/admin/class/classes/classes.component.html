@@ -1,7 +1,7 @@
 <app-side-nav></app-side-nav>
 <div class="p-4 sm:ml-64">
     <div class="flex justify-end ">
-        <input type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+        <input  appNoLeadingSpace  type="text" placeholder="Search..." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
             [(ngModel)]="searchTerm" (input)="updateFilteredData()">
 
         <button type="button" (click)="addClass()"

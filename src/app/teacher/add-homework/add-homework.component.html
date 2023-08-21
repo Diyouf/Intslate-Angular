@@ -63,7 +63,7 @@
             >
               Home work Content</label
             >
-            <textarea
+            <textarea 
               type="text"
               name="phone-number"
               formControlName="homework"
@@ -71,7 +71,10 @@
               class="shadow-lg-sm border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-2 focus:ring-fuchsia-50 focus:border-fuchsia-300 block w-full p-2.5"
               placeholder=""
               required=""
+              appNoLeadingSpace
             ></textarea>
+            <p class="text-xs  text-red-500" >
+              {{trimError}}</p>
             <div *ngIf="formData.controls['homework'].errors">
                                 <p class="text-xs italic text-red-500"
                                     *ngIf="submit&&formData.controls.homework.hasError('required')">Home work content

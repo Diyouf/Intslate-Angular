@@ -17,6 +17,7 @@ import { StudentAuthInterceptor } from './student/StudentInterceptor/student-htt
 import { TeacherAuthInterceptor } from './teacher/TeacherInterceptor/teacher-http-interceptor';
 import { SpinnerComponent } from './loading/spinner/spinner.component';
 import { LoadingInterceptor } from './loading/loading.interceptor';
+import { appNoLeadingSpace } from './directive/trim-input.directive';
 
 
 const apiUrl = environment.apiUrl
@@ -26,6 +27,7 @@ const config: SocketIoConfig = { url: apiUrl, options: {} };
   declarations: [
     AppComponent,
     SpinnerComponent,
+    
 
   ],
   imports: [

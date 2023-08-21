@@ -15,11 +15,18 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   constructor(
     private loadingService: LoaderService
-  ) {}
+  ) { }
 
   intercept(request: HttpRequest<string>, next: HttpHandler): Observable<HttpEvent<string>> {
+    // Check if the request URL contains "/chat" and skip loading if it does
+    if (request.url.includes('/loadMesssages') || request.url.includes('/loadAllChats')) {
+      return next.handle(request);
+    }
+
+
     this.totalRequests++;
     this.loadingService.setLoading(true);
+
     return next.handle(request).pipe(
       finalize(() => {
         this.totalRequests--;
@@ -28,6 +35,6 @@ export class LoadingInterceptor implements HttpInterceptor {
         }
       })
     );
-  }
 
+  }
 }

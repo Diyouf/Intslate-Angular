@@ -23,6 +23,7 @@ export class AddHomeworkComponent implements OnInit {
   submit: boolean = false;
   currentDate = new Date();
   dateError: string = '';
+  trimError: string = '';
   readonly id = localStorage.getItem('teacherId');
 
   ngOnInit(): void {
@@ -51,10 +52,10 @@ export class AddHomeworkComponent implements OnInit {
           this.dateError = '';
         }, 4000);
       } else {
-        if (this.formData.valid) {
+        if (this.formData.valid && this.formData.value.homework?.trim()) {
           const formValues: homeWorkData = {
             class: this.formData.value.class || null,
-            homework: this.formData.value.homework || null,
+            homework:<string> this.formData.value.homework ,
             dueDate: dueDate, // Assign the converted Date object to the dueDate field
           };
 
@@ -80,6 +81,8 @@ export class AddHomeworkComponent implements OnInit {
               this.dialogRef.close();
             }
           });
+        }else{
+          this.trimError = 'Homework  field contains white space'
         }
       }
     }

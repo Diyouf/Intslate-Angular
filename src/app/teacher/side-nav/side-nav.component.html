@@ -46,22 +46,7 @@
       <!-- Navigation -->
 
       <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-        <li class="items-center">
-          <a
-            [routerLink]="['teacher/dashboard']"
-            class="text-xs uppercase py-3 font-bold block px-2"
-            routerLinkActive
-            #teacherDashboard="routerLinkActive"
-            [ngClass]="
-            teacherDashboard.isActive
-                ? 'text-blue-600 hover:text-blue-700 bg-slate-100  rounded-lg'
-                : 'text-blueGray-700 hover:text-blueGray-500'
-            "
-          >
-          
-            Dashboard
-          </a>
-        </li>
+       
         <li class="items-center">
           <a
             [routerLink]="['/teacher/students']"

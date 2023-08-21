@@ -26,7 +26,7 @@
             <div class="col-span-6 sm:col-span-3">
               <label class="text-sm font-medium">Start Date</label>
               <div class="relative focus-within:text-gray-600 text-gray-400">
-                <input (change)="startDate($event)" formControlName="startDate" type="date"
+                <input  (change)="startDate($event)" formControlName="startDate" type="date"
                   class="p-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                 <div *ngIf="formData.controls.startDate.invalid && formData.controls.startDate.touched">
                   <p class="text-red-500 text-xs mt-1">Start date must be valid and lesser than end date.</p>
@@ -43,7 +43,7 @@
             <div class="col-span-6 sm:col-span-3">
               <label class="text-sm font-medium">End Date</label>
               <div class="relative focus-within:text-gray-600 text-gray-400">
-                <input (change)="endDate($event)" formControlName="endDate" type="date"
+                <input  (change)="endDate($event)" formControlName="endDate" type="date"
                   class="p-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600">
                 <div *ngIf="formData.controls.endDate.invalid && formData.controls.endDate.touched">
                   <p class="text-red-500 text-xs mt-1">End date must be valid and greater than start date.</p>
@@ -67,7 +67,7 @@
 
           <div class="flex flex-col">
             <label class="text-sm font-medium ">Leave Reason</label>
-            <textarea formControlName="reason" type="text"
+            <textarea appNoLeadingSpace formControlName="reason" type="text"
               class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
               placeholder="Reason"></textarea>
           </div>

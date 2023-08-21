@@ -5,9 +5,9 @@
     <button (click)="leaveReq()" class="px-2 bg-slate-700 rounded-lg text-white h-11">
       Leave Requests
     </button>
-    <input type="text" name="" id="" placeholder="Search.." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+    <input  appNoLeadingSpace  type="text" name="" id="" placeholder="Search.." class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
       [(ngModel)]="searchText" (input)="filterStudents()" />
-    <input type="date" name="" id=""  class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
+    <input  appNoLeadingSpace  type="date" name="" id=""  class="rounded-lg px-5 py-2.5 mr-2 mb-2 bg-gray-100"
       [(ngModel)]="searchDate" (input)="filterDate()" />
   </div>
   <div *ngIf="filterDateData.length <= 0 && NoDataMessage === '';  ">
@@ -71,7 +71,7 @@
                     <div class="items-center flex justify-between">
                       <label class="relative flex cursor-pointer items-center rounded-full p-3"
                         [for]="'present-' + item._id" data-ripple-dark="true">
-                        <input [id]="'present-' + item._id" name="present-absent" type="radio" [checked]="
+                        <input  appNoLeadingSpace  [id]="'present-' + item._id" name="present-absent" type="radio" [checked]="
                             getAttendanceStatus(item._id) === 'present'
                           " (change)="onRadioChange('present', item._id)"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-gray-900 text-green-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-green-500 checked:before:bg-green-500 hover:before:opacity-10" />
@@ -86,7 +86,7 @@
 
                       <label class="relative flex cursor-pointer items-center rounded-full p-3 ml-2"
                         [for]="'absent-' + item._id" data-ripple-dark="true">
-                        <input [id]="'absent-' + item._id" name="present-absent" type="radio"
+                        <input  appNoLeadingSpace  [id]="'absent-' + item._id" name="present-absent" type="radio"
                           [checked]="getAttendanceStatus(item._id) === 'absent'"
                           (change)="onRadioChange('absent', item._id)"
                           class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-full border border-gray-900 text-red-500 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-red-500 checked:before:bg-red-500 hover:before:opacity-10" />

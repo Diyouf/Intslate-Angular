@@ -40,6 +40,7 @@ import { ViewMoreComponent } from './studentFile/view-more/view-more.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ChartDashboardComponent } from './chart/chart.component'
 import { NgApexchartsModule } from "ng-apexcharts";
+import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
 
 
 
@@ -90,6 +91,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NgxPaginationModule,
     MatIconModule,
     NgApexchartsModule,
+    SharedModule
   ],
   providers: []
 })
