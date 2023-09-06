@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class appImageFileValidator {
 
-  @Input() allowedExtensions: string[] = ['.jpg', '.jpeg', '.png', '.gif', '.bmp'];
+  @Input() allowedExtensions: string[] = ['.jpg', '.jpeg', '.png', '.bmp'];
 
   constructor(private el: ElementRef, private toast: ToastrService) {}
 

@@ -17,7 +17,6 @@ import {MatIconModule} from '@angular/material/icon';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component'
 import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
-import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
