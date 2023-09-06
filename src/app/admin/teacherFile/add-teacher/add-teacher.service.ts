@@ -9,6 +9,7 @@ export class AddteacherService {
 
     constructor(private http: HttpClient,  ) { }
     private apiUrl = environment.apiUrl
+    
     toastFun(){
         this.toaster = true
     }

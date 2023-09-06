@@ -134,7 +134,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                         for="user_avatar">Upload
                         Image of Student </label>
-                    <input  appNoLeadingSpace  formControlName="image" (change)="onFileChange($event)"
+                    <input  appImageFileValidator  formControlName="image" (change)="onFileChange($event)"
                         class="w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded  focus:outline-none focus:bg-white focus:border-gray-500"
                         id="file_input" type="file">
                     <div *ngIf="data.controls['image'].errors">
