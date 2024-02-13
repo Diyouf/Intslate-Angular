@@ -13,7 +13,7 @@ import { AllEventUserEffect } from './events/state/events.effects';
 import { _eventUserGetReducer } from './events/state/events.reducer';
 import { EventListhomeComponent } from './event-listhome/event-listhome.component';
 import { FooterComponent } from './footer/footer.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component'
 import { SharedModule } from '../sharedModule/shared-module/shared-module.module';
@@ -39,8 +39,8 @@ import { SharedModule } from '../sharedModule/shared-module/shared-module.module
     StoreModule.forFeature('AllEventUser', _eventUserGetReducer),
     MatIconModule,
     SharedModule,
-    
-  
+
+
   ]
 })
 export class UserModule { }
